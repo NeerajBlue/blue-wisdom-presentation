@@ -31,7 +31,6 @@
         }
 
         h1, h2, h3, h4 { color: var(--bw-dark-blue); font-weight: 800; letter-spacing: -0.5px; }
-
         a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
 
         /* Navigation */
@@ -48,7 +47,6 @@
         .nav-logo { display: flex; flex-direction: column; line-height: 0.9; font-size: 1.8em; font-weight: 900; }
         .nav-logo .blue { color: var(--bw-dark-blue); }
         .nav-logo .wisdom { color: var(--bw-primary-blue); }
-        .nav-logo .tagline { font-size: 0.35em; color: var(--bw-text); font-weight: 600; letter-spacing: 0.5px; margin-top: 2px; }
 
         .nav-links { display: flex; gap: 30px; align-items: center; }
         .nav-links a { font-weight: 600; font-size: 0.9em; color: var(--bw-text); }
@@ -56,7 +54,7 @@
 
         .cta-btn {
             padding: 12px 24px; border-radius: 4px; font-weight: 600; font-size: 1em;
-            display: inline-block; transition: all 0.3s ease; text-align: center;
+            display: inline-block; transition: all 0.3s ease; text-align: center; border: none; cursor: pointer;
         }
         .cta-btn.primary {
             background: var(--bw-primary-blue); color: white !important;
@@ -72,13 +70,25 @@
 
         /* Hero */
         .hero {
-            padding: 180px 5% 100px;
+            padding: 160px 5% 80px;
             background: linear-gradient(135deg, #F0F6FF 0%, #ffffff 100%);
             text-align: center;
         }
         .hero h1 { font-size: clamp(2.5em, 5vw, 4em); line-height: 1.15; margin-bottom: 25px; max-width: 900px; margin-left: auto; margin-right: auto; }
         .hero p { font-size: 1.2em; max-width: 750px; margin: 0 auto 40px; color: #4A5568; }
-        .hero-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        .hero-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 60px; }
+
+        /* Contact Box Form */
+        .contact-box {
+            background: white; padding: 40px; border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08); max-width: 700px; margin: 0 auto;
+            border-top: 4px solid var(--bw-primary-blue); text-align: left;
+        }
+        .contact-box h3 { margin-bottom: 20px; font-size: 1.5em; text-align: center; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.9em; color: var(--bw-text); }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #CBD5E0; border-radius: 6px; font-family: inherit; font-size: 1em; transition: border-color 0.3s; }
+        .form-group input:focus, .form-group textarea:focus { border-color: var(--bw-primary-blue); outline: none; }
 
         /* Trust Strip */
         .trust-strip {
@@ -96,77 +106,70 @@
         .section-header h2 { font-size: 2.5em; margin-bottom: 20px; }
         .section-header p { color: #4A5568; font-size: 1.1em; }
 
-        /* Solutions Grid */
-        .solutions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .solution-card {
-            background: white; padding: 40px; border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-            border-top: 4px solid var(--bw-primary-blue);
+        /* Quotes */
+        .quote-section {
+            background: var(--bw-light-blue); padding: 80px 5%; text-align: center; border-left: 8px solid var(--bw-primary-blue);
         }
-        .solution-card i { font-size: 2.2em; color: var(--bw-primary-blue); margin-bottom: 20px; }
-        .solution-card h3 { font-size: 1.4em; margin-bottom: 15px; }
-        .solution-card p { color: #4A5568; font-size: 0.95em; margin-bottom: 0; }
+        .quote-section.dark { background: var(--bw-dark-blue); color: white; border-left-color: var(--bw-accent); }
+        .quote-section.dark h3, .quote-section.dark p { color: white; }
+        .quote-icon { font-size: 3em; color: var(--bw-primary-blue); margin-bottom: 20px; opacity: 0.5; }
+        .quote-content { max-width: 800px; margin: 0 auto; font-size: 1.6em; font-weight: 300; font-style: italic; line-height: 1.4; color: var(--bw-dark-blue); }
+        .quote-author { margin-top: 20px; font-size: 0.8em; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--bw-primary-blue); }
 
-        /* Case Studies / Proof */
-        .case-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .case-card {
-            background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 30px;
-        }
-        .case-card h4 { color: var(--bw-dark-blue); margin-bottom: 15px; font-size: 1.2em; border-bottom: 2px solid var(--bw-light-blue); padding-bottom: 10px; }
-        .case-metric { font-size: 1.8em; font-weight: 800; color: var(--bw-primary-blue); margin-top: 20px; }
-        .case-metric span { display: block; font-size: 0.4em; font-weight: 600; color: #4A5568; text-transform: uppercase; letter-spacing: 1px; }
+        /* Solutions/Services Grid */
+        .services-wrapper { display: flex; flex-direction: column; gap: 40px; }
+        .service-row { display: flex; flex-wrap: wrap; gap: 40px; align-items: center; }
+        .service-row:nth-child(even) { flex-direction: row-reverse; }
+        .service-content { flex: 1 1 400px; }
+        .service-content h3 { font-size: 1.8em; margin-bottom: 15px; display: flex; align-items: center; gap: 15px; }
+        .service-content h3 i { color: var(--bw-primary-blue); font-size: 1.2em; background: var(--bw-light-blue); padding: 15px; border-radius: 50%; }
+        .service-content p { color: #4A5568; font-size: 1.05em; margin-bottom: 15px; }
+        .service-bullets { list-style: none; margin-bottom: 20px; }
+        .service-bullets li { position: relative; padding-left: 25px; margin-bottom: 10px; color: #2D3748; font-weight: 500; }
+        .service-bullets li::before { content: "\f00c"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--bw-primary-blue); position: absolute; left: 0; top: 2px; }
 
-        /* Methodology D4MR2 */
-        .methodology-wrapper {
-            display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; position: relative;
+        /* Interactive Quiz */
+        .quiz-container {
+            background: white; padding: 50px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); max-width: 800px; margin: 0 auto;
         }
-        .method-step {
-            background: white; padding: 25px; border-radius: 8px; width: calc(33.333% - 20px); min-width: 250px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 4px solid var(--bw-accent);
+        .quiz-intro { text-align: center; margin-bottom: 40px; }
+        .question-block { margin-bottom: 30px; border-bottom: 1px solid #EDF2F7; padding-bottom: 20px; }
+        .question-block:last-child { border-bottom: none; }
+        .question-text { font-size: 1.1em; font-weight: 600; margin-bottom: 15px; color: var(--bw-dark-blue); }
+        .rating-group { display: flex; gap: 10px; flex-wrap: wrap; }
+        .rating-btn {
+            flex: 1; padding: 12px 10px; background: #F7FAFC; border: 2px solid #E2E8F0; border-radius: 6px; cursor: pointer;
+            font-weight: 600; text-align: center; transition: all 0.2s ease; font-size: 0.9em; min-width: 60px;
         }
-        .method-step h4 { color: var(--bw-dark-blue); font-size: 1.3em; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
-        .method-step h4 span { background: var(--bw-light-blue); color: var(--bw-primary-blue); width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.7em; }
-        .method-step p { font-size: 0.9em; color: #4A5568; }
+        .rating-btn:hover { border-color: var(--bw-primary-blue); }
+        .rating-btn.active { background: var(--bw-primary-blue); color: white; border-color: var(--bw-primary-blue); }
+        #quiz-result { display: none; margin-top: 30px; padding: 25px; border-radius: 8px; background: var(--bw-light-blue); border-left: 5px solid var(--bw-primary-blue); text-align: center; }
+        #quiz-result h4 { font-size: 1.5em; margin-bottom: 10px; color: var(--bw-dark-blue); }
+        #quiz-result p { font-size: 1.1em; color: #4A5568; margin-bottom: 20px; }
 
-        /* Split Section */
+        /* Visual Models */
         .split-section { display: flex; gap: 60px; align-items: center; flex-wrap: wrap; }
         .split-content { flex: 1 1 400px; }
         .split-image { flex: 1 1 400px; text-align: center; }
         .split-image img { max-width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
 
-        /* Profile Details */
+        /* Profile */
         .profile-bullets { list-style: none; margin: 25px 0; }
         .profile-bullets li { position: relative; padding-left: 30px; margin-bottom: 15px; color: #4A5568; font-weight: 500; }
         .profile-bullets li::before { content: "\f00c"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--bw-primary-blue); position: absolute; left: 0; top: 2px; }
-
-        /* Clients */
-        .client-grid { display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; align-items: center; opacity: 0.6; }
-        .client-grid img { max-height: 40px; max-width: 150px; filter: grayscale(100%); transition: all 0.3s; }
-        .client-grid img:hover { filter: grayscale(0%); opacity: 1; }
-        .client-name { font-weight: 800; font-size: 1.5em; color: #718096; }
 
         /* Footer */
         footer { background: #1A202C; color: #A0AEC0; padding: 80px 5% 40px; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 60px; }
         .footer-col h3 { color: white; margin-bottom: 20px; font-size: 1.2em; }
-        .footer-col p { margin-bottom: 10px; font-size: 0.9em; }
         .social-links { display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
         .social-links a { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); color: white; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
         .social-links a:hover { background: var(--bw-primary-blue); transform: translateY(-3px); }
         .whatsapp:hover { background: #25D366 !important; }
-        
-        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; text-align: center; font-size: 0.8em; }
 
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .hero { padding-top: 130px; }
-            .method-step { width: 100%; }
-        }
-        
-        .img-placeholder-box {
-            width: 100%; min-height: 300px; background: #EDF2F7; border: 2px dashed #CBD5E0;
-            display: flex; align-items: center; justify-content: center; flex-direction: column;
-            border-radius: 8px; color: #718096; font-size: 0.9em; text-align: center; padding: 20px;
         }
     </style>
 </head>
@@ -178,8 +181,8 @@
             <img src="images/1.png" alt="Blue Wisdom Logo" style="max-height: 45px; width: auto;" onerror="this.outerHTML='<div style=\'display:flex; flex-direction:column;\'><span class=\'blue\'>Blue</span><span class=\'wisdom\'>Wisdom</span></div>'">
         </a>
         <div class="nav-links">
-            <a href="#solutions">Solutions</a>
-            <a href="#impact">Proof of Impact</a>
+            <a href="#services">Services</a>
+            <a href="#assessment">Health Check</a>
             <a href="#methodology">Methodology</a>
             <a href="#leadership">Leadership</a>
             <a href="#contact" class="cta-btn primary" style="padding: 8px 16px;">Book a Call</a>
@@ -190,106 +193,226 @@
     <header id="home" class="hero">
         <h1>Customized OD and Leadership Solutions</h1>
         <p>We help organizations build stronger managers, aligned teams, and measurable business performance through tailored L&D interventions.</p>
+        
         <div class="hero-buttons">
-            <a href="#contact" class="cta-btn primary">Book a Discovery Call</a>
-            <a href="#solutions" class="cta-btn secondary">Explore Our Solutions</a>
+            <a href="#contact" class="cta-btn primary">Discuss Your Requirement</a>
+            <a href="#assessment" class="cta-btn secondary">Take the Leadership Quiz</a>
+        </div>
+
+        <!-- Top Contact Form (Requirement & Needs Box) -->
+        <div class="contact-box" id="top-form">
+            <h3>Start Your Capability Plan</h3>
+            <p style="text-align: center; color: #4A5568; margin-bottom: 25px; font-size: 0.95em;">Fill out your basic requirements and our team will get back to you with a customized diagnostic approach.</p>
+            
+            <!-- Netlify Form Integration -->
+            <form name="requirements-top" method="POST" data-netlify="true">
+                <div class="form-group">
+                    <label for="name1">Full Name</label>
+                    <input type="text" id="name1" name="name" required placeholder="e.g. John Doe">
+                </div>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                    <div class="form-group" style="flex: 1; min-width: 200px;">
+                        <label for="email1">Corporate Email</label>
+                        <input type="email" id="email1" name="email" required placeholder="john@company.com">
+                    </div>
+                    <div class="form-group" style="flex: 1; min-width: 200px;">
+                        <label for="phone1">Phone Number</label>
+                        <input type="tel" id="phone1" name="phone" placeholder="+91 98765 43210">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="need1">What is your primary OD or Training requirement?</label>
+                    <textarea id="need1" name="requirement" rows="3" required placeholder="E.g., We need a 6-month intervention for our first-time managers..."></textarea>
+                </div>
+                <button type="submit" class="cta-btn primary" style="width: 100%;">Submit Requirement</button>
+            </form>
         </div>
     </header>
 
     <!-- Trust Strip -->
     <div class="trust-strip">
-        <div class="trust-item">
-            <div class="number">28+</div>
-            <div class="label">Years Expertise</div>
-        </div>
-        <div class="trust-item">
-            <div class="number">50+</div>
-            <div class="label">Enterprises Trusted</div>
-        </div>
-        <div class="trust-item">
-            <div class="number">100%</div>
-            <div class="label">Tailored Frameworks</div>
-        </div>
+        <div class="trust-item"><div class="number">28+</div><div class="label">Years Expertise</div></div>
+        <div class="trust-item"><div class="number">50+</div><div class="label">Enterprises Trusted</div></div>
+        <div class="trust-item"><div class="number">100%</div><div class="label">Tailored Frameworks</div></div>
     </div>
 
-    <!-- Strategic Pillars -->
-    <section id="solutions" class="bg-gray">
+    <!-- QUOTE 1: Culture -->
+    <div class="quote-section">
+        <i class="fa-solid fa-quote-left quote-icon"></i>
+        <div class="quote-content">"Culture does not change because we desire to change it. Culture changes when the organization is transformed; the culture reflects the realities of people working together every day."</div>
+        <div class="quote-author">- Frances Hesselbein</div>
+    </div>
+
+    <!-- Expanded Services Section -->
+    <section id="services" class="bg-gray">
         <div class="section-header">
-            <h2>Strategic Solution Pillars</h2>
+            <h2>Comprehensive OD Interventions</h2>
             <p>We don't do off-the-shelf. We diagnose your exact business problem and deploy targeted interventions designed for measurable capability building.</p>
         </div>
 
-        <div class="solutions-grid">
-            <div class="solution-card">
-                <i class="fa-solid fa-users-gear"></i>
-                <h3>Manager Effectiveness</h3>
-                <p>Equipping first-time and mid-level managers with the tools to solve problems, make decisions, and drive team performance without escalation.</p>
+        <div class="services-wrapper">
+            <!-- Service 1 -->
+            <div class="service-row">
+                <div class="service-content">
+                    <h3><i class="fa-solid fa-users-gear"></i> Manager Effectiveness</h3>
+                    <p>The leap from individual contributor to manager is often the hardest. We equip first-time and mid-level managers with the critical tools to solve problems, make decisions, and drive team performance without unnecessary escalation to senior leadership.</p>
+                    <ul class="service-bullets">
+                        <li>Conflict Resolution & Difficult Conversations</li>
+                        <li>Delegation and Accountability Frameworks</li>
+                        <li>Performance Feedback Mastery</li>
+                    </ul>
+                </div>
+                <div class="split-image">
+                    <img src="images/performance_matrix.png.png" alt="Performance Matrix" style="border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-height: 300px;" onerror="this.style.display='none'">
+                </div>
             </div>
-            <div class="solution-card">
-                <i class="fa-solid fa-chart-line"></i>
-                <h3>Leadership Development</h3>
-                <p>Building resilient leadership pipelines. We map competencies and coach senior leaders to align perfectly with organizational vision and strategy.</p>
+
+            <!-- Service 2 -->
+            <div class="service-row">
+                <div class="service-content">
+                    <h3><i class="fa-solid fa-chart-line"></i> Leadership Development</h3>
+                    <p>Building resilient, future-ready leadership pipelines. We map competencies against your strategic goals and coach senior leaders to align their operational style perfectly with organizational vision and strategy.</p>
+                    <ul class="service-bullets">
+                        <li>Executive Presence & Strategic Thinking</li>
+                        <li>Leading through Volatility and Complexity</li>
+                        <li>CXO Alignment Workshops</li>
+                    </ul>
+                </div>
+                <div class="split-image" style="background: white; padding: 40px; border-radius: 12px; border: 2px dashed #CBD5E0;">
+                    <i class="fa-solid fa-ranking-star" style="font-size: 5em; color: var(--bw-primary-blue); opacity: 0.5;"></i>
+                    <h4 style="margin-top: 15px;">Tailored Leadership Journeys</h4>
+                </div>
             </div>
-            <div class="solution-card">
-                <i class="fa-solid fa-people-arrows"></i>
-                <h3>Team Alignment</h3>
-                <p>Enhancing collaborative teamwork, breaking down silos, and fostering deep trust through customized workshops and Out-Bound Training (OBT).</p>
+
+            <!-- Service 3 -->
+            <div class="service-row">
+                <div class="service-content">
+                    <h3><i class="fa-solid fa-people-arrows"></i> Team Alignment & OBT</h3>
+                    <p>Silos destroy productivity. We enhance collaborative teamwork and foster deep psychological trust through highly customized classroom workshops and Out-Bound Training (OBT) interventions.</p>
+                    <ul class="service-bullets">
+                        <li>Breaking down cross-functional silos</li>
+                        <li>Building High-Trust environments</li>
+                        <li>Experiential learning (OBT) for mindset shifts</li>
+                    </ul>
+                </div>
+                <div class="split-image">
+                    <img src="images/outbound_training.png.png" alt="Out Bound Training" style="border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-height: 300px;" onerror="this.style.display='none'">
+                </div>
             </div>
-            <div class="solution-card">
-                <i class="fa-solid fa-seedling"></i>
-                <h3>HiPo & Succession Readiness</h3>
-                <p>Identifying and accelerating High-Potential talent. We utilize robust psychometric and 360-degree assessments to secure your future bench strength.</p>
+
+            <!-- Service 4 -->
+            <div class="service-row">
+                <div class="service-content">
+                    <h3><i class="fa-solid fa-seedling"></i> HiPo & Succession Readiness</h3>
+                    <p>Securing your future bench strength. We identify and accelerate High-Potential (HiPo) talent using robust psychometric tools and Assessment/Development Centers (AC/DC).</p>
+                    <ul class="service-bullets">
+                        <li>Assessment Centers (AC/DC)</li>
+                        <li>Individual Development Plans (IDPs)</li>
+                        <li>Psychometric Profiling (DISC, MBTI)</li>
+                    </ul>
+                </div>
+                <div class="split-image" style="background: white; padding: 40px; border-radius: 12px; border: 2px dashed #CBD5E0;">
+                    <i class="fa-solid fa-bullseye" style="font-size: 5em; color: var(--bw-accent); opacity: 0.5;"></i>
+                    <h4 style="margin-top: 15px;">Data-Driven Talent Decisions</h4>
+                </div>
             </div>
-            <div class="solution-card">
-                <i class="fa-solid fa-globe"></i>
-                <h3>Culture Transformation</h3>
-                <p>Shifting organizational culture from passive to proactive. We embed accountability and sustainable business practices deep within your workforce DNA.</p>
-            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 60px;">
+            <a href="#contact" class="cta-btn primary">Request a Custom Intervention Proposal</a> <!-- CTA 2 -->
         </div>
     </section>
 
-    <!-- Visual Models (Performance Matrix & Outbound Training) -->
-    <section id="visual-models" style="padding-top: 40px; padding-bottom: 60px;">
-        <div class="split-section">
-            <div class="split-content" style="text-align: center;">
-                <h3 style="font-size: 1.5em; margin-bottom: 15px;">The Performance Matrix</h3>
-                <img src="images/performance_matrix.png.png" alt="Performance Matrix" style="max-width: 100%; height: auto; max-height: 350px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" onerror="this.style.display='none'">
-            </div>
-            <div class="split-content" style="text-align: center;">
-                <h3 style="font-size: 1.5em; margin-bottom: 15px;">Out-Bound Training (OBT)</h3>
-                <img src="images/outbound_training.png.png" alt="Out Bound Training" style="max-width: 100%; height: auto; max-height: 350px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" onerror="this.style.display='none'">
-            </div>
-        </div>
-    </section>
+    <!-- QUOTE 2: Coaching -->
+    <div class="quote-section dark">
+        <i class="fa-solid fa-quote-left quote-icon" style="color: var(--bw-accent);"></i>
+        <div class="quote-content">"Coaching is unlocking a person's potential to maximize their own performance. It is helping them to learn rather than teaching them."</div>
+        <div class="quote-author" style="color: white; opacity: 0.8;">- John Whitmore</div>
+    </div>
 
-    <!-- Proof / Case Studies Placeholder -->
-    <section id="impact">
+    <!-- Interactive Assessment Quiz -->
+    <section id="assessment">
         <div class="section-header">
-            <h2>Proof of Outcomes</h2>
-            <p>Our interventions are tied directly to talent decisions and business results. Here is how we create measurable impact.</p>
+            <h2>Interactive Health Check</h2>
+            <p>Assess your organization's current Leadership, Culture, and Performance health in 60 seconds.</p>
         </div>
 
-        <div class="case-grid">
-            <div class="case-card">
-                <h4>Manufacturing Sector</h4>
-                <p><strong>Challenge:</strong> High escalation rates from first-line supervisors lacking conflict resolution skills.</p>
-                <p><strong>Intervention:</strong> 6-month Managerial Effectiveness journey with 10:20:70 methodology.</p>
-                <div class="case-metric">22% <span>Reduction in Escalations</span></div>
+        <div class="quiz-container">
+            <div class="quiz-intro">
+                <p>Rate the following statements on a scale of 1 to 5.</br><strong>(1 = Strongly Disagree | 5 = Strongly Agree)</strong></p>
             </div>
-            <div class="case-card">
-                <h4>Pharmaceuticals</h4>
-                <p><strong>Challenge:</strong> Need to identify and prepare next-generation leaders for plant operations.</p>
-                <p><strong>Intervention:</strong> Comprehensive Assessment Centers (AC/DC) & HiPo Coaching.</p>
-                <div class="case-metric">100% <span>Succession Roles Filled Internally</span></div>
-            </div>
-            <div class="case-card">
-                <h4>Energy & Infrastructure</h4>
-                <p><strong>Challenge:</strong> Siloed operations affecting cross-functional project delivery timelines.</p>
-                <p><strong>Intervention:</strong> Culture Transformation & Collaborative Out-Bound Training.</p>
-                <div class="case-metric">85% <span>Improvement in Team Trust Index</span></div>
+
+            <form id="health-quiz">
+                <div class="question-block">
+                    <div class="question-text">1. Performance: Our teams consistently meet or exceed performance targets without heavy micromanagement.</div>
+                    <div class="rating-group" data-q="q1">
+                        <div class="rating-btn" onclick="selectRating(this, 'q1', 1)">1</div>
+                        <div class="rating-btn" onclick="selectRating(this, 'q1', 2)">2</div>
+                        <div class="rating-btn" onclick="selectRating(this, 'q1', 3)">3</div>
+                        <div class="rating-btn" onclick="selectRating(this, 'q1', 4)">4</div>
+                        <div class="rating-btn" onclick="selectRating(this, 'q1', 5)">5</div>
+                    </div>
+                </div>
+                <div class="question-block">
+                    <div class="question-text">2. Culture: Our organizational culture actively promotes accountability, psychological safety, and deep trust.</div>
+                    <div class="rating-group" data-q="q2">
+                        <div class="rating-btn" onclick="selectRating(this, 'q2', 1)">1</div>
+                        <div class="rating-btn" onclick="selectRating(this, 'q2', 2)">2</div>
+                        <div class="rating-btn" onclick="selectRating(this, 'q2', 3)">3</div>
+                        <div class="rating-btn" onclick="selectRating(this, 'q2', 4)">4</div>
+                        <div class="rating-btn" onclick="selectRating(this, 'q2', 5)">5</div>
+                    </div>
+                </div>
+                <div class="question-block">
+                    <div class="question-text">3. Change: Our leaders adapt quickly and guide their teams effectively through market and organizational changes.</div>
+                    <div class="rating-group" data-q="q3">
+                        <div class="rating-btn" onclick="selectRating(this, 'q3', 1)">1</div>
+                        <div class="rating-btn" onclick="selectRating(this, 'q3', 2)">2</div>
+                        <div class="rating-btn" onclick="selectRating(this, 'q3', 3)">3</div>
+                        <div class="rating-btn" onclick="selectRating(this, 'q3', 4)">4</div>
+                        <div class="rating-btn" onclick="selectRating(this, 'q3', 5)">5</div>
+                    </div>
+                </div>
+                <div class="question-block">
+                    <div class="question-text">4. Pain Points: We experience minimal friction, silos, or escalations when solving complex inter-departmental problems.</div>
+                    <div class="rating-group" data-q="q4">
+                        <div class="rating-btn" onclick="selectRating(this, 'q4', 1)">1</div>
+                        <div class="rating-btn" onclick="selectRating(this, 'q4', 2)">2</div>
+                        <div class="rating-btn" onclick="selectRating(this, 'q4', 3)">3</div>
+                        <div class="rating-btn" onclick="selectRating(this, 'q4', 4)">4</div>
+                        <div class="rating-btn" onclick="selectRating(this, 'q4', 5)">5</div>
+                    </div>
+                </div>
+                <div class="question-block">
+                    <div class="question-text">5. Learning Need: Our managers possess the necessary emotional intelligence to effectively coach and develop their direct reports.</div>
+                    <div class="rating-group" data-q="q5">
+                        <div class="rating-btn" onclick="selectRating(this, 'q5', 1)">1</div>
+                        <div class="rating-btn" onclick="selectRating(this, 'q5', 2)">2</div>
+                        <div class="rating-btn" onclick="selectRating(this, 'q5', 3)">3</div>
+                        <div class="rating-btn" onclick="selectRating(this, 'q5', 4)">4</div>
+                        <div class="rating-btn" onclick="selectRating(this, 'q5', 5)">5</div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 20px;">
+                    <button type="button" class="cta-btn primary" onclick="calculateScore()">Calculate My Health Score</button>
+                </div>
+            </form>
+
+            <div id="quiz-result">
+                <h4 id="result-title">Result Title</h4>
+                <p id="result-desc">Result Description.</p>
+                <a href="#contact" class="cta-btn secondary">Discuss Findings with Neeraj</a>
             </div>
         </div>
     </section>
+
+    <!-- QUOTE 3: Change -->
+    <div class="quote-section">
+        <i class="fa-solid fa-quote-left quote-icon"></i>
+        <div class="quote-content">"The secret of change is to focus all of your energy, not on fighting the old, but on building the new."</div>
+        <div class="quote-author">- Socrates</div>
+    </div>
 
     <!-- Methodology -->
     <section id="methodology" class="bg-gray">
@@ -299,32 +422,21 @@
         </div>
 
         <div class="methodology-wrapper">
-            <div class="method-step">
-                <h4><span>1</span> Diagnose</h4>
-                <p>We deploy robust diagnostic tools (4C Profiles, Psychometrics, Performance Matrix) to assess capability and willingness gaps with precision.</p>
-            </div>
-            <div class="method-step">
-                <h4><span>2</span> Define</h4>
-                <p>We pinpoint critical focus areas, align with CXO objectives, and set clear, measurable priorities for the intervention.</p>
-            </div>
-            <div class="method-step">
-                <h4><span>3</span> Determine</h4>
-                <p>We architect custom strategies, selecting the exact blend of executive coaching, ILT, and experiential learning required.</p>
-            </div>
-            <div class="method-step">
-                <h4><span>4</span> Deploy</h4>
-                <p>We implement solutions with hands-on facilitation, leveraging our 10:20:70 methodology for maximum retention.</p>
-            </div>
-            <div class="method-step">
-                <h4><span>5</span> Measure</h4>
-                <p>We rigorously track progress against predefined KPIs and behavioral shifts using data-driven insights.</p>
-            </div>
-            <div class="method-step">
-                <h4><span>6</span> Review & Repeat</h4>
-                <p>Through dedicated 3-6 month follow-up sessions, we address field application challenges to sustain long-term success.</p>
-            </div>
+            <div class="method-step"><h4><span>1</span> Diagnose</h4><p>We deploy robust diagnostic tools to assess capability and willingness gaps with precision.</p></div>
+            <div class="method-step"><h4><span>2</span> Define</h4><p>We pinpoint critical focus areas and set clear, measurable priorities for the intervention.</p></div>
+            <div class="method-step"><h4><span>3</span> Determine</h4><p>We architect custom strategies, selecting the exact blend of executive coaching, ILT, and experiential learning required.</p></div>
+            <div class="method-step"><h4><span>4</span> Deploy</h4><p>We implement solutions with hands-on facilitation, leveraging our 10:20:70 methodology for maximum retention.</p></div>
+            <div class="method-step"><h4><span>5</span> Measure</h4><p>We rigorously track progress against predefined KPIs and behavioral shifts using data-driven insights.</p></div>
+            <div class="method-step"><h4><span>6</span> Review & Repeat</h4><p>Through dedicated 3-6 month follow-up sessions, we address field application challenges to sustain success.</p></div>
         </div>
     </section>
+
+    <!-- QUOTE 4: Leadership -->
+    <div class="quote-section dark">
+        <i class="fa-solid fa-quote-left quote-icon" style="color: var(--bw-accent);"></i>
+        <div class="quote-content">"Leadership is the capacity to translate vision into reality."</div>
+        <div class="quote-author" style="color: white; opacity: 0.8;">- Warren Bennis</div>
+    </div>
 
     <!-- Founder Section -->
     <section id="leadership">
@@ -336,39 +448,59 @@
             
             <div class="split-content">
                 <h3 style="color: var(--bw-primary-blue); text-transform: uppercase; letter-spacing: 1px; font-size: 0.9em; margin-bottom: 5px;">Master OD Interventionist</h3>
-                <h2 style="font-size: 2.5em; margin-bottom: 20px;">Why Clients Engage Neeraj Bhardwaj</h2>
+                <h2 style="font-size: 2.5em; margin-bottom: 20px;">Neeraj Bhardwaj</h2>
                 
                 <p style="color: #4A5568; margin-bottom: 20px; font-size: 1.1em;">
-                    As the Director of Blue Wisdom, Neeraj brings 28+ years of enterprise experience to solving complex talent and leadership challenges.
+                    Director of Blue Wisdom with 28+ years of enterprise experience solving complex talent and leadership challenges across manufacturing, pharma, and energy sectors.
                 </p>
 
                 <ul class="profile-bullets">
-                    <li><strong>Cross-Industry Enterprise Experience:</strong> Proven track record driving transformation at Zydus Cadila, Reliance, Adani, and Glenmark Pharma.</li>
-                    <li><strong>Measurable Capability Building:</strong> Certified in advanced diagnostics (DISC, Emotional Intelligence, Competency Mapping) to ensure data-backed interventions.</li>
-                    <li><strong>Facilitator-Led Transformation:</strong> A recognized thought leader and visiting faculty at IIM, MICA, and Nirma, blending academic rigor with operational reality.</li>
-                    <li><strong>Award-Winning Methodologies:</strong> Recipient of the World HRD Congress Award for Innovation in Training and the ASSOCHAM Award for Excellence.</li>
+                    <li><strong>Enterprise Experience:</strong> Transformation at Zydus Cadila, Reliance, Adani, and Glenmark Pharma.</li>
+                    <li><strong>Measurable Building:</strong> Certified in advanced diagnostics (DISC, Emotional Intelligence).</li>
+                    <li><strong>Academic Rigor:</strong> Visiting faculty at IIM, MICA, and Nirma.</li>
+                    <li><strong>Awards:</strong> World HRD Congress Award for Innovation in Training, HR Tribe Best L&D Consultant 2025.</li>
                 </ul>
-
-                <a href="#contact" class="cta-btn primary" style="margin-top: 10px;">Consult with Neeraj</a>
             </div>
         </div>
     </section>
 
-    <!-- Clients Section -->
-    <section id="clients" class="bg-gray" style="padding-top: 60px; padding-bottom: 60px;">
-        <h3 style="text-align: center; color: #718096; font-size: 1em; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 40px;">Trusted by Industry Leaders Across Pharma, Manufacturing & Infrastructure</h3>
-        <div class="client-grid">
-            <img src="images/adani_logo.png.png" alt="Adani" onerror="this.outerHTML='<span class=\'client-name\'>Adani</span>'">
-            <span class="client-name">Reliance</span>
-            <span class="client-name">Zydus Cadila</span>
-            <span class="client-name">Tata Power</span>
-            <span class="client-name">L&T</span>
-            <span class="client-name">Coca Cola</span>
+    <!-- Bottom Contact Box -->
+    <section id="contact" style="background: linear-gradient(135deg, var(--bw-dark-blue) 0%, #001F4D 100%); color: white; padding: 100px 5%;">
+        <div class="section-header">
+            <h2 style="color: white;">Ready for Transformation?</h2>
+            <p style="color: #A0AEC0;">Let us diagnose your organizational gaps and architect a customized solution.</p>
+        </div>
+
+        <div class="contact-box" style="margin-top: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
+            <h3 style="color: var(--bw-dark-blue);">Get in Touch</h3>
+            <!-- Netlify Form Integration -->
+            <form name="requirements-bottom" method="POST" data-netlify="true">
+                <div class="form-group">
+                    <label for="name2">Full Name</label>
+                    <input type="text" id="name2" name="name" required placeholder="e.g. John Doe">
+                </div>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                    <div class="form-group" style="flex: 1; min-width: 200px;">
+                        <label for="email2">Corporate Email</label>
+                        <input type="email" id="email2" name="email" required placeholder="john@company.com">
+                    </div>
+                    <div class="form-group" style="flex: 1; min-width: 200px;">
+                        <label for="phone2">Phone Number</label>
+                        <input type="tel" id="phone2" name="phone" placeholder="+91 98765 43210">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="need2">Describe your requirement / challenges</label>
+                    <textarea id="need2" name="requirement" rows="4" required placeholder="Let us know what you are looking to achieve..."></textarea>
+                </div>
+                <!-- CTA 3 -->
+                <button type="submit" class="cta-btn primary" style="width: 100%; font-size: 1.1em; padding: 15px;">Send Requirements & Book Call</button>
+            </form>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer id="contact">
+    <footer>
         <div class="footer-grid">
             <div class="footer-col">
                 <h3 style="font-size: 1.8em; margin-bottom: 10px;"><span style="color: white;">Blue</span> <span style="color: var(--bw-primary-blue);">Wisdom</span></h3>
@@ -379,23 +511,19 @@
             </div>
             
             <div class="footer-col">
-                <h3>Contact Us</h3>
+                <h3>Direct Contact</h3>
                 <p><i class="fa-solid fa-envelope" style="width: 25px;"></i> neeraj@bluewisdom.net</p>
                 <p><i class="fa-solid fa-envelope" style="width: 25px;"></i> neerajnis@gmail.com</p>
                 <p><i class="fa-solid fa-phone" style="width: 25px;"></i> +91 97254 79188</p>
-                <p><i class="fa-solid fa-phone" style="width: 25px;"></i> +91 87806 66707</p>
-                <a href="#contact" class="cta-btn primary" style="margin-top: 15px; font-size: 0.9em; padding: 10px 20px;">Book a Discovery Call</a>
             </div>
 
             <div class="footer-col">
                 <h3>Connect & Insights</h3>
-                <p style="color: #718096; margin-bottom: 15px;">Follow us for leadership insights and L&D frameworks.</p>
-                
                 <div class="social-links">
-                    <a href="https://www.linkedin.com/company/blue-wisdom-pvt--ltd-" target="_blank" title="Blue Wisdom LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="https://www.facebook.com/BlueWisdomIndia" target="_blank" title="Blue Wisdom Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/bluewisdominsta/" target="_blank" title="Blue Wisdom Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://chat.whatsapp.com/CcmClxHMaWj258J3S0Scp1" target="_blank" title="Blue Wisdom WhatsApp" class="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://www.linkedin.com/company/blue-wisdom-pvt--ltd-" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://www.facebook.com/BlueWisdomIndia" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/bluewisdominsta/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://chat.whatsapp.com/CcmClxHMaWj258J3S0Scp1" target="_blank" class="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
                 
                 <h4 style="color: white; margin-top: 20px; font-size: 0.9em; opacity: 0.8;">Neeraj Bhardwaj (Personal)</h4>
@@ -406,11 +534,62 @@
                 </div>
             </div>
         </div>
-        
         <div class="footer-bottom">
             <p>&copy; 2026 Blue Wisdom Pvt. Ltd. All Rights Reserved. | <a href="http://www.bluewisdom.net" target="_blank">www.bluewisdom.net</a></p>
         </div>
     </footer>
 
+    <!-- Interactive Quiz Script -->
+    <script>
+        const scores = { q1: 0, q2: 0, q3: 0, q4: 0, q5: 0 };
+
+        function selectRating(element, question, value) {
+            // Remove active class from siblings
+            const siblings = element.parentNode.children;
+            for (let i = 0; i < siblings.length; i++) {
+                siblings[i].classList.remove('active');
+            }
+            // Add active class to clicked button
+            element.classList.add('active');
+            // Store score
+            scores[question] = value;
+        }
+
+        function calculateScore() {
+            let totalScore = 0;
+            let answeredCount = 0;
+            for (const q in scores) {
+                if (scores[q] > 0) {
+                    totalScore += scores[q];
+                    answeredCount++;
+                }
+            }
+
+            if (answeredCount < 5) {
+                alert("Please answer all 5 questions to get your health score.");
+                return;
+            }
+
+            const resultDiv = document.getElementById('quiz-result');
+            const resultTitle = document.getElementById('result-title');
+            const resultDesc = document.getElementById('result-desc');
+
+            if (totalScore <= 12) {
+                resultTitle.innerText = "Score: " + totalScore + "/25 - Critical Intervention Needed";
+                resultDesc.innerText = "Your organization is facing significant friction in performance, culture, or alignment. Escalations and silos are likely hindering growth. Let's schedule a deep diagnostic to identify the root causes.";
+                resultTitle.style.color = "var(--bw-accent)";
+            } else if (totalScore <= 19) {
+                resultTitle.innerText = "Score: " + totalScore + "/25 - High Potential for Optimization";
+                resultDesc.innerText = "You have a functioning baseline, but there is significant room to boost manager effectiveness and team alignment. Tailored interventions can push your teams from 'good' to 'high-performing'.";
+                resultTitle.style.color = "#D69E2E"; // Warning color
+            } else {
+                resultTitle.innerText = "Score: " + totalScore + "/25 - Strong Leadership Foundation";
+                resultDesc.innerText = "Excellent! Your organization has high trust and capability. Now is the time to focus on scaling this culture, executive coaching, and solidifying succession planning to secure future growth.";
+                resultTitle.style.color = "#38A169"; // Success color
+            }
+
+            resultDiv.style.display = "block";
+        }
+    </script>
 </body>
 </html>
