@@ -3,29 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blue Wisdom | Transforming Intellectually</title>
-    <!-- Meta Data -->
-    <meta name="description" content="Blue Wisdom - Strategic OD Interventions, Executive Coaching, and Learning & Development by Neeraj Bhardwaj.">
+    <title>Blue Wisdom | Leadership & OD Consulting</title>
+    <meta name="description" content="Customized OD and leadership development solutions for organizations that want stronger managers, aligned teams, and measurable business performance.">
     <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         /* CSS Reset & Variables */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
         :root {
             --bw-dark-blue: #003882;
             --bw-primary-blue: #008BCC;
-            --bw-light-blue: #E6F0FF;
+            --bw-light-blue: #F0F6FF;
             --bw-accent: #D6001C;
-            --bw-text: #333333;
-            --bw-bg-gray: #f8f9fa;
+            --bw-text: #2D3748;
+            --bw-bg-gray: #F7FAFC;
         }
 
         body {
@@ -33,298 +27,146 @@
             color: var(--bw-text);
             line-height: 1.6;
             overflow-x: hidden;
+            background-color: #ffffff;
         }
 
-        h1, h2, h3, h4 {
-            color: var(--bw-dark-blue);
-            font-weight: 800;
-        }
+        h1, h2, h3, h4 { color: var(--bw-dark-blue); font-weight: 800; letter-spacing: -0.5px; }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: color 0.3s ease;
-        }
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
 
-        /* Navigation Bar */
+        /* Navigation */
         nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            position: fixed; top: 0; width: 100%;
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
             z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: flex; justify-content: space-between; align-items: center;
             padding: 15px 5%;
         }
 
-        .nav-logo {
-            display: flex;
-            flex-direction: column;
-            line-height: 0.9;
-            font-size: 1.8em;
-            font-weight: 900;
-        }
-
+        .nav-logo { display: flex; flex-direction: column; line-height: 0.9; font-size: 1.8em; font-weight: 900; }
         .nav-logo .blue { color: var(--bw-dark-blue); }
         .nav-logo .wisdom { color: var(--bw-primary-blue); }
+        .nav-logo .tagline { font-size: 0.35em; color: var(--bw-text); font-weight: 600; letter-spacing: 0.5px; margin-top: 2px; }
 
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            font-weight: 600;
-            font-size: 0.9em;
-            color: var(--bw-text);
-        }
-
-        .nav-links a:hover {
-            color: var(--bw-primary-blue);
-        }
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links a { font-weight: 600; font-size: 0.9em; color: var(--bw-text); }
+        .nav-links a:hover { color: var(--bw-primary-blue); }
 
         .cta-btn {
-            background: var(--bw-primary-blue);
-            color: white !important;
-            padding: 10px 20px;
-            border-radius: 50px;
+            padding: 12px 24px; border-radius: 4px; font-weight: 600; font-size: 1em;
+            display: inline-block; transition: all 0.3s ease; text-align: center;
+        }
+        .cta-btn.primary {
+            background: var(--bw-primary-blue); color: white !important;
             box-shadow: 0 4px 15px rgba(0, 139, 204, 0.3);
         }
-
-        .cta-btn:hover {
-            background: var(--bw-dark-blue);
-            transform: translateY(-2px);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 160px 5% 100px;
-            background: linear-gradient(135deg, var(--bw-light-blue) 0%, white 100%);
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5em, 5vw, 4.5em);
-            line-height: 1.1;
-            margin-bottom: 20px;
-        }
-
-        .hero .tagline {
-            font-size: 1.2em;
-            font-weight: 600;
-            color: var(--bw-accent);
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .hero p {
-            font-size: 1.2em;
-            max-width: 800px;
-            margin: 0 auto 40px;
-            color: #555;
-        }
-
-        /* Section Global */
-        section {
-            padding: 100px 5%;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-header h2 {
-            font-size: 2.5em;
-            margin-bottom: 15px;
-        }
-
-        .section-header .line {
-            width: 80px;
-            height: 4px;
-            background: var(--bw-accent);
-            margin: 0 auto;
-            border-radius: 2px;
-        }
-
-        /* Services / OD Grid */
-        .od-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .od-card {
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-            border-top: 5px solid var(--bw-primary-blue);
-            transition: transform 0.3s ease;
-        }
-
-        .od-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .od-card i {
-            font-size: 2.5em;
-            color: var(--bw-primary-blue);
-            margin-bottom: 20px;
-        }
-
-        /* Split Section (Text + Image) */
-        .split-section {
-            display: flex;
-            align-items: center;
-            gap: 60px;
-            flex-wrap: wrap;
-        }
-
-        .split-content {
-            flex: 1 1 400px;
-        }
-
-        .split-image {
-            flex: 1 1 400px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .split-image img {
-            max-width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-        }
-
-        /* Methodology */
-        .bg-dark {
-            background: var(--bw-dark-blue);
-            color: white;
-        }
-
-        .bg-dark h2 { color: white; }
+        .cta-btn.primary:hover { background: var(--bw-dark-blue); transform: translateY(-2px); }
         
-        .process-steps {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
+        .cta-btn.secondary {
+            background: transparent; color: var(--bw-dark-blue);
+            border: 2px solid var(--bw-dark-blue);
         }
+        .cta-btn.secondary:hover { background: var(--bw-light-blue); }
 
-        .step-box {
-            background: rgba(255,255,255,0.1);
-            padding: 30px;
-            border-radius: 12px;
-            flex: 1 1 200px;
+        /* Hero */
+        .hero {
+            padding: 180px 5% 100px;
+            background: linear-gradient(135deg, #F0F6FF 0%, #ffffff 100%);
             text-align: center;
-            border: 1px solid rgba(255,255,255,0.2);
         }
+        .hero h1 { font-size: clamp(2.5em, 5vw, 4em); line-height: 1.15; margin-bottom: 25px; max-width: 900px; margin-left: auto; margin-right: auto; }
+        .hero p { font-size: 1.2em; max-width: 750px; margin: 0 auto 40px; color: #4A5568; }
+        .hero-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
 
-        .step-box h4 {
-            color: var(--bw-light-blue);
-            font-size: 1.5em;
-            margin-bottom: 10px;
+        /* Trust Strip */
+        .trust-strip {
+            background: var(--bw-dark-blue); color: white;
+            padding: 30px 5%; display: flex; justify-content: center; gap: 60px; flex-wrap: wrap;
         }
+        .trust-item { text-align: center; }
+        .trust-item .number { font-size: 2em; font-weight: 800; color: var(--bw-primary-blue); line-height: 1; }
+        .trust-item .label { font-size: 0.85em; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; opacity: 0.9; }
 
-        /* Book & Profile */
-        .awards-list {
-            list-style: none;
-            margin-top: 20px;
-        }
+        /* General Section */
+        section { padding: 100px 5%; }
+        .bg-gray { background: var(--bw-bg-gray); }
+        .section-header { text-align: center; margin-bottom: 60px; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .section-header h2 { font-size: 2.5em; margin-bottom: 20px; }
+        .section-header p { color: #4A5568; font-size: 1.1em; }
 
-        .awards-list li {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-weight: 600;
+        /* Solutions Grid */
+        .solutions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .solution-card {
+            background: white; padding: 40px; border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border-top: 4px solid var(--bw-primary-blue);
         }
+        .solution-card i { font-size: 2.2em; color: var(--bw-primary-blue); margin-bottom: 20px; }
+        .solution-card h3 { font-size: 1.4em; margin-bottom: 15px; }
+        .solution-card p { color: #4A5568; font-size: 0.95em; margin-bottom: 0; }
 
-        .awards-list i {
-            color: #FFD700;
-            font-size: 1.5em;
+        /* Case Studies / Proof */
+        .case-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .case-card {
+            background: white; border: 1px solid #E2E8F0; border-radius: 8px; padding: 30px;
         }
+        .case-card h4 { color: var(--bw-dark-blue); margin-bottom: 15px; font-size: 1.2em; border-bottom: 2px solid var(--bw-light-blue); padding-bottom: 10px; }
+        .case-metric { font-size: 1.8em; font-weight: 800; color: var(--bw-primary-blue); margin-top: 20px; }
+        .case-metric span { display: block; font-size: 0.4em; font-weight: 600; color: #4A5568; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Methodology D4MR2 */
+        .methodology-wrapper {
+            display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; position: relative;
+        }
+        .method-step {
+            background: white; padding: 25px; border-radius: 8px; width: calc(33.333% - 20px); min-width: 250px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 4px solid var(--bw-accent);
+        }
+        .method-step h4 { color: var(--bw-dark-blue); font-size: 1.3em; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        .method-step h4 span { background: var(--bw-light-blue); color: var(--bw-primary-blue); width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.7em; }
+        .method-step p { font-size: 0.9em; color: #4A5568; }
+
+        /* Split Section */
+        .split-section { display: flex; gap: 60px; align-items: center; flex-wrap: wrap; }
+        .split-content { flex: 1 1 400px; }
+        .split-image { flex: 1 1 400px; text-align: center; }
+        .split-image img { max-width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+
+        /* Profile Details */
+        .profile-bullets { list-style: none; margin: 25px 0; }
+        .profile-bullets li { position: relative; padding-left: 30px; margin-bottom: 15px; color: #4A5568; font-weight: 500; }
+        .profile-bullets li::before { content: "\f00c"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--bw-primary-blue); position: absolute; left: 0; top: 2px; }
 
         /* Clients */
-        .client-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: center;
-            align-items: center;
-            opacity: 0.7;
-        }
-        
-        .client-grid img {
-            max-width: 150px;
-            filter: grayscale(100%);
-            transition: filter 0.3s;
-        }
-        
-        .client-grid img:hover {
-            filter: grayscale(0%);
-        }
+        .client-grid { display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; align-items: center; opacity: 0.6; }
+        .client-grid img { max-height: 40px; max-width: 150px; filter: grayscale(100%); transition: all 0.3s; }
+        .client-grid img:hover { filter: grayscale(0%); opacity: 1; }
+        .client-name { font-weight: 800; font-size: 1.5em; color: #718096; }
 
         /* Footer */
-        footer {
-            background: #111;
-            color: #ccc;
-            padding: 60px 5% 30px;
-            text-align: center;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: #333;
-            color: white;
-            font-size: 1.5em;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background: var(--bw-primary-blue);
-            transform: scale(1.1);
-        }
-
+        footer { background: #1A202C; color: #A0AEC0; padding: 80px 5% 40px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 60px; }
+        .footer-col h3 { color: white; margin-bottom: 20px; font-size: 1.2em; }
+        .footer-col p { margin-bottom: 10px; font-size: 0.9em; }
+        .social-links { display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
+        .social-links a { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); color: white; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+        .social-links a:hover { background: var(--bw-primary-blue); transform: translateY(-3px); }
         .whatsapp:hover { background: #25D366 !important; }
+        
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; text-align: center; font-size: 0.8em; }
 
-        /* Responsive Nav */
         @media (max-width: 768px) {
             .nav-links { display: none; }
-            .hero h1 { font-size: 2.5em; }
+            .hero { padding-top: 130px; }
+            .method-step { width: 100%; }
         }
         
         .img-placeholder-box {
-            width: 100%;
-            min-height: 300px;
-            background: #eee;
-            border: 2px dashed #ccc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 12px;
-            color: #888;
-            font-size: 0.9em;
-            text-align: center;
-            padding: 20px;
+            width: 100%; min-height: 300px; background: #EDF2F7; border: 2px dashed #CBD5E0;
+            display: flex; align-items: center; justify-content: center; flex-direction: column;
+            border-radius: 8px; color: #718096; font-size: 0.9em; text-align: center; padding: 20px;
         }
     </style>
 </head>
@@ -333,218 +175,228 @@
     <!-- Navigation -->
     <nav>
         <a href="#home" class="nav-logo">
-            <span class="blue">Blue</span>
-            <span class="wisdom">Wisdom</span>
-            <span style="font-size: 0.35em; color: var(--bw-text); font-weight: 600; letter-spacing: 0.5px; margin-top: 2px;">transforming intellectually</span>
+            <div><span class="blue">Blue</span><span class="wisdom">Wisdom</span></div>
+            <div class="tagline">transforming intellectually</div>
         </a>
         <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#od-solutions">OD Solutions</a>
-            <a href="#matrix">Performance</a>
-            <a href="#methodology">D4MR²</a>
+            <a href="#solutions">Solutions</a>
+            <a href="#impact">Proof of Impact</a>
+            <a href="#methodology">Methodology</a>
             <a href="#leadership">Leadership</a>
-            <a href="#contact" class="cta-btn">Connect With Us</a>
+            <a href="#contact" class="cta-btn primary" style="padding: 8px 16px;">Book a Call</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <header id="home" class="hero">
-        <div class="tagline">Synergy Surge for Sustainable Success</div>
-        <h1>Unlocking Potential Through <br><span style="color: var(--bw-primary-blue);">Strategic OD Interventions</span></h1>
-        <p>At Blue Wisdom, we illuminate the path for organizations across all realms. We partner with you to sculpt essential focus areas that propel growth—nurturing steadfast leadership pipelines, cultivating harmonious cultures, and crafting teams that soar to new heights.</p>
-        <div style="margin-top: 40px;">
-            <a href="#od-solutions" class="cta-btn" style="font-size: 1.2em; padding: 15px 40px;">Explore Our Solutions</a>
+        <h1>Customized OD and Leadership Solutions</h1>
+        <p>We help organizations build stronger managers, aligned teams, and measurable business performance through tailored L&D interventions.</p>
+        <div class="hero-buttons">
+            <a href="#contact" class="cta-btn primary">Book a Discovery Call</a>
+            <a href="#solutions" class="cta-btn secondary">Explore Our Solutions</a>
         </div>
     </header>
 
-    <!-- OD Solutions Section -->
-    <section id="od-solutions" style="background: var(--bw-bg-gray);">
+    <!-- Trust Strip -->
+    <div class="trust-strip">
+        <div class="trust-item">
+            <div class="number">28+</div>
+            <div class="label">Years Expertise</div>
+        </div>
+        <div class="trust-item">
+            <div class="number">50+</div>
+            <div class="label">Enterprises Trusted</div>
+        </div>
+        <div class="trust-item">
+            <div class="number">100%</div>
+            <div class="label">Tailored Frameworks</div>
+        </div>
+    </div>
+
+    <!-- Strategic Pillars -->
+    <section id="solutions" class="bg-gray">
         <div class="section-header">
-            <h2>Our OD Interventions</h2>
-            <div class="line"></div>
-            <p style="margin-top: 15px; color: #666; max-width: 600px; margin-left: auto; margin-right: auto;">
-                Blue Wisdom doesn’t believe in one-size-fits-all. Our innovative, personalized approach delivers proven results by addressing your unique challenges.
-            </p>
+            <h2>Strategic Solution Pillars</h2>
+            <p>We don't do off-the-shelf. We diagnose your exact business problem and deploy targeted interventions designed for measurable capability building.</p>
         </div>
 
-        <div class="od-grid">
-            <div class="od-card">
-                <i class="fa-solid fa-bullseye"></i>
-                <h3>Creating Focus Areas</h3>
-                <p>Identifying and prioritizing key drivers of growth to streamline efforts for maximum impact.</p>
+        <div class="solutions-grid">
+            <div class="solution-card">
+                <i class="fa-solid fa-users-gear"></i>
+                <h3>Manager Effectiveness</h3>
+                <p>Equipping first-time and mid-level managers with the tools to solve problems, make decisions, and drive team performance without escalation.</p>
             </div>
-            <div class="od-card">
-                <i class="fa-solid fa-compass"></i>
-                <h3>Leadership Alignment</h3>
-                <p>Aligning leaders with organizational vision and goals through strategic planning and coaching.</p>
+            <div class="solution-card">
+                <i class="fa-solid fa-chart-line"></i>
+                <h3>Leadership Development</h3>
+                <p>Building resilient leadership pipelines. We map competencies and coach senior leaders to align perfectly with organizational vision and strategy.</p>
             </div>
-            <div class="od-card">
-                <i class="fa-solid fa-people-group"></i>
-                <h3>High-Performing Teams</h3>
-                <p>Building collaborative, results-driven teams through interactive workshops and exercises.</p>
+            <div class="solution-card">
+                <i class="fa-solid fa-people-arrows"></i>
+                <h3>Team Alignment</h3>
+                <p>Enhancing collaborative teamwork, breaking down silos, and fostering deep trust through customized workshops and Out-Bound Training (OBT).</p>
             </div>
-            <div class="od-card">
+            <div class="solution-card">
                 <i class="fa-solid fa-seedling"></i>
-                <h3>Developing HiPos</h3>
-                <p>Nurturing high-potential talent for future leadership roles and succession planning.</p>
+                <h3>HiPo & Succession Readiness</h3>
+                <p>Identifying and accelerating High-Potential talent. We utilize robust psychometric and 360-degree assessments to secure your future bench strength.</p>
             </div>
-            <div class="od-card">
-                <i class="fa-solid fa-yin-yang"></i>
+            <div class="solution-card">
+                <i class="fa-solid fa-globe"></i>
                 <h3>Culture Transformation</h3>
-                <p>Fostering a culture of accountability, trust, and collaboration across the organization.</p>
-            </div>
-            <div class="od-card">
-                <i class="fa-solid fa-campground"></i>
-                <h3>Out-Bound Training</h3>
-                <p>Experiential outdoor learning focusing on team building and leadership dynamics.</p>
+                <p>Shifting organizational culture from passive to proactive. We embed accountability and sustainable business practices deep within your workforce DNA.</p>
             </div>
         </div>
     </section>
 
-    <!-- Performance Matrix -->
-    <section id="matrix">
-        <div class="split-section">
-            <div class="split-content">
-                <h2>The Performance Matrix</h2>
-                <div style="width: 60px; height: 4px; background: var(--bw-accent); margin-bottom: 30px; border-radius: 2px;"></div>
-                <p style="font-size: 1.1em; color: #555; margin-bottom: 20px;">
-                    Mapping Ability vs. Willingness. The Performance Matrix is a dynamic 2x2 tool that evaluates employees based on two key dimensions: <strong>Competence</strong> and <strong>Commitment</strong>.
-                </p>
-                <ul style="list-style: none; margin-bottom: 30px;">
-                    <li style="margin-bottom: 15px;"><i class="fa-solid fa-check" style="color: var(--bw-primary-blue); margin-right: 10px;"></i> <strong>Targeted Coaching:</strong> Identify exactly where to focus time and effort.</li>
-                    <li style="margin-bottom: 15px;"><i class="fa-solid fa-check" style="color: var(--bw-primary-blue); margin-right: 10px;"></i> <strong>Talent Segmentation:</strong> Clear view of team dynamics and readiness.</li>
-                    <li style="margin-bottom: 15px;"><i class="fa-solid fa-check" style="color: var(--bw-primary-blue); margin-right: 10px;"></i> <strong>Progress Tracking:</strong> Measure shifts in performance maturity pre and post training.</li>
-                </ul>
+    <!-- Proof / Case Studies Placeholder -->
+    <section id="impact">
+        <div class="section-header">
+            <h2>Proof of Outcomes</h2>
+            <p>Our interventions are tied directly to talent decisions and business results. Here is how we create measurable impact.</p>
+        </div>
+
+        <div class="case-grid">
+            <div class="case-card">
+                <h4>Manufacturing Sector</h4>
+                <p><strong>Challenge:</strong> High escalation rates from first-line supervisors lacking conflict resolution skills.</p>
+                <p><strong>Intervention:</strong> 6-month Managerial Effectiveness journey with 10:20:70 methodology.</p>
+                <div class="case-metric">22% <span>Reduction in Escalations</span></div>
             </div>
-            <div class="split-image">
-                <img src="images/1.png" alt="Performance Matrix Chart" onerror="this.style.display='none'">
+            <div class="case-card">
+                <h4>Pharmaceuticals</h4>
+                <p><strong>Challenge:</strong> Need to identify and prepare next-generation leaders for plant operations.</p>
+                <p><strong>Intervention:</strong> Comprehensive Assessment Centers (AC/DC) & HiPo Coaching.</p>
+                <div class="case-metric">100% <span>Succession Roles Filled Internally</span></div>
+            </div>
+            <div class="case-card">
+                <h4>Energy & Infrastructure</h4>
+                <p><strong>Challenge:</strong> Siloed operations affecting cross-functional project delivery timelines.</p>
+                <p><strong>Intervention:</strong> Culture Transformation & Collaborative Out-Bound Training.</p>
+                <div class="case-metric">85% <span>Improvement in Team Trust Index</span></div>
             </div>
         </div>
-    </section>
-
-    <!-- Out Bound Training Banner -->
-    <section style="padding: 0;">
-        <img src="images/1.png" alt="Out Bound Training Banner" style="width: 100%; height: auto; display: block;" onerror="this.style.display='none'">
     </section>
 
     <!-- Methodology -->
-    <section id="methodology" class="bg-dark">
+    <section id="methodology" class="bg-gray">
         <div class="section-header">
-            <h2>The D4MR² Methodology</h2>
-            <div class="line" style="background: var(--bw-light-blue);"></div>
-            <p style="margin-top: 15px; color: #ccc; max-width: 600px; margin-left: auto; margin-right: auto;">
-                Our unique OD process ensures tailored, impactful interventions for any industry. No fixed frameworks—just dynamic, data-driven results.
-            </p>
+            <h2>The Proprietary D4MR² Framework</h2>
+            <p>A scientific, measurement-driven approach to Organizational Development. We reject fixed models in favor of dynamic mapping.</p>
         </div>
 
-        <div class="process-steps">
-            <div class="step-box">
-                <h4>Diagnose</h4>
-                <p style="font-size: 0.9em; color: #ddd;">Assess challenges & opportunities with precision.</p>
+        <div class="methodology-wrapper">
+            <div class="method-step">
+                <h4><span>1</span> Diagnose</h4>
+                <p>We deploy robust diagnostic tools (4C Profiles, Psychometrics, Performance Matrix) to assess capability and willingness gaps with precision.</p>
             </div>
-            <div class="step-box">
-                <h4>Define</h4>
-                <p style="font-size: 0.9em; color: #ddd;">Pinpoint focus areas & set clear priorities.</p>
+            <div class="method-step">
+                <h4><span>2</span> Define</h4>
+                <p>We pinpoint critical focus areas, align with CXO objectives, and set clear, measurable priorities for the intervention.</p>
             </div>
-            <div class="step-box">
-                <h4>Determine</h4>
-                <p style="font-size: 0.9em; color: #ddd;">Craft custom strategies to align leadership.</p>
+            <div class="method-step">
+                <h4><span>3</span> Determine</h4>
+                <p>We architect custom strategies, selecting the exact blend of executive coaching, ILT, and experiential learning required.</p>
             </div>
-            <div class="step-box">
-                <h4>Deploy</h4>
-                <p style="font-size: 0.9em; color: #ddd;">Implement solutions with hands-on collaboration.</p>
+            <div class="method-step">
+                <h4><span>4</span> Deploy</h4>
+                <p>We implement solutions with hands-on facilitation, leveraging our 10:20:70 methodology for maximum retention.</p>
             </div>
-            <div class="step-box">
-                <h4>Measure</h4>
-                <p style="font-size: 0.9em; color: #ddd;">Track progress with data-driven insights.</p>
+            <div class="method-step">
+                <h4><span>5</span> Measure</h4>
+                <p>We rigorously track progress against predefined KPIs and behavioral shifts using data-driven insights.</p>
             </div>
-            <div class="step-box">
-                <h4>Review & Repeat</h4>
-                <p style="font-size: 0.9em; color: #ddd;">Refine and sustain success for the long term.</p>
+            <div class="method-step">
+                <h4><span>6</span> Review & Repeat</h4>
+                <p>Through dedicated 3-6 month follow-up sessions, we address field application challenges to sustain long-term success.</p>
             </div>
         </div>
     </section>
 
-    <!-- Leadership / About -->
-    <section id="leadership" style="background: var(--bw-bg-gray);">
-        <div class="split-section" style="flex-direction: row-reverse; align-items: stretch;">
-            <div class="split-content" style="display: flex; flex-direction: column; justify-content: center;">
-                <h3 style="color: var(--bw-primary-blue); margin-bottom: 5px; font-size: 1.2em;">Master OD Interventionist</h3>
-                <h2 style="font-size: 3em; margin-bottom: 5px;">Neeraj Bhardwaj</h2>
-                <p style="font-size: 1em; font-weight: 600; color: var(--bw-dark-blue); margin-bottom: 20px;">L&D Consultant, Trainer, Coach & Author</p>
-                
-                <p style="color: #555; margin-bottom: 20px;">
-                    With over 28 years of corporate expertise, Neeraj is a globally acclaimed OD interventionist. He has held pivotal roles at prestigious organizations including <strong>Zydus Cadila, Reliance, Glenmark Pharma, NIS Sparta, and Emcure Pharma</strong>. 
-                </p>
-                <p style="color: #555; margin-bottom: 20px;">
-                    An academic powerhouse (MBA HR, PGDSM, B.Sc.), Neeraj serves as a visiting faculty at premier institutions such as <strong>IIM, MICA, Nirma, EDI, NMIMS, and upGrad</strong>. He transforms organizations through dynamic, data-driven frameworks without relying on rigid structures.
-                </p>
-
-                <h4 style="margin-top: 10px; color: var(--bw-dark-blue);">Key Awards & Recognitions</h4>
-                <ul class="awards-list" style="margin-bottom: 20px; font-size: 0.9em;">
-                    <li><i class="fa-solid fa-trophy"></i> Best AI Integration in L&D Consulting Award 2026</li>
-                    <li><i class="fa-solid fa-award"></i> Intellectual Professionals Force Award - Best Facilitator & Coach</li>
-                    <li><i class="fa-solid fa-medal"></i> Best L&D Consultants Award by HR Tribe</li>
-                    <li><i class="fa-solid fa-certificate"></i> ASSOCHAM Award for Excellence in Training</li>
-                    <li><i class="fa-solid fa-star"></i> World HRD Congress - Innovation in Training</li>
-                    <li><i class="fa-solid fa-crown"></i> Dronocharya Award on Mentorship</li>
-                </ul>
-
-                <h4 style="color: var(--bw-dark-blue);">Get in Touch</h4>
-                <p style="color: #555; font-size: 0.9em; margin-top: 10px;">
-                    <i class="fa-solid fa-envelope" style="margin-right: 10px; color: var(--bw-primary-blue);"></i> neeraj@bluewisdom.net | neerajnis@gmail.com <br>
-                    <i class="fa-solid fa-phone" style="margin-right: 10px; color: var(--bw-primary-blue); margin-top: 10px;"></i> +91 97254 79188 | +91 87806 66707
-                </p>
+    <!-- Founder Section -->
+    <section id="leadership">
+        <div class="split-section">
+            <div class="split-image" style="display: flex; flex-direction: column; gap: 20px;">
+                <img src="images/Neeraj NB 2.png.jpeg" alt="Neeraj Bhardwaj" onerror="this.outerHTML='<div class=\'img-placeholder-box\'>images/Neeraj NB 2.png.jpeg</div>'">
+                <img src="images/4'24 Logo Title topic.jpg" alt="Manager or Damager Book" onerror="this.style.display='none'">
             </div>
             
-            <div class="split-image" style="flex-direction: column; gap: 20px;">
-                <img src="images/Neeraj NB 2.png.jpeg" alt="Neeraj Bhardwaj" style="border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); width: 100%; max-width: 400px; margin: 0 auto;">
-                <img src="images/4'24 Logo Title topic.jpg" alt="Manager or Damager Book" style="border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); width: 100%; max-width: 400px; margin: 0 auto;" onerror="this.style.display='none'">
+            <div class="split-content">
+                <h3 style="color: var(--bw-primary-blue); text-transform: uppercase; letter-spacing: 1px; font-size: 0.9em; margin-bottom: 5px;">Master OD Interventionist</h3>
+                <h2 style="font-size: 2.5em; margin-bottom: 20px;">Why Clients Engage Neeraj Bhardwaj</h2>
+                
+                <p style="color: #4A5568; margin-bottom: 20px; font-size: 1.1em;">
+                    As the Director of Blue Wisdom, Neeraj brings 28+ years of enterprise experience to solving complex talent and leadership challenges.
+                </p>
+
+                <ul class="profile-bullets">
+                    <li><strong>Cross-Industry Enterprise Experience:</strong> Proven track record driving transformation at Zydus Cadila, Reliance, Adani, and Glenmark Pharma.</li>
+                    <li><strong>Measurable Capability Building:</strong> Certified in advanced diagnostics (DISC, Emotional Intelligence, Competency Mapping) to ensure data-backed interventions.</li>
+                    <li><strong>Facilitator-Led Transformation:</strong> A recognized thought leader and visiting faculty at IIM, MICA, and Nirma, blending academic rigor with operational reality.</li>
+                    <li><strong>Award-Winning Methodologies:</strong> Recipient of the World HRD Congress Award for Innovation in Training and the ASSOCHAM Award for Excellence.</li>
+                </ul>
+
+                <a href="#contact" class="cta-btn primary" style="margin-top: 10px;">Consult with Neeraj</a>
             </div>
         </div>
     </section>
 
     <!-- Clients Section -->
-    <section id="clients">
-        <div class="section-header" style="margin-bottom: 40px;">
-            <h2 style="font-size: 2em;">Trusted By Industry Leaders</h2>
-        </div>
+    <section id="clients" class="bg-gray" style="padding-top: 60px; padding-bottom: 60px;">
+        <h3 style="text-align: center; color: #718096; font-size: 1em; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 40px;">Trusted by Industry Leaders Across Pharma, Manufacturing & Infrastructure</h3>
         <div class="client-grid">
-            <img src="images/1.png" alt="Adani" onerror="this.outerHTML='<span style=\'font-weight: 800; font-size: 1.5em; color: #888;\'>Adani</span>'">
-            <span style="font-weight: 800; font-size: 1.5em; color: #888;">Reliance</span>
-            <span style="font-weight: 800; font-size: 1.5em; color: #888;">Zydus</span>
-            <span style="font-weight: 800; font-size: 1.5em; color: #888;">Tata Power</span>
-            <span style="font-weight: 800; font-size: 1.5em; color: #888;">L&T</span>
-            <span style="font-weight: 800; font-size: 1.5em; color: #888;">Coca Cola</span>
+            <img src="images/1.png" alt="Adani" onerror="this.outerHTML='<span class=\'client-name\'>Adani</span>'">
+            <span class="client-name">Reliance</span>
+            <span class="client-name">Zydus Cadila</span>
+            <span class="client-name">Tata Power</span>
+            <span class="client-name">L&T</span>
+            <span class="client-name">Coca Cola</span>
         </div>
     </section>
 
     <!-- Footer -->
     <footer id="contact">
-        <div style="max-width: 600px; margin: 0 auto; margin-bottom: 40px;">
-            <h2 style="color: white; margin-bottom: 15px;">Ready for Transformation?</h2>
-            <p>Connect with us to design a learning intervention tailored for your success.</p>
-        </div>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3 style="font-size: 1.8em; margin-bottom: 10px;"><span style="color: white;">Blue</span> <span style="color: var(--bw-primary-blue);">Wisdom</span></h3>
+                <p>transforming intellectually</p>
+                <p style="margin-top: 20px; color: #718096; max-width: 300px;">
+                    Customized OD and leadership development solutions that drive measurable business performance.
+                </p>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <p><i class="fa-solid fa-envelope" style="width: 25px;"></i> neeraj@bluewisdom.net</p>
+                <p><i class="fa-solid fa-envelope" style="width: 25px;"></i> neerajnis@gmail.com</p>
+                <p><i class="fa-solid fa-phone" style="width: 25px;"></i> +91 97254 79188</p>
+                <p><i class="fa-solid fa-phone" style="width: 25px;"></i> +91 87806 66707</p>
+                <a href="#contact" class="cta-btn primary" style="margin-top: 15px; font-size: 0.9em; padding: 10px 20px;">Book a Discovery Call</a>
+            </div>
 
-        <div class="social-links">
-            <!-- Blue Wisdom Corporate Links -->
-            <a href="https://www.linkedin.com/company/blue-wisdom-pvt--ltd-" target="_blank" title="Blue Wisdom LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="https://www.facebook.com/BlueWisdomIndia" target="_blank" title="Blue Wisdom Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/bluewisdominsta/" target="_blank" title="Blue Wisdom Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://chat.whatsapp.com/CcmClxHMaWj258J3S0Scp1" target="_blank" title="Blue Wisdom WhatsApp Group" class="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
+            <div class="footer-col">
+                <h3>Connect & Insights</h3>
+                <p style="color: #718096; margin-bottom: 15px;">Follow us for leadership insights and L&D frameworks.</p>
+                
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/company/blue-wisdom-pvt--ltd-" target="_blank" title="Blue Wisdom LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://www.facebook.com/BlueWisdomIndia" target="_blank" title="Blue Wisdom Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/bluewisdominsta/" target="_blank" title="Blue Wisdom Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://chat.whatsapp.com/CcmClxHMaWj258J3S0Scp1" target="_blank" title="Blue Wisdom WhatsApp" class="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+                
+                <h4 style="color: white; margin-top: 20px; font-size: 0.9em; opacity: 0.8;">Neeraj Bhardwaj (Personal)</h4>
+                <div class="social-links" style="margin-top: 10px;">
+                    <a href="https://www.linkedin.com/in/neerajnis/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://www.facebook.com/neeraj.bhardwaj" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com//neeraj_blue" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
         </div>
         
-        <div class="social-links" style="margin-bottom: 40px;">
-            <!-- Neeraj Bhardwaj Personal Links -->
-            <a href="https://www.linkedin.com/in/neerajnis/" target="_blank" title="Neeraj Bhardwaj LinkedIn"><i class="fa-brands fa-linkedin-in" style="font-size: 0.8em;"></i></a>
-            <a href="https://www.facebook.com/neeraj.bhardwaj" target="_blank" title="Neeraj Bhardwaj Facebook"><i class="fa-brands fa-facebook-f" style="font-size: 0.8em;"></i></a>
-            <a href="https://www.instagram.com//neeraj_blue" target="_blank" title="Neeraj Bhardwaj Instagram"><i class="fa-brands fa-instagram" style="font-size: 0.8em;"></i></a>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Blue Wisdom Pvt. Ltd. All Rights Reserved. | <a href="http://www.bluewisdom.net" target="_blank">www.bluewisdom.net</a></p>
         </div>
-
-        <p style="font-size: 0.8em; color: #666;">
-            &copy; 2026 Blue Wisdom Pvt. Ltd. All Rights Reserved. <br>
-            <a href="http://www.bluewisdom.net" target="_blank" style="color: var(--bw-primary-blue);">www.bluewisdom.net</a>
-        </p>
     </footer>
 
 </body>
