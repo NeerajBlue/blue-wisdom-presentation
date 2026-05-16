@@ -57,16 +57,16 @@
         .card-container {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
-            margin-top: 30px;
+            margin-top: 20px;
         }
 
         .card {
             background: white;
             border-radius: 12px;
-            padding: 25px;
-            width: 30%;
+            padding: 20px;
+            flex: 1 1 250px; /* Flex layout instead of fixed 30% width */
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             border-top: 5px solid var(--bw-primary-blue);
             transition: transform 0.3s ease;
@@ -95,14 +95,15 @@
         }
 
         .matrix-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
+            flex-wrap: wrap;
             gap: 15px;
             margin-top: 30px;
         }
 
         .matrix-box {
-            padding: 20px;
+            flex: 1 1 200px;
+            padding: 15px;
             border-radius: 8px;
             color: white;
             font-size: 0.8em;
@@ -178,10 +179,14 @@
         }
 
         .two-col {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: flex-start;
+        }
+        
+        .two-col > div {
+            flex: 1 1 300px; /* Allows columns to stack on small screens */
         }
 
         .text-left { text-align: left; }
@@ -213,6 +218,21 @@
             border-radius: 12px;
             margin-top: 30px;
         }
+
+        /* Allow scrolling on slides if content exceeds height */
+        .reveal .slides section {
+            max-height: 100vh;
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+            padding-top: 10px;
+            padding-bottom: 20px;
+        }
+        
+        /* Custom scrollbar for better look */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(0, 56, 130, 0.3); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(0, 56, 130, 0.6); }
     </style>
 </head>
 <body>
