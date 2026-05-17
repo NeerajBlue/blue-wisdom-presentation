@@ -111,7 +111,7 @@
             background: var(--bw-light-blue); padding: 80px 5%; text-align: center; border-left: 8px solid var(--bw-primary-blue);
         }
         .quote-section.dark { background: var(--bw-dark-blue); color: white; border-left-color: var(--bw-accent); }
-        .quote-section.dark h3, .quote-section.dark p { color: white; }
+        .quote-section.dark h3, .quote-section.dark p, .quote-section.dark .quote-content { color: white; }
         .quote-icon { font-size: 3em; color: var(--bw-primary-blue); margin-bottom: 20px; opacity: 0.5; }
         .quote-content { max-width: 800px; margin: 0 auto; font-size: 1.6em; font-weight: 300; font-style: italic; line-height: 1.4; color: var(--bw-dark-blue); }
         .quote-author { margin-top: 20px; font-size: 0.8em; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--bw-primary-blue); }
@@ -197,6 +197,12 @@
         <div class="hero-buttons">
             <a href="#contact" class="cta-btn primary">Discuss Your Requirement</a>
             <a href="#assessment" class="cta-btn secondary">Take the Leadership Quiz</a>
+        </div>
+
+        <div class="hero-video" style="max-width: 800px; margin: 0 auto 60px; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+            <div style="position: relative; padding-bottom: 56.25%; height: 0;">
+                <iframe src="https://www.youtube.com/embed/sMTYiZhs6Zw" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
         </div>
 
         <!-- Top Contact Form (Requirement & Needs Box) -->
@@ -296,8 +302,13 @@
                         <li>Experiential learning (OBT) for mindset shifts</li>
                     </ul>
                 </div>
-                <div class="split-image">
-                    <img src="images/outbound_training.png.png" alt="Out Bound Training" style="border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-height: 300px;" onerror="this.style.display='none'">
+                <div class="split-image" style="display: flex; flex-direction: column; gap: 20px; width: 100%;">
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 8px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%;">
+                        <iframe src="https://www.youtube.com/embed/M-VMgOao7FA" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 8px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%;">
+                        <iframe src="https://www.youtube.com/embed/0I_j02PtnJU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
                 </div>
             </div>
 
