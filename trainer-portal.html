@@ -9,24 +9,24 @@
     <style>
         /* --- Color Palette Constraint: White 50%, Blue Shades 40%, Red 5%, Black 5% --- */
         :root[data-theme="light"] {
-            --bg-color: #ffffff;            /* 50% White foundation */
+            --bg-color: #ffffff;
             --glass-bg: rgba(240, 244, 248, 0.9);
             --glass-border: #d1d5db;
             
-            --primary-blue: #00478F;        /* 40% Blue shades */
+            --primary-blue: #00478F;
             --secondary-blue: #1E3A8A;
             --light-blue: #DBEAFE;
             
-            --accent-red: #DC2626;          /* 5% Red */
+            --accent-red: #DC2626;
             
-            --text-main: #000000;           /* 5% Black */
+            --text-main: #000000;
             --text-muted: #374151;
             
             --success: #10b981;
         }
 
         :root[data-theme="dark"] {
-            --bg-color: #050b14;            /* Dark mode override */
+            --bg-color: #050b14;
             --glass-bg: rgba(15, 23, 42, 0.8);
             --glass-border: rgba(255, 255, 255, 0.1);
             
@@ -48,9 +48,10 @@
             color: var(--text-main);
             transition: background-color 0.4s ease, color 0.4s ease;
             overflow-x: hidden;
+            padding-bottom: 80px; /* Space for mobile nav */
         }
 
-        /* --- Registration / Login Gate (The Front Door) --- */
+        /* --- Registration / Login Gate --- */
         #auth-gate {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100vh;
@@ -102,6 +103,17 @@
             font-family: 'Outfit', sans-serif;
             box-sizing: border-box;
         }
+        
+        /* New Registration Link Area */
+        .register-link-box {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px dashed var(--primary-blue);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
         .btn {
             padding: 12px 24px;
             border: none;
@@ -152,7 +164,7 @@
             z-index: 500;
         }
         .brand {
-            display: flex; align-items: center; gap: 15px; margin-bottom: 50px;
+            display: flex; align-items: center; gap: 15px; margin-bottom: 40px;
             padding-bottom: 20px; border-bottom: 1px solid var(--glass-border);
         }
         .brand img { width: 40px; border-radius: 8px; }
@@ -162,13 +174,29 @@
             padding: 12px 15px; margin-bottom: 10px; border-radius: 10px;
             color: var(--text-muted); text-decoration: none; font-weight: 600;
             cursor: pointer; display: flex; align-items: center; gap: 10px;
+            transition: all 0.2s ease;
         }
         .nav-link:hover, .nav-link.active {
             background: var(--light-blue); color: var(--primary-blue);
         }
         .nav-link.active { border-left: 4px solid var(--accent-red); }
 
-        .main-content { margin-left: 290px; padding: 40px; }
+        .social-links {
+            margin-top: auto;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        .social-icon {
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+        .social-icon:hover { transform: scale(1.2); }
+
+        .main-content { margin-left: 290px; padding: 40px; width: 100%; box-sizing: border-box; max-width: 1200px; }
         .view-section { display: none; animation: fadeIn 0.4s ease-out forwards; }
         .view-section.active { display: block; }
 
@@ -190,6 +218,52 @@
         ul { list-style-type: none; padding-left: 0; }
         ul li { margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; color: var(--text-muted); line-height: 1.5; }
         
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0,71,143,0.2);
+        }
+        .stat-number { font-size: 2.5rem; font-weight: 800; font-family: 'Montserrat', sans-serif; margin-bottom: 5px; }
+        .stat-label { font-size: 0.9rem; font-weight: 600; opacity: 0.9; }
+
+        /* Testimonials */
+        .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .quote { font-style: italic; color: var(--text-muted); margin-bottom: 15px; }
+        .author { font-weight: 700; color: var(--primary-blue); }
+
+        /* Client Marquee */
+        .marquee {
+            overflow: hidden;
+            white-space: nowrap;
+            background: var(--glass-bg);
+            padding: 15px 0;
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+            margin: 30px 0;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: scroll 20s linear infinite;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
         /* Gig Board */
         .gig-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
         .badge { padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
@@ -197,7 +271,7 @@
 
         /* Collapsible FABs */
         .fab-wrapper {
-            position: fixed; bottom: 30px; right: 30px; z-index: 1000;
+            position: fixed; bottom: 30px; right: 30px; z-index: 2000;
             display: flex; flex-direction: column-reverse; align-items: flex-end; gap: 10px;
         }
         .fab-main {
@@ -222,19 +296,62 @@
 
         /* --- Letterhead Print Styles --- */
         @media print {
-            body { background: white !important; color: black !important; }
+            body { background: white !important; color: black !important; padding: 0 !important; }
             #auth-gate, .sidebar, .fab-wrapper, .theme-toggle, .btn { display: none !important; }
-            .main-content { margin: 0; padding: 0; }
+            .main-content { margin: 0; padding: 0; max-width: 100%; }
             .view-section { display: none !important; }
             #policies { display: block !important; }
             .glass-card { border: none; box-shadow: none; padding: 0; margin-bottom: 20px; }
             
-            /* Inject Letterhead Header on Print */
             #policies::before {
                 content: "BLUE WISDOM - OFFICIAL POLICY DOCUMENT";
                 display: block; font-size: 1.5rem; font-family: 'Montserrat', sans-serif;
                 color: #00478F; border-bottom: 2px solid #00478F; padding-bottom: 10px; margin-bottom: 30px;
             }
+        }
+
+        /* --- Mobile First App Navigation --- */
+        @media (max-width: 768px) {
+            .auth-container { flex-direction: column; }
+            .auth-hero { min-height: 200px; padding: 20px; }
+            .auth-form { padding: 20px; }
+
+            /* Transform Sidebar into Fixed Bottom Bar */
+            .sidebar {
+                top: auto;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 70px;
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: center;
+                padding: 0;
+                border-right: none;
+                border-top: 1px solid var(--glass-border);
+                background: var(--bg-color); /* solid background for readability */
+                box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+            }
+            .brand, .social-links { display: none; }
+            
+            .nav-link {
+                flex-direction: column;
+                margin: 0;
+                padding: 8px;
+                border: none !important;
+                border-radius: 0;
+                font-size: 0.7rem;
+                gap: 4px;
+            }
+            .nav-link.active {
+                color: var(--primary-blue);
+                background: transparent;
+                border-top: 3px solid var(--accent-red) !important;
+            }
+            .nav-link span:first-child { font-size: 1.2rem; }
+
+            .main-content { margin-left: 0; padding: 20px; padding-bottom: 90px; }
+            .fab-wrapper { bottom: 90px; } /* Lift above mobile nav */
         }
     </style>
 </head>
@@ -252,12 +369,17 @@
             </div>
             <div class="auth-form">
                 <h3 style="color:var(--text-main); margin-bottom:20px;">🔹 Trainer Registration</h3>
+                
+                <div class="register-link-box">
+                    <p style="margin:0; font-size:0.9rem;">Don't have an IPF Profile?</p>
+                    <a href="http://tinyurl.com/trainer-bw" target="_blank" style="font-weight:bold; color:var(--primary-blue);">📝 Register Here First</a>
+                </div>
+
                 <input type="text" id="regName" placeholder="👤 Full Name" required>
                 <input type="tel" id="regPhone" placeholder="📱 Phone Number" required>
                 <input type="email" id="regEmail" placeholder="✉️ Email Address" required>
-                <input type="url" id="regIpf" placeholder="🔗 Your IPF Link (Required)" required>
                 
-                <button class="btn btn-primary" style="margin-top:10px;" onclick="registerTrainer()">Sign In / Register →</button>
+                <button class="btn btn-primary" style="margin-top:10px;" onclick="registerTrainer()">Sign In / Enter Hub →</button>
                 <p id="authMsg" style="color:var(--accent-red); font-size:0.85rem; margin-top:10px; display:none;">Registering...</p>
             </div>
         </div>
@@ -266,24 +388,81 @@
     <!-- 2. MAIN HUB -->
     <div id="main-hub" class="app-container">
         
-        <!-- Sidebar -->
+        <!-- App Navigation (Sidebar / Bottom Bar) -->
         <nav class="sidebar">
             <div class="brand">
                 <img src="https://blue-wisdom-od.netlify.app/images/1.png" onerror="this.src='images/blue_wisdom_logo.png'" alt="BW">
                 <h2>Trainer Hub</h2>
             </div>
-            <a class="nav-link active" onclick="switchView('gigs', this)"><span>🎯</span> Gig Board</a>
-            <a class="nav-link" onclick="switchView('policies', this)"><span>📜</span> Compliance & Consent</a>
-            <a class="nav-link" onclick="switchView('resources', this)"><span>📁</span> Resource Center</a>
+            
+            <a class="nav-link active" onclick="switchView('dashboard', this)"><span>📊</span><span>Dashboard</span></a>
+            <a class="nav-link" onclick="switchView('gigs', this)"><span>🎯</span><span>Gig Board</span></a>
+            <a class="nav-link" onclick="switchView('policies', this)"><span>📜</span><span>Compliance</span></a>
+            <a class="nav-link" onclick="switchView('resources', this)"><span>📁</span><span>Resources</span></a>
+
+            <!-- Social Links (Desktop only) -->
+            <div class="social-links">
+                <a href="https://www.facebook.com/BlueWisdomIndia" target="_blank" class="social-icon" title="Facebook">📘</a>
+                <a href="https://www.instagram.com/bluewisdominsta/" target="_blank" class="social-icon" title="Instagram">📸</a>
+                <a href="https://www.linkedin.com/company/blue-wisdom-pvt--ltd-" target="_blank" class="social-icon" title="LinkedIn">💼</a>
+                <a href="https://chat.whatsapp.com/CcmClxHMaWj258J3S0Scp1" target="_blank" class="social-icon" title="WhatsApp Group" style="color:#25D366">💬</a>
+            </div>
         </nav>
 
         <!-- Main Content -->
         <main class="main-content">
 
+            <!-- DASHBOARD VIEW -->
+            <section id="dashboard" class="view-section active">
+                <h1>📊 Welcome to Blue Wisdom</h1>
+                <p>Your personalized command center for all deployments, empowering you to create lasting impact.</p>
+
+                <!-- Impact Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">5,000+</div>
+                        <div class="stat-label">Empanelled Trainers</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">5 Lakh</div>
+                        <div class="stat-label">Lives Impacted</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100+</div>
+                        <div class="stat-label">Corporate Clients</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">500</div>
+                        <div class="stat-label">Monthly Training Mandays</div>
+                    </div>
+                </div>
+
+                <!-- Client Marquee -->
+                <div class="marquee">
+                    <div class="marquee-content">
+                        ★ ADANI GROUP &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ★ RELIANCE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ★ TATA MOTORS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ★ ITC LIMITED &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ★ MAHINDRA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ★ HDFC BANK &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        ★ ADANI GROUP &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ★ RELIANCE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ★ TATA MOTORS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ★ ITC LIMITED &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ★ MAHINDRA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ★ HDFC BANK &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
+
+                <!-- Trainer Voices -->
+                <h2>🎙️ Trainer Voices</h2>
+                <div class="testimonial-grid">
+                    <div class="glass-card">
+                        <p class="quote">"Partnering with Blue Wisdom has elevated my facilitation game. The content structure and pre-bootcamps by Nakshatra ensure zero surprises during deployment."</p>
+                        <p class="author">— Amit S., Behavioral Expert</p>
+                    </div>
+                    <div class="glass-card">
+                        <p class="quote">"The 30-day payout SLA is unmatched in the industry. Highly professional and deeply respectful of a trainer's time and expertise."</p>
+                        <p class="author">— Dr. Shalini P., Leadership Coach</p>
+                    </div>
+                </div>
+            </section>
+
             <!-- GIG BOARD VIEW -->
-            <section id="gigs" class="view-section active">
+            <section id="gigs" class="view-section">
                 <h1>🎯 Live Opportunities</h1>
-                <p>Apply directly. Your IPF profile link will automatically be attached to your application.</p>
+                <p>Apply directly. Your profile will automatically be attached to your application via WhatsApp.</p>
 
                 <div class="gig-grid">
                     <!-- Gig 1 -->
@@ -349,13 +528,19 @@
             <!-- RESOURCES VIEW -->
             <section id="resources" class="view-section">
                 <h1>📁 Resource Center</h1>
+                <p>Download official materials or submit your post-deployment documentation.</p>
+
+                <div class="glass-card" style="border-left: 4px solid var(--primary-blue);">
+                    <h3>💸 Invoice & Expense Submission</h3>
+                    <p>Submit your professional fee invoice and original expense receipts through the official portal.</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfEKjUZCus2jdcW7AWZTxkSiugYXQrc6nxgXsGzoLDlQZ82Og/viewform" target="_blank" class="btn btn-primary" style="margin-top:10px;">
+                        📤 Open Submission Form
+                    </a>
+                </div>
+
                 <div class="glass-card">
                     <h3>📚 Project Adani (Daksh) Content</h3>
                     <ul><li>📄 Official PPTs and Workbooks</li></ul>
-                </div>
-                <div class="glass-card">
-                    <h3>💸 Invoicing</h3>
-                    <ul><li>📄 Mandatory BW Invoice Template</li></ul>
                 </div>
             </section>
 
@@ -374,9 +559,7 @@
 
     <script>
         // GLOBALS
-        let currentTrainer = { name: '', phone: '', email: '', ipfLink: '' };
-        
-        // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE:
+        let currentTrainer = { name: '', phone: '', email: '' };
         const GOOGLE_SCRIPT_URL = "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE"; 
 
         // 1. Theme Toggle Logic
@@ -403,21 +586,19 @@
             const name = document.getElementById('regName').value;
             const phone = document.getElementById('regPhone').value;
             const email = document.getElementById('regEmail').value;
-            const ipf = document.getElementById('regIpf').value;
             const msg = document.getElementById('authMsg');
 
-            if(!name || !phone || !email || !ipf) {
+            if(!name || !phone || !email) {
                 msg.style.display = 'block';
-                msg.innerText = "❌ All fields including IPF Link are required!";
+                msg.innerText = "❌ Please fill in Name, Phone, and Email.";
                 return;
             }
 
-            currentTrainer = { name, phone, email, ipfLink: ipf };
+            currentTrainer = { name, phone, email };
             msg.style.display = 'block';
             msg.style.color = "var(--text-main)";
             msg.innerText = "⏳ Saving to Database...";
 
-            // Send to Google Sheets (Simulated if URL is missing)
             if(GOOGLE_SCRIPT_URL !== "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE") {
                 try {
                     await fetch(GOOGLE_SCRIPT_URL, {
@@ -439,15 +620,10 @@
             }, 600);
         }
 
-        // 4. Apply for Gig via WhatsApp (With IPF Link)
+        // 4. Apply for Gig via WhatsApp
         function applyForGig(gigName) {
-            if(!currentTrainer.ipfLink) {
-                alert("IPF Link missing! Please refresh and login again.");
-                return;
-            }
-            // Naks WA number
             const naksPhone = "917976789234";
-            const text = encodeURIComponent(`Hi Naks, I am highly interested in the [${gigName}] opportunity.\n\nHere is my IPF Profile Link for review: ${currentTrainer.ipfLink}`);
+            const text = encodeURIComponent(`Hi Naks, I am highly interested in the [${gigName}] opportunity.\n\nMy Name: ${currentTrainer.name}\nMy Phone: ${currentTrainer.phone}\n\nI have registered my profile on the IPF portal.`);
             window.open(`https://wa.me/${naksPhone}?text=${text}`, '_blank');
         }
 
