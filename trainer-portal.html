@@ -73,16 +73,9 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
         .auth-hero {
-            flex: 1;
+            flex: 1.2;
             background: url('images/hero-image.png') center/cover no-repeat;
-            background-color: var(--light-blue);
             min-height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 30px;
-            color: white;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
         .auth-hero h2 { margin: 0; font-family: 'Montserrat', sans-serif; font-size: 2rem; }
         .auth-form {
@@ -364,11 +357,13 @@
     <div id="auth-gate">
         <div class="auth-container">
             <div class="auth-hero">
-                <h2>Welcome to BW Trainer Hub</h2>
-                <p>Register to access exclusive opportunities and manage your deployments.</p>
+                <!-- Image only, text moved to form -->
             </div>
             <div class="auth-form">
-                <h3 style="color:var(--text-main); margin-bottom:20px;">🔹 Trainer Registration</h3>
+                <h2 style="color:var(--primary-blue); font-family:'Montserrat', sans-serif; margin-top:0;">Welcome to BW Trainer Hub</h2>
+                <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:25px;">Register to access exclusive opportunities and manage your deployments.</p>
+                
+                <h3 style="color:var(--text-main); margin-bottom:15px; font-size:1.1rem;">🔹 Trainer Registration</h3>
                 
                 <div class="register-link-box">
                     <p style="margin:0; font-size:0.9rem;">Don't have an IPF Profile?</p>
