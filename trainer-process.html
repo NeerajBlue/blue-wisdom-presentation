@@ -234,11 +234,18 @@
             line-height: 1.4;
         }
         
-        /* Floating Tracker Button */
-        .floating-btn {
+        /* Floating Tracker Buttons */
+        .floating-links {
             position: fixed;
             bottom: 30px;
             right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 900;
+        }
+        
+        .floating-btn {
             background: #2563eb;
             color: white;
             padding: 15px 25px;
@@ -249,8 +256,17 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            z-index: 900;
             transition: transform 0.2s, background 0.2s;
+        }
+        
+        .floating-btn.secondary {
+            background: #10b981;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+        }
+        
+        .floating-btn.secondary:hover {
+            background: #059669;
+            transform: scale(1.05);
         }
         
         .floating-btn:hover {
@@ -391,10 +407,15 @@
 
     </div>
 
-    <!-- Floating Master Tracker Link -->
-    <a href="https://docs.google.com/spreadsheets/d/1oJKsU2IOrw8mu4xvx0MxBJ9aHB8omewvINjBq7-HkNc/edit?usp=sharing" target="_blank" class="floating-btn">
-        📊 Open Master Tracker
-    </a>
+    <!-- Floating Quick Links -->
+    <div class="floating-links">
+        <a href="https://docs.google.com/spreadsheets/d/1v39qcO0_Gept1o1DVoCQUgQ61yjjO_lGPc__SrgZdWY/edit?usp=sharing" target="_blank" class="floating-btn secondary">
+            🗂️ Trainer Management
+        </a>
+        <a href="https://docs.google.com/spreadsheets/d/1oJKsU2IOrw8mu4xvx0MxBJ9aHB8omewvINjBq7-HkNc/edit?usp=sharing" target="_blank" class="floating-btn">
+            📊 Open Master Tracker
+        </a>
+    </div>
 
     <!-- Footer with Contacts -->
     <div class="footer">
