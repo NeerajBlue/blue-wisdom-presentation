@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Wisdom - Trainer Onboarding Portal</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap');
+
+        :root {
+            --primary-blue: #00478F; /* Official BW Blue */
+            --light-blue: #E6F0FA;
+            --accent-orange: #FF6B00;
+            --text-dark: #333333;
+            --text-gray: #666666;
+            --bg-gray: #F8F9FA;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--bg-gray);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Container imitating an A4 Letterhead Document */
+        .portal-container {
+            background-color: #FFFFFF;
+            width: 100%;
+            max-width: 900px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-radius: 8px;
+            overflow: hidden;
+            border-top: 8px solid var(--primary-blue);
+        }
+
+        /* Letterhead Header */
+        .letterhead-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 50px 20px 50px;
+            border-bottom: 2px solid var(--light-blue);
+        }
+
+        .letterhead-header img {
+            max-height: 80px;
+        }
+
+        .header-text {
+            text-align: right;
+        }
+
+        .header-text h1 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            margin: 0 0 5px 0;
+        }
+
+        .header-text p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .content-area {
+            padding: 40px 50px;
+        }
+
+        .welcome-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* Accordion Styling */
+        .accordion {
+            border: 1px solid #E0E0E0;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid #E0E0E0;
+        }
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+
+        .accordion-header {
+            background-color: #F8F9FA;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--primary-blue);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+
+        .accordion-header:hover {
+            background-color: var(--light-blue);
+        }
+
+        .accordion-content {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease;
+            background-color: #FFFFFF;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .accordion-content.active {
+            padding: 25px;
+            max-height: 1500px; /* arbitrary large number */
+            border-top: 1px solid #E0E0E0;
+        }
+
+        .policy-list {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        .policy-list li {
+            margin-bottom: 8px;
+        }
+
+        /* Actions area (Consent + PDF) */
+        .actions-area {
+            background-color: var(--light-blue);
+            padding: 30px 50px;
+            border-top: 1px solid #cce0ff;
+        }
+
+        .consent-box {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .consent-box input[type="checkbox"] {
+            margin-top: 5px;
+            margin-right: 15px;
+            transform: scale(1.4);
+            cursor: pointer;
+        }
+
+        .consent-box label {
+            font-weight: 600;
+            color: var(--text-dark);
+            cursor: pointer;
+            font-size: 1.05rem;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #003366;
+            transform: translateY(-2px);
+        }
+        .btn-primary:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--text-dark);
+            border: 1px solid #cccccc;
+        }
+        .btn-secondary:hover {
+            background-color: #f2f2f2;
+        }
+
+        /* Success State */
+        .success-state {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .success-state h2 {
+            color: #28a745;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 10px;
+        }
+        .success-state .next-steps {
+            text-align: left;
+            background: #f4fdf6;
+            border: 1px solid #c3e6cb;
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        /* Print Styles - To generate a clean PDF */
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+            .portal-container {
+                box-shadow: none;
+                border: none;
+                max-width: 100%;
+            }
+            .actions-area, .welcome-text, .header-text p:last-child {
+                display: none;
+            }
+            .accordion, .accordion-item {
+                border: none;
+            }
+            .accordion-header {
+                background-color: transparent !important;
+                border-bottom: 2px solid var(--primary-blue);
+                padding: 10px 0;
+                margin-top: 20px;
+            }
+            .accordion-header::after {
+                display: none;
+            }
+            .accordion-content {
+                max-height: none !important;
+                padding: 15px 0 !important;
+                display: block !important;
+                border: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="portal-container">
+        
+        <!-- Letterhead Header -->
+        <div class="letterhead-header">
+            <img src="https://blue-wisdom-od.netlify.app/images/1.png" alt="Blue Wisdom Logo" onerror="this.src='images/blue_wisdom_logo.png'">
+            <div class="header-text">
+                <h1>Trainer Association & Empanelment</h1>
+                <p>Official Standard Operating Procedures</p>
+                <p>Blue Wisdom Pvt. Ltd.</p>
+            </div>
+        </div>
+
+        <!-- Dynamic Content Area -->
+        <div class="content-area" id="mainContent">
+            
+            <p class="welcome-text">
+                Dear Trainer, welcome to your Blue Wisdom Portal. Before proceeding with your deployment, please review our official engagement policies below. You may download a PDF copy for your records. Once reviewed, provide your digital consent at the bottom of the page to unlock your training content and invoicing templates.
+            </p>
+
+            <!-- Policies Accordion -->
+            <div class="accordion">
+                
+                <!-- Policy 1 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        1. Master Empanelment Agreement (MSA) & NDA
+                        <span>▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>This agreement outlines the legal relationship between Blue Wisdom and the Empanelled Trainer as an independent contractor.</p>
+                        <ul class="policy-list">
+                            <li><strong>Confidentiality (NDA):</strong> The Trainer agrees to maintain strict confidentiality regarding all Blue Wisdom intellectual property, training materials, client data, and commercial terms.</li>
+                            <li><strong>Intellectual Property:</strong> All decks, workbooks, and materials provided by Blue Wisdom remain the sole property of Blue Wisdom. The Trainer may not use, copy, or distribute these materials for external personal or professional assignments.</li>
+                            <li><strong>Non-Solicitation:</strong> The Trainer agrees not to directly solicit or accept parallel assignments from the specific Client assigned by Blue Wisdom for a period of 12 months post-deployment.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Policy 2 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        2. Code of Conduct & Facilitation Guidelines
+                        <span>▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>To ensure a standard of excellence, trainers representing Blue Wisdom must adhere to the following:</p>
+                        <ul class="policy-list">
+                            <li><strong>Brand Representation:</strong> The Trainer is representing Blue Wisdom. Do not distribute personal business cards or use personal company logos during the training.</li>
+                            <li><strong>Reporting Time:</strong> The Trainer must report to the training venue at least <strong>45 minutes prior</strong> to the scheduled start time.</li>
+                            <li><strong>Energy & Engagement:</strong> Maintain consistently high energy and positive body language. Avoid sitting for extended periods; engage the audience interactively.</li>
+                            <li><strong>Content Adherence:</strong> Do NOT skip or alter the official PPT slides. Stick to the provided context, case studies, and activities unless specifically approved.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Policy 3 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        3. Travel, Stay & Expense (T&E) Policy
+                        <span>▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>For outstation deployments (e.g., Khavda, Bhuj), the following expense guidelines apply unless otherwise stated in your assignment brief:</p>
+                        <ul class="policy-list">
+                            <li><strong>Bookings:</strong> Travel and accommodation will either be pre-arranged by the Client/BW, or the Trainer will be provided a pre-approved budget cap for self-booking.</li>
+                            <li><strong>Reimbursements:</strong> All local conveyances (taxis) and meal expenses must be backed by original GST receipts. Hand-written bills without GST/PAN will not be reimbursed.</li>
+                            <li><strong>Submission:</strong> Expense claims must be submitted along with the final invoice within 48 hours of completing the deployment.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Policy 4 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        4. Commercials, Invoicing & Payouts
+                        <span>▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Guidelines for professional fee processing:</p>
+                        <ul class="policy-list">
+                            <li><strong>Invoice Submission:</strong> Invoices must be submitted exclusively using the <em>Official Blue Wisdom Invoice Template</em>.</li>
+                            <li><strong>Mandatory Attachments:</strong> Invoices will <strong>NOT</strong> be processed without the submission of the physically signed participant attendance sheets.</li>
+                            <li><strong>TDS Deduction:</strong> Professional fees are subject to standard Tax Deducted at Source (TDS) as per government regulations.</li>
+                            <li><strong>Payment TAT:</strong> Approved invoices will be processed and disbursed within 30 to 45 days post-deployment, subject to client clearance.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Action / Consent Area -->
+        <div class="actions-area" id="actionArea">
+            <div class="consent-box">
+                <input type="checkbox" id="consentCheck" onclick="toggleSubmitBtn()">
+                <label for="consentCheck">I have thoroughly read, understood, and digitally accept the Master Empanelment Agreement, NDA, Code of Conduct, and Financial Policies stated above.</label>
+            </div>
+            
+            <div class="button-group">
+                <button class="btn btn-primary" id="acceptBtn" disabled onclick="processAcceptance()">Digitally Accept & Proceed</button>
+                <button class="btn btn-secondary" onclick="window.print()">📥 Download Policies as PDF</button>
+            </div>
+        </div>
+
+        <!-- Success State (Hidden initially) -->
+        <div class="success-state" id="successArea">
+            <h2>✅ Digital Consent Received</h2>
+            <p>Thank you for accepting the Blue Wisdom Empanelment Policies. You are officially ready for your deployment.</p>
+            
+            <div class="next-steps">
+                <h3 style="color: var(--primary-blue); margin-top:0;">Your Assignment Resources</h3>
+                <p>Please download your required resources below:</p>
+                <ul style="line-height: 2;">
+                    <li>📄 <a href="#" style="color: var(--primary-blue); font-weight:600;">Download Official BW Invoice Template</a></li>
+                    <li>🎓 <a href="#" style="color: var(--primary-blue); font-weight:600;">Access Training Content & Decks (Secured Folder)</a></li>
+                </ul>
+                <p style="font-size: 0.9rem; color: #666; margin-top:20px;">* Please ensure you upload the signed attendance sheets along with your invoice post-delivery.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Accordion functionality
+        function toggleAccordion(element) {
+            const content = element.nextElementSibling;
+            const icon = element.querySelector('span');
+            
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                icon.innerText = '▼';
+            } else {
+                content.classList.add('active');
+                icon.innerText = '▲';
+            }
+        }
+
+        // Toggle Submit Button based on Checkbox
+        function toggleSubmitBtn() {
+            const checkbox = document.getElementById('consentCheck');
+            const btn = document.getElementById('acceptBtn');
+            btn.disabled = !checkbox.checked;
+        }
+
+        // Handle Acceptance
+        function processAcceptance() {
+            // In a real app, this would send an API request to log the timestamp and user IP
+            
+            // Hide the policies and action area
+            document.getElementById('mainContent').style.display = 'none';
+            document.getElementById('actionArea').style.display = 'none';
+            
+            // Show the success and resources area
+            document.getElementById('successArea').style.display = 'block';
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
