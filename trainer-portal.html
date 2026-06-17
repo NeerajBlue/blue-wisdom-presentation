@@ -3,420 +3,565 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blue Wisdom - Trainer Onboarding Portal</title>
+    <title>BW Trainer Hub</title>
+    <!-- Modern Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap');
-
         :root {
-            --primary-blue: #00478F; /* Official BW Blue */
-            --light-blue: #E6F0FA;
-            --accent-orange: #FF6B00;
-            --text-dark: #333333;
-            --text-gray: #666666;
-            --bg-gray: #F8F9FA;
+            --bg-color: #0b1120;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #f59e0b; /* Amber/Gold */
+            --primary-hover: #d97706;
+            --secondary: #3b82f6; /* BW Blue accent */
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --success: #10b981;
+            --danger: #ef4444;
         }
 
         body {
-            font-family: 'Open Sans', sans-serif;
-            background-color: var(--bg-gray);
-            color: var(--text-dark);
             margin: 0;
-            padding: 40px 20px;
-            display: flex;
-            justify-content: center;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            /* Subtle background glow effect */
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
+            background-attachment: fixed;
         }
 
-        /* Container imitating an A4 Letterhead Document */
-        .portal-container {
-            background-color: #FFFFFF;
+        /* --- Live Notification Ticker --- */
+        .ticker-wrap {
             width: 100%;
-            max-width: 900px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            border-radius: 8px;
+            background: rgba(245, 158, 11, 0.1);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 8px 0;
             overflow: hidden;
-            border-top: 8px solid var(--primary-blue);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
         }
-
-        /* Letterhead Header */
-        .letterhead-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 40px 50px 20px 50px;
-            border-bottom: 2px solid var(--light-blue);
-        }
-
-        .letterhead-header img {
-            max-height: 80px;
-        }
-
-        .header-text {
-            text-align: right;
-        }
-
-        .header-text h1 {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--primary-blue);
-            font-size: 1.5rem;
-            margin: 0 0 5px 0;
-        }
-
-        .header-text p {
-            margin: 0;
+        .ticker {
+            display: inline-block;
+            white-space: nowrap;
+            padding-right: 100%;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            animation-name: ticker;
+            animation-duration: 25s;
+            color: var(--primary);
             font-size: 0.9rem;
-            color: var(--text-gray);
-        }
-
-        .content-area {
-            padding: 40px 50px;
-        }
-
-        .welcome-text {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-
-        /* Accordion Styling */
-        .accordion {
-            border: 1px solid #E0E0E0;
-            border-radius: 6px;
-            overflow: hidden;
-            margin-bottom: 30px;
-        }
-
-        .accordion-item {
-            border-bottom: 1px solid #E0E0E0;
-        }
-        .accordion-item:last-child {
-            border-bottom: none;
-        }
-
-        .accordion-header {
-            background-color: #F8F9FA;
-            padding: 18px 25px;
-            cursor: pointer;
-            font-family: 'Montserrat', sans-serif;
             font-weight: 600;
-            font-size: 1.1rem;
-            color: var(--primary-blue);
+        }
+        @keyframes ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+
+        /* --- Layout Container --- */
+        .app-container {
+            display: flex;
+            margin-top: 40px; /* offset for ticker */
+            min-height: calc(100vh - 40px);
+        }
+
+        /* --- Sidebar Navigation --- */
+        .sidebar {
+            width: 250px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border-right: 1px solid var(--glass-border);
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            z-index: 500;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .brand img {
+            width: 40px;
+            height: auto;
+            border-radius: 8px;
+            background: white;
+            padding: 5px;
+        }
+        .brand h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-link {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .nav-link:hover, .nav-link.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+            transform: translateX(5px);
+        }
+        .nav-link.active {
+            border-left: 4px solid var(--primary);
+        }
+
+        /* --- Main Content Area --- */
+        .main-content {
+            flex: 1;
+            margin-left: 290px; /* sidebar width + padding */
+            padding: 40px;
+        }
+
+        .view-section {
+            display: none;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        .view-section.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Glass Cards --- */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: transform 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+
+        /* --- Dashboard Timeline --- */
+        .timeline {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: background-color 0.2s;
+            position: relative;
+            padding: 20px 0;
+            margin-top: 30px;
+            overflow-x: auto;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--glass-border);
+            z-index: 0;
+        }
+        .timeline-step {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 120px;
+        }
+        .step-dot {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--bg-color);
+            border: 2px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+        .timeline-step.completed .step-dot {
+            background: var(--success);
+            border-color: var(--success);
+            color: white;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+        }
+        .timeline-step.active .step-dot {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: var(--bg-color);
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+        }
+        .step-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        .timeline-step.active .step-label {
+            color: var(--primary);
         }
 
-        .accordion-header:hover {
-            background-color: var(--light-blue);
+        /* --- Gig Board Grid --- */
+        .gig-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
         }
-
-        .accordion-content {
-            padding: 0 25px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out, padding 0.4s ease;
-            background-color: #FFFFFF;
-            font-size: 0.95rem;
-            line-height: 1.6;
+        .badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
+        .badge.open { background: rgba(16, 185, 129, 0.1); color: var(--success); border: 1px solid var(--success); }
+        .badge.closed { background: rgba(239, 68, 68, 0.1); color: var(--danger); border: 1px solid var(--danger); }
         
-        .accordion-content.active {
-            padding: 25px;
-            max-height: 1500px; /* arbitrary large number */
-            border-top: 1px solid #E0E0E0;
-        }
-
-        .policy-list {
-            padding-left: 20px;
-            margin: 10px 0;
-        }
-        .policy-list li {
-            margin-bottom: 8px;
-        }
-
-        /* Actions area (Consent + PDF) */
-        .actions-area {
-            background-color: var(--light-blue);
-            padding: 30px 50px;
-            border-top: 1px solid #cce0ff;
-        }
-
-        .consent-box {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 25px;
-        }
-
-        .consent-box input[type="checkbox"] {
-            margin-top: 5px;
-            margin-right: 15px;
-            transform: scale(1.4);
-            cursor: pointer;
-        }
-
-        .consent-box label {
-            font-weight: 600;
-            color: var(--text-dark);
-            cursor: pointer;
-            font-size: 1.05rem;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 15px;
-        }
-
         .btn {
-            padding: 14px 28px;
+            padding: 10px 20px;
+            border-radius: 8px;
             border: none;
-            border-radius: 4px;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Outfit', sans-serif;
             font-weight: 600;
-            font-size: 1rem;
             cursor: pointer;
-            transition: transform 0.2s, background-color 0.2s;
+            transition: all 0.2s ease;
             text-decoration: none;
             display: inline-block;
-        }
-
-        .btn-primary {
-            background-color: var(--primary-blue);
-            color: white;
-        }
-        .btn-primary:hover {
-            background-color: #003366;
-            transform: translateY(-2px);
-        }
-        .btn-primary:disabled {
-            background-color: #cccccc;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .btn-secondary {
-            background-color: white;
-            color: var(--text-dark);
-            border: 1px solid #cccccc;
-        }
-        .btn-secondary:hover {
-            background-color: #f2f2f2;
-        }
-
-        /* Success State */
-        .success-state {
-            display: none;
             text-align: center;
-            padding: 40px 20px;
         }
-        .success-state h2 {
-            color: #28a745;
-            font-family: 'Montserrat', sans-serif;
-            margin-bottom: 10px;
+        .btn-wa {
+            background: #25D366;
+            color: white;
+            width: 100%;
+            margin-top: 15px;
+            box-sizing: border-box;
         }
-        .success-state .next-steps {
-            text-align: left;
-            background: #f4fdf6;
-            border: 1px solid #c3e6cb;
-            padding: 25px;
-            border-radius: 8px;
-            margin-top: 30px;
+        .btn-wa:hover {
+            background: #1ebc5a;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
         }
 
-        /* Print Styles - To generate a clean PDF */
-        @media print {
-            body {
-                background-color: white;
-                padding: 0;
+        /* --- Floating Action Buttons --- */
+        .fab-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+        .fab {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            padding: 12px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        .fab:hover {
+            background: rgba(255,255,255,0.1);
+            transform: scale(1.05);
+            border-color: var(--primary);
+        }
+        .fab.highlight {
+            background: rgba(37, 99, 235, 0.2);
+            border-color: var(--secondary);
+        }
+
+        h1 { font-size: 2.5rem; margin-top: 0; }
+        h3 { color: var(--primary); margin-top: 0; }
+        p { line-height: 1.6; color: var(--text-muted); }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                flex-direction: row;
+                justify-content: space-around;
+                padding: 15px 0;
+                border-right: none;
+                border-bottom: 1px solid var(--glass-border);
+                align-items: center;
             }
-            .portal-container {
-                box-shadow: none;
-                border: none;
-                max-width: 100%;
-            }
-            .actions-area, .welcome-text, .header-text p:last-child {
-                display: none;
-            }
-            .accordion, .accordion-item {
-                border: none;
-            }
-            .accordion-header {
-                background-color: transparent !important;
-                border-bottom: 2px solid var(--primary-blue);
-                padding: 10px 0;
-                margin-top: 20px;
-            }
-            .accordion-header::after {
-                display: none;
-            }
-            .accordion-content {
-                max-height: none !important;
-                padding: 15px 0 !important;
-                display: block !important;
-                border: none;
-            }
+            .brand { margin-bottom: 0; padding-bottom: 0; border: none; }
+            .brand h2 { display: none; } /* Hide text on mobile */
+            .nav-link span { display: none; } /* Show only icons */
+            .nav-link { margin-bottom: 0; padding: 10px; }
+            
+            .main-content { margin-left: 0; padding: 20px; }
+            .timeline { flex-wrap: wrap; gap: 20px; justify-content: center; }
+            .timeline::before { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <div class="portal-container">
+    <!-- Notification Ticker -->
+    <div class="ticker-wrap">
+        <div class="ticker">
+            🔥 HOT REQUIREMENT: Behavioral Trainer urgently needed in Delhi. Click Gig Board to Apply! &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 🚀 Project Adani (Daksh) Khavda deployment is successfully closed. &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 📢 Don't forget to upload your invoices within 48 hours of deployment completion.
+        </div>
+    </div>
+
+    <div class="app-container">
         
-        <!-- Letterhead Header -->
-        <div class="letterhead-header">
-            <img src="https://blue-wisdom-od.netlify.app/images/1.png" alt="Blue Wisdom Logo" onerror="this.src='images/blue_wisdom_logo.png'">
-            <div class="header-text">
-                <h1>Trainer Association & Empanelment</h1>
-                <p>Official Standard Operating Procedures</p>
-                <p>Blue Wisdom Pvt. Ltd.</p>
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="brand">
+                <img src="https://blue-wisdom-od.netlify.app/images/1.png" onerror="this.src='images/blue_wisdom_logo.png'" alt="BW">
+                <h2>Trainer Hub</h2>
             </div>
-        </div>
-
-        <!-- Dynamic Content Area -->
-        <div class="content-area" id="mainContent">
             
-            <p class="welcome-text">
-                Dear Trainer, welcome to your Blue Wisdom Portal. Before proceeding with your deployment, please review our official engagement policies below. You may download a PDF copy for your records. Once reviewed, provide your digital consent at the bottom of the page to unlock your training content and invoicing templates.
-            </p>
+            <a class="nav-link active" onclick="switchView('dashboard', this)">
+                <span>📊</span> <span>Dashboard</span>
+            </a>
+            <a class="nav-link" onclick="switchView('gigs', this)">
+                <span>🎯</span> <span>Gig Board</span>
+            </a>
+            <a class="nav-link" onclick="switchView('resources', this)">
+                <span>📁</span> <span>Resources & Content</span>
+            </a>
+            <a class="nav-link" onclick="switchView('policies', this)">
+                <span>📜</span> <span>Compliance</span>
+            </a>
+        </nav>
 
-            <!-- Policies Accordion -->
-            <div class="accordion">
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- 1. DASHBOARD VIEW -->
+            <section id="dashboard" class="view-section active">
+                <h1>Welcome Back, Trainer</h1>
+                <p>Your personalized command center for all Blue Wisdom deployments.</p>
+
+                <div class="glass-card">
+                    <h3>Current Deployment Status: Project Adani</h3>
+                    <p>Track your engagement journey and upcoming milestones below.</p>
+                    
+                    <div class="timeline">
+                        <div class="timeline-step completed">
+                            <div class="step-dot">✓</div>
+                            <div class="step-label">Profile Selected</div>
+                        </div>
+                        <div class="timeline-step completed">
+                            <div class="step-dot">✓</div>
+                            <div class="step-label">KYC & NDA</div>
+                        </div>
+                        <div class="timeline-step active">
+                            <div class="step-dot">3</div>
+                            <div class="step-label">Booting with Nakshatra<br><small>(Assigning Trainer X & Y)</small></div>
+                        </div>
+                        <div class="timeline-step">
+                            <div class="step-dot">4</div>
+                            <div class="step-label">Content Shared</div>
+                        </div>
+                        <div class="timeline-step">
+                            <div class="step-dot">5</div>
+                            <div class="step-label">Final Deployment</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display:flex; gap:20px; flex-wrap:wrap;">
+                    <div class="glass-card" style="flex:1; min-width:250px;">
+                        <h3>🏆 Your Trainer Tier</h3>
+                        <div style="font-size:2rem; color:var(--primary); font-weight:800; margin:10px 0;">GOLD LEVEL</div>
+                        <p>You have successfully completed 5+ deployments with outstanding NPS scores.</p>
+                    </div>
+                    <div class="glass-card" style="flex:1; min-width:250px;">
+                        <h3>📈 Performance Stats</h3>
+                        <ul style="color:var(--text-muted); line-height:2;">
+                            <li>Average NPS: <strong style="color:white">4.8 / 5.0</strong></li>
+                            <li>Total Deployments: <strong style="color:white">8</strong></li>
+                            <li>Pending Invoices: <strong style="color:white">0</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. GIG BOARD VIEW -->
+            <section id="gigs" class="view-section">
+                <h1>Live Opportunities</h1>
+                <p>Browse our open requirements or refer a fellow trainer in your network.</p>
+
+                <div class="gig-grid">
+                    <!-- Gig 1 -->
+                    <div class="glass-card">
+                        <div style="display:flex; justify-content:space-between; margin-bottom:15px;">
+                            <span class="badge open">🟢 OPEN</span>
+                            <span style="color:var(--text-muted); font-size:0.8rem;">Posted 2 hrs ago</span>
+                        </div>
+                        <h3>Behavioral & Leadership Trainer</h3>
+                        <p style="margin:5px 0;"><strong>Location:</strong> Delhi NCR</p>
+                        <p style="margin:5px 0;"><strong>Dates:</strong> 12th - 14th Aug</p>
+                        <p style="font-size:0.9rem; margin-top:15px;">Looking for an expert facilitator for middle-management behavioral intervention. 10+ years experience required.</p>
+                        
+                        <a href="https://wa.me/?text=Hey!%20Blue%20Wisdom%20is%20looking%20for%20a%20Behavioral%20Trainer%20in%20Delhi.%20Check%20out%20the%20BW%20Trainer%20Hub%20to%20apply!" target="_blank" class="btn btn-wa">
+                            Share to WhatsApp Network
+                        </a>
+                    </div>
+
+                    <!-- Gig 2 -->
+                    <div class="glass-card">
+                        <div style="display:flex; justify-content:space-between; margin-bottom:15px;">
+                            <span class="badge open">🟢 OPEN</span>
+                        </div>
+                        <h3>Sales Mastery Workshop</h3>
+                        <p style="margin:5px 0;"><strong>Location:</strong> Mumbai</p>
+                        <p style="margin:5px 0;"><strong>Dates:</strong> TBD (September)</p>
+                        <p style="font-size:0.9rem; margin-top:15px;">B2B consultative selling skills for a leading FMCG brand.</p>
+                        
+                        <a href="https://wa.me/?text=Hey!%20Blue%20Wisdom%20is%20looking%20for%20a%20Sales%20Trainer%20in%20Mumbai.%20Apply%20now!" target="_blank" class="btn btn-wa">
+                            Share to WhatsApp Network
+                        </a>
+                    </div>
+
+                    <!-- Gig 3 -->
+                    <div class="glass-card" style="opacity: 0.6;">
+                        <div style="display:flex; justify-content:space-between; margin-bottom:15px;">
+                            <span class="badge closed">🔴 CLOSED</span>
+                        </div>
+                        <h3>Project Adani (Daksh)</h3>
+                        <p style="margin:5px 0;"><strong>Location:</strong> Khavda, Bhuj</p>
+                        <p style="margin:5px 0;"><strong>Dates:</strong> 24-25 June</p>
+                        <p style="font-size:0.9rem; margin-top:15px;">Roster successfully finalized. Thank you to all who applied.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. RESOURCES VIEW -->
+            <section id="resources" class="view-section">
+                <h1>Resource Center</h1>
+                <p>Download official materials, content, and templates for your assignments.</p>
+
+                <div class="glass-card">
+                    <h3>📚 Project Content Links</h3>
+                    <div style="background:rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-top:15px; display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <strong>Adani (Daksh) Module Decks</strong>
+                            <p style="margin:5px 0 0 0; font-size:0.85rem;">Official PPTs and Workbooks</p>
+                        </div>
+                        <a href="#" style="color:var(--primary); text-decoration:none; font-weight:bold;">Download ↓</a>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h3>💸 Invoicing Templates</h3>
+                    <div style="background:rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-top:15px; display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <strong>Official BW Invoice Template</strong>
+                            <p style="margin:5px 0 0 0; font-size:0.85rem;">Mandatory for payment processing.</p>
+                        </div>
+                        <a href="#" style="color:var(--primary); text-decoration:none; font-weight:bold;">Download ↓</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. POLICIES VIEW -->
+            <section id="policies" class="view-section">
+                <h1>Compliance & Policies</h1>
+                <p>Review the standard operating procedures for empanelment.</p>
+
+                <div class="glass-card">
+                    <h3 style="margin-bottom: 5px;">Master Empanelment Agreement (MSA)</h3>
+                    <p style="font-size: 0.9rem; margin-top:0;">Covers NDA, Intellectual Property ownership, and Non-Solicitation clauses ensuring BW materials are not shared externally.</p>
+                </div>
+
+                <div class="glass-card">
+                    <h3 style="margin-bottom: 5px;">Code of Conduct & Facilitation</h3>
+                    <p style="font-size: 0.9rem; margin-top:0;">Guidelines on arriving 45 mins early, avoiding personal branding during deployment, and maintaining high energy levels.</p>
+                </div>
+
+                <div class="glass-card">
+                    <h3 style="margin-bottom: 5px;">Travel, Stay & Expenses</h3>
+                    <p style="font-size: 0.9rem; margin-top:0;">Rules for outstation deployments (like Khavda), including mandatory GST receipts for local conveyance reimbursement.</p>
+                </div>
                 
-                <!-- Policy 1 -->
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">
-                        1. Master Empanelment Agreement (MSA) & NDA
-                        <span>▼</span>
-                    </div>
-                    <div class="accordion-content">
-                        <p>This agreement outlines the legal relationship between Blue Wisdom and the Empanelled Trainer as an independent contractor.</p>
-                        <ul class="policy-list">
-                            <li><strong>Confidentiality (NDA):</strong> The Trainer agrees to maintain strict confidentiality regarding all Blue Wisdom intellectual property, training materials, client data, and commercial terms.</li>
-                            <li><strong>Intellectual Property:</strong> All decks, workbooks, and materials provided by Blue Wisdom remain the sole property of Blue Wisdom. The Trainer may not use, copy, or distribute these materials for external personal or professional assignments.</li>
-                            <li><strong>Non-Solicitation:</strong> The Trainer agrees not to directly solicit or accept parallel assignments from the specific Client assigned by Blue Wisdom for a period of 12 months post-deployment.</li>
-                        </ul>
-                    </div>
+                <div class="glass-card">
+                    <h3 style="margin-bottom: 5px;">Invoicing & Payouts</h3>
+                    <p style="font-size: 0.9rem; margin-top:0;">Payment TAT is 30-45 days. Invoices must be accompanied by physically signed attendance sheets.</p>
                 </div>
+            </section>
 
-                <!-- Policy 2 -->
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">
-                        2. Code of Conduct & Facilitation Guidelines
-                        <span>▼</span>
-                    </div>
-                    <div class="accordion-content">
-                        <p>To ensure a standard of excellence, trainers representing Blue Wisdom must adhere to the following:</p>
-                        <ul class="policy-list">
-                            <li><strong>Brand Representation:</strong> The Trainer is representing Blue Wisdom. Do not distribute personal business cards or use personal company logos during the training.</li>
-                            <li><strong>Reporting Time:</strong> The Trainer must report to the training venue at least <strong>45 minutes prior</strong> to the scheduled start time.</li>
-                            <li><strong>Energy & Engagement:</strong> Maintain consistently high energy and positive body language. Avoid sitting for extended periods; engage the audience interactively.</li>
-                            <li><strong>Content Adherence:</strong> Do NOT skip or alter the official PPT slides. Stick to the provided context, case studies, and activities unless specifically approved.</li>
-                        </ul>
-                    </div>
-                </div>
+        </main>
+    </div>
 
-                <!-- Policy 3 -->
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">
-                        3. Travel, Stay & Expense (T&E) Policy
-                        <span>▼</span>
-                    </div>
-                    <div class="accordion-content">
-                        <p>For outstation deployments (e.g., Khavda, Bhuj), the following expense guidelines apply unless otherwise stated in your assignment brief:</p>
-                        <ul class="policy-list">
-                            <li><strong>Bookings:</strong> Travel and accommodation will either be pre-arranged by the Client/BW, or the Trainer will be provided a pre-approved budget cap for self-booking.</li>
-                            <li><strong>Reimbursements:</strong> All local conveyances (taxis) and meal expenses must be backed by original GST receipts. Hand-written bills without GST/PAN will not be reimbursed.</li>
-                            <li><strong>Submission:</strong> Expense claims must be submitted along with the final invoice within 48 hours of completing the deployment.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Policy 4 -->
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">
-                        4. Commercials, Invoicing & Payouts
-                        <span>▼</span>
-                    </div>
-                    <div class="accordion-content">
-                        <p>Guidelines for professional fee processing:</p>
-                        <ul class="policy-list">
-                            <li><strong>Invoice Submission:</strong> Invoices must be submitted exclusively using the <em>Official Blue Wisdom Invoice Template</em>.</li>
-                            <li><strong>Mandatory Attachments:</strong> Invoices will <strong>NOT</strong> be processed without the submission of the physically signed participant attendance sheets.</li>
-                            <li><strong>TDS Deduction:</strong> Professional fees are subject to standard Tax Deducted at Source (TDS) as per government regulations.</li>
-                            <li><strong>Payment TAT:</strong> Approved invoices will be processed and disbursed within 30 to 45 days post-deployment, subject to client clearance.</li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- Action / Consent Area -->
-        <div class="actions-area" id="actionArea">
-            <div class="consent-box">
-                <input type="checkbox" id="consentCheck" onclick="toggleSubmitBtn()">
-                <label for="consentCheck">I have thoroughly read, understood, and digitally accept the Master Empanelment Agreement, NDA, Code of Conduct, and Financial Policies stated above.</label>
-            </div>
-            
-            <div class="button-group">
-                <button class="btn btn-primary" id="acceptBtn" disabled onclick="processAcceptance()">Digitally Accept & Proceed</button>
-                <button class="btn btn-secondary" onclick="window.print()">📥 Download Policies as PDF</button>
-            </div>
-        </div>
-
-        <!-- Success State (Hidden initially) -->
-        <div class="success-state" id="successArea">
-            <h2>✅ Digital Consent Received</h2>
-            <p>Thank you for accepting the Blue Wisdom Empanelment Policies. You are officially ready for your deployment.</p>
-            
-            <div class="next-steps">
-                <h3 style="color: var(--primary-blue); margin-top:0;">Your Assignment Resources</h3>
-                <p>Please download your required resources below:</p>
-                <ul style="line-height: 2;">
-                    <li>📄 <a href="#" style="color: var(--primary-blue); font-weight:600;">Download Official BW Invoice Template</a></li>
-                    <li>🎓 <a href="#" style="color: var(--primary-blue); font-weight:600;">Access Training Content & Decks (Secured Folder)</a></li>
-                </ul>
-                <p style="font-size: 0.9rem; color: #666; margin-top:20px;">* Please ensure you upload the signed attendance sheets along with your invoice post-delivery.</p>
-            </div>
-        </div>
-
+    <!-- Floating Quick Action Buttons -->
+    <div class="fab-container">
+        <a href="https://docs.google.com/spreadsheets/d/1oJKsU2IOrw8mu4xvx0MxBJ9aHB8omewvINjBq7-HkNc/edit?usp=sharing" target="_blank" class="fab highlight">
+            <span>📊</span> BW Master Tracker (IPF)
+        </a>
+        <a href="https://wa.me/919725479188" target="_blank" class="fab">
+            <span style="color:#25D366">💬</span> Message Neeraj
+        </a>
+        <a href="https://wa.me/917976789234" target="_blank" class="fab">
+            <span style="color:#25D366">💬</span> Message Naks
+        </a>
     </div>
 
     <script>
-        // Accordion functionality
-        function toggleAccordion(element) {
-            const content = element.nextElementSibling;
-            const icon = element.querySelector('span');
+        // SPA Navigation Logic
+        function switchView(viewId, navElement) {
+            // Hide all sections
+            document.querySelectorAll('.view-section').forEach(sec => {
+                sec.classList.remove('active');
+            });
             
-            if (content.classList.contains('active')) {
-                content.classList.remove('active');
-                icon.innerText = '▼';
-            } else {
-                content.classList.add('active');
-                icon.innerText = '▲';
+            // Remove active class from all nav links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Show target section and highlight nav
+            document.getElementById(viewId).classList.add('active');
+            navElement.classList.add('active');
+            
+            // On mobile, scroll to top of main content
+            if(window.innerWidth <= 768) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
-        }
-
-        // Toggle Submit Button based on Checkbox
-        function toggleSubmitBtn() {
-            const checkbox = document.getElementById('consentCheck');
-            const btn = document.getElementById('acceptBtn');
-            btn.disabled = !checkbox.checked;
-        }
-
-        // Handle Acceptance
-        function processAcceptance() {
-            // In a real app, this would send an API request to log the timestamp and user IP
-            
-            // Hide the policies and action area
-            document.getElementById('mainContent').style.display = 'none';
-            document.getElementById('actionArea').style.display = 'none';
-            
-            // Show the success and resources area
-            document.getElementById('successArea').style.display = 'block';
-            
-            // Scroll to top
-            window.scrollTo(0, 0);
         }
     </script>
 </body>
