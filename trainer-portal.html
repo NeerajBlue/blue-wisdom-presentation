@@ -1,23 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BW Trainer Hub</title>
-    <!-- Modern Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>BW Trainer Hub - Registration & Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+    
     <style>
-        :root {
-            --bg-color: #0b1120;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --primary: #f59e0b; /* Amber/Gold */
-            --primary-hover: #d97706;
-            --secondary: #3b82f6; /* BW Blue accent */
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
+        /* --- Color Palette Constraint: White 50%, Blue Shades 40%, Red 5%, Black 5% --- */
+        :root[data-theme="light"] {
+            --bg-color: #ffffff;            /* 50% White foundation */
+            --glass-bg: rgba(240, 244, 248, 0.9);
+            --glass-border: #d1d5db;
+            
+            --primary-blue: #00478F;        /* 40% Blue shades */
+            --secondary-blue: #1E3A8A;
+            --light-blue: #DBEAFE;
+            
+            --accent-red: #DC2626;          /* 5% Red */
+            
+            --text-main: #000000;           /* 5% Black */
+            --text-muted: #374151;
+            
             --success: #10b981;
-            --danger: #ef4444;
+        }
+
+        :root[data-theme="dark"] {
+            --bg-color: #050b14;            /* Dark mode override */
+            --glass-bg: rgba(15, 23, 42, 0.8);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            
+            --primary-blue: #3B82F6;
+            --secondary-blue: #60A5FA;
+            --light-blue: #1E3A8A;
+            
+            --accent-red: #EF4444;
+            
+            --text-main: #ffffff;
+            --text-muted: #9CA3AF;
         }
 
         body {
@@ -26,54 +46,103 @@
             font-family: 'Outfit', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
+            transition: background-color 0.4s ease, color 0.4s ease;
             overflow-x: hidden;
-            /* Subtle background glow effect */
-            background-image: 
-                radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 85% 30%, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
-            background-attachment: fixed;
         }
 
-        /* --- Live Notification Ticker --- */
-        .ticker-wrap {
-            width: 100%;
-            background: rgba(245, 158, 11, 0.1);
-            border-bottom: 1px solid var(--glass-border);
-            padding: 8px 0;
-            overflow: hidden;
+        /* --- Registration / Login Gate (The Front Door) --- */
+        #auth-gate {
             position: fixed;
-            top: 0;
-            z-index: 1000;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            background-color: var(--bg-color);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s ease;
         }
-        .ticker {
+        .auth-container {
+            display: flex;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            overflow: hidden;
+            max-width: 900px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .auth-hero {
+            flex: 1;
+            background: url('images/hero-image.png') center/cover no-repeat;
+            background-color: var(--light-blue);
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        .auth-hero h2 { margin: 0; font-family: 'Montserrat', sans-serif; font-size: 2rem; }
+        .auth-form {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .auth-form input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid var(--glass-border);
+            border-radius: 6px;
+            background: transparent;
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            box-sizing: border-box;
+        }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+            text-decoration: none;
             display: inline-block;
-            white-space: nowrap;
-            padding-right: 100%;
-            animation-iteration-count: infinite;
-            animation-timing-function: linear;
-            animation-name: ticker;
-            animation-duration: 25s;
-            color: var(--primary);
-            font-size: 0.9rem;
+        }
+        .btn-primary { background: var(--primary-blue); color: white; }
+        .btn-primary:hover { transform: translateY(-2px); background: var(--secondary-blue); box-shadow: 0 5px 15px rgba(0,71,143,0.3); }
+        .btn-danger { background: var(--accent-red); color: white; }
+        .btn-danger:hover { transform: translateY(-2px); background: #b91c1c; }
+
+        /* --- Theme Toggle --- */
+        .theme-toggle {
+            position: absolute;
+            top: 20px; right: 20px;
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            z-index: 10000;
             font-weight: 600;
         }
-        @keyframes ticker {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-100%, 0, 0); }
+
+        /* --- Main Hub Layout --- */
+        #main-hub {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.6s ease;
         }
 
-        /* --- Layout Container --- */
-        .app-container {
-            display: flex;
-            margin-top: 40px; /* offset for ticker */
-            min-height: calc(100vh - 40px);
-        }
-
-        /* --- Sidebar Navigation --- */
         .sidebar {
             width: 250px;
             background: var(--glass-bg);
-            backdrop-filter: blur(12px);
             border-right: 1px solid var(--glass-border);
             padding: 30px 20px;
             display: flex;
@@ -83,269 +152,119 @@
             z-index: 500;
         }
         .brand {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 50px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--glass-border);
+            display: flex; align-items: center; gap: 15px; margin-bottom: 50px;
+            padding-bottom: 20px; border-bottom: 1px solid var(--glass-border);
         }
-        .brand img {
-            width: 40px;
-            height: auto;
-            border-radius: 8px;
-            background: white;
-            padding: 5px;
-        }
-        .brand h2 {
-            margin: 0;
-            font-size: 1.2rem;
-            font-weight: 800;
-            background: linear-gradient(90deg, #fff, var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        .brand img { width: 40px; border-radius: 8px; }
+        .brand h2 { margin: 0; font-size: 1.2rem; color: var(--primary-blue); }
 
         .nav-link {
-            padding: 12px 15px;
-            margin-bottom: 10px;
-            border-radius: 10px;
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            padding: 12px 15px; margin-bottom: 10px; border-radius: 10px;
+            color: var(--text-muted); text-decoration: none; font-weight: 600;
+            cursor: pointer; display: flex; align-items: center; gap: 10px;
         }
         .nav-link:hover, .nav-link.active {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--text-main);
-            transform: translateX(5px);
+            background: var(--light-blue); color: var(--primary-blue);
         }
-        .nav-link.active {
-            border-left: 4px solid var(--primary);
-        }
+        .nav-link.active { border-left: 4px solid var(--accent-red); }
 
-        /* --- Main Content Area --- */
-        .main-content {
-            flex: 1;
-            margin-left: 290px; /* sidebar width + padding */
-            padding: 40px;
-        }
+        .main-content { margin-left: 290px; padding: 40px; }
+        .view-section { display: none; animation: fadeIn 0.4s ease-out forwards; }
+        .view-section.active { display: block; }
 
-        .view-section {
-            display: none;
-            animation: fadeIn 0.4s ease-out forwards;
-        }
-        .view-section.active {
-            display: block;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- Glass Cards --- */
+        /* --- UI Elements --- */
         .glass-card {
             background: var(--glass-bg);
-            backdrop-filter: blur(12px);
             border: 1px solid var(--glass-border);
-            border-radius: 16px;
+            border-radius: 12px;
             padding: 25px;
             margin-bottom: 25px;
-            transition: transform 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
-        .glass-card:hover {
-            border-color: rgba(245, 158, 11, 0.3);
-        }
-
-        /* --- Dashboard Timeline --- */
-        .timeline {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            padding: 20px 0;
-            margin-top: 30px;
-            overflow-x: auto;
-        }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: var(--glass-border);
-            z-index: 0;
-        }
-        .timeline-step {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            width: 120px;
-        }
-        .step-dot {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: var(--bg-color);
-            border: 2px solid var(--glass-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 10px;
-            font-size: 0.8rem;
-            transition: all 0.3s ease;
-        }
-        .timeline-step.completed .step-dot {
-            background: var(--success);
-            border-color: var(--success);
-            color: white;
-            box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
-        }
-        .timeline-step.active .step-dot {
-            background: var(--primary);
-            border-color: var(--primary);
-            color: var(--bg-color);
-            box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
-        }
-        .step-label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            font-weight: 600;
-        }
-        .timeline-step.active .step-label {
-            color: var(--primary);
-        }
-
-        /* --- Gig Board Grid --- */
-        .gig-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .badge {
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .badge.open { background: rgba(16, 185, 129, 0.1); color: var(--success); border: 1px solid var(--success); }
-        .badge.closed { background: rgba(239, 68, 68, 0.1); color: var(--danger); border: 1px solid var(--danger); }
-        
-        .btn {
-            padding: 10px 20px;
-            border-radius: 8px;
-            border: none;
-            font-family: 'Outfit', sans-serif;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-        }
-        .btn-wa {
-            background: #25D366;
-            color: white;
-            width: 100%;
-            margin-top: 15px;
-            box-sizing: border-box;
-        }
-        .btn-wa:hover {
-            background: #1ebc5a;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
-        }
-
-        /* --- Floating Action Buttons --- */
-        .fab-container {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            z-index: 1000;
-        }
-        .fab {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            color: var(--text-main);
-            padding: 12px 20px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-        .fab:hover {
-            background: rgba(255,255,255,0.1);
-            transform: scale(1.05);
-            border-color: var(--primary);
-        }
-        .fab.highlight {
-            background: rgba(37, 99, 235, 0.2);
-            border-color: var(--secondary);
-        }
-
-        h1 { font-size: 2.5rem; margin-top: 0; }
-        h3 { color: var(--primary); margin-top: 0; }
+        h1 { font-size: 2.2rem; margin-top: 0; font-family: 'Montserrat', sans-serif; color: var(--primary-blue); }
+        h3 { color: var(--text-main); margin-top: 0; font-family: 'Montserrat', sans-serif;}
         p { line-height: 1.6; color: var(--text-muted); }
 
-        /* Mobile responsiveness */
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
-                flex-direction: row;
-                justify-content: space-around;
-                padding: 15px 0;
-                border-right: none;
-                border-bottom: 1px solid var(--glass-border);
-                align-items: center;
-            }
-            .brand { margin-bottom: 0; padding-bottom: 0; border: none; }
-            .brand h2 { display: none; } /* Hide text on mobile */
-            .nav-link span { display: none; } /* Show only icons */
-            .nav-link { margin-bottom: 0; padding: 10px; }
+        ul { list-style-type: none; padding-left: 0; }
+        ul li { margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; color: var(--text-muted); line-height: 1.5; }
+        
+        /* Gig Board */
+        .gig-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .badge { padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
+        .badge.open { background: var(--light-blue); color: var(--primary-blue); border: 1px solid var(--primary-blue); }
+
+        /* Collapsible FABs */
+        .fab-wrapper {
+            position: fixed; bottom: 30px; right: 30px; z-index: 1000;
+            display: flex; flex-direction: column-reverse; align-items: flex-end; gap: 10px;
+        }
+        .fab-main {
+            background: var(--accent-red); color: white; width: 60px; height: 60px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+            border: none; transition: transform 0.3s;
+        }
+        .fab-main:hover { transform: scale(1.1); }
+        .fab-menu {
+            display: flex; flex-direction: column; gap: 10px; align-items: flex-end;
+            opacity: 0; pointer-events: none; transform: translateY(20px); transition: all 0.3s ease;
+        }
+        .fab-wrapper:hover .fab-menu, .fab-menu.show {
+            opacity: 1; pointer-events: auto; transform: translateY(0);
+        }
+        .fab-item {
+            background: var(--bg-color); border: 1px solid var(--glass-border); color: var(--text-main);
+            padding: 10px 20px; border-radius: 20px; text-decoration: none; font-weight: 600;
+            display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* --- Letterhead Print Styles --- */
+        @media print {
+            body { background: white !important; color: black !important; }
+            #auth-gate, .sidebar, .fab-wrapper, .theme-toggle, .btn { display: none !important; }
+            .main-content { margin: 0; padding: 0; }
+            .view-section { display: none !important; }
+            #policies { display: block !important; }
+            .glass-card { border: none; box-shadow: none; padding: 0; margin-bottom: 20px; }
             
-            .main-content { margin-left: 0; padding: 20px; }
-            .timeline { flex-wrap: wrap; gap: 20px; justify-content: center; }
-            .timeline::before { display: none; }
+            /* Inject Letterhead Header on Print */
+            #policies::before {
+                content: "BLUE WISDOM - OFFICIAL POLICY DOCUMENT";
+                display: block; font-size: 1.5rem; font-family: 'Montserrat', sans-serif;
+                color: #00478F; border-bottom: 2px solid #00478F; padding-bottom: 10px; margin-bottom: 30px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Notification Ticker -->
-    <div class="ticker-wrap">
-        <div class="ticker">
-            🔥 HOT REQUIREMENT: Behavioral Trainer urgently needed in Delhi. Click Gig Board to Apply! &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 🚀 Project Adani (Daksh) Khavda deployment is successfully closed. &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 📢 Don't forget to upload your invoices within 48 hours of deployment completion.
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()">🌓 Toggle Theme</button>
+
+    <!-- 1. REGISTRATION GATE -->
+    <div id="auth-gate">
+        <div class="auth-container">
+            <div class="auth-hero">
+                <h2>Welcome to BW Trainer Hub</h2>
+                <p>Register to access exclusive opportunities and manage your deployments.</p>
+            </div>
+            <div class="auth-form">
+                <h3 style="color:var(--text-main); margin-bottom:20px;">🔹 Trainer Registration</h3>
+                <input type="text" id="regName" placeholder="👤 Full Name" required>
+                <input type="tel" id="regPhone" placeholder="📱 Phone Number" required>
+                <input type="email" id="regEmail" placeholder="✉️ Email Address" required>
+                <input type="url" id="regIpf" placeholder="🔗 Your IPF Link (Required)" required>
+                
+                <button class="btn btn-primary" style="margin-top:10px;" onclick="registerTrainer()">Sign In / Register →</button>
+                <p id="authMsg" style="color:var(--accent-red); font-size:0.85rem; margin-top:10px; display:none;">Registering...</p>
+            </div>
         </div>
     </div>
 
-    <div class="app-container">
+    <!-- 2. MAIN HUB -->
+    <div id="main-hub" class="app-container">
         
         <!-- Sidebar -->
         <nav class="sidebar">
@@ -353,215 +272,209 @@
                 <img src="https://blue-wisdom-od.netlify.app/images/1.png" onerror="this.src='images/blue_wisdom_logo.png'" alt="BW">
                 <h2>Trainer Hub</h2>
             </div>
-            
-            <a class="nav-link active" onclick="switchView('dashboard', this)">
-                <span>📊</span> <span>Dashboard</span>
-            </a>
-            <a class="nav-link" onclick="switchView('gigs', this)">
-                <span>🎯</span> <span>Gig Board</span>
-            </a>
-            <a class="nav-link" onclick="switchView('resources', this)">
-                <span>📁</span> <span>Resources & Content</span>
-            </a>
-            <a class="nav-link" onclick="switchView('policies', this)">
-                <span>📜</span> <span>Compliance</span>
-            </a>
+            <a class="nav-link active" onclick="switchView('gigs', this)"><span>🎯</span> Gig Board</a>
+            <a class="nav-link" onclick="switchView('policies', this)"><span>📜</span> Compliance & Consent</a>
+            <a class="nav-link" onclick="switchView('resources', this)"><span>📁</span> Resource Center</a>
         </nav>
 
         <!-- Main Content -->
         <main class="main-content">
 
-            <!-- 1. DASHBOARD VIEW -->
-            <section id="dashboard" class="view-section active">
-                <h1>Welcome Back, Trainer</h1>
-                <p>Your personalized command center for all Blue Wisdom deployments.</p>
-
-                <div class="glass-card">
-                    <h3>Current Deployment Status: Project Adani</h3>
-                    <p>Track your engagement journey and upcoming milestones below.</p>
-                    
-                    <div class="timeline">
-                        <div class="timeline-step completed">
-                            <div class="step-dot">✓</div>
-                            <div class="step-label">Profile Selected</div>
-                        </div>
-                        <div class="timeline-step completed">
-                            <div class="step-dot">✓</div>
-                            <div class="step-label">KYC & NDA</div>
-                        </div>
-                        <div class="timeline-step active">
-                            <div class="step-dot">3</div>
-                            <div class="step-label">Booting with Nakshatra<br><small>(Assigning Trainer X & Y)</small></div>
-                        </div>
-                        <div class="timeline-step">
-                            <div class="step-dot">4</div>
-                            <div class="step-label">Content Shared</div>
-                        </div>
-                        <div class="timeline-step">
-                            <div class="step-dot">5</div>
-                            <div class="step-label">Final Deployment</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="display:flex; gap:20px; flex-wrap:wrap;">
-                    <div class="glass-card" style="flex:1; min-width:250px;">
-                        <h3>🏆 Your Trainer Tier</h3>
-                        <div style="font-size:2rem; color:var(--primary); font-weight:800; margin:10px 0;">GOLD LEVEL</div>
-                        <p>You have successfully completed 5+ deployments with outstanding NPS scores.</p>
-                    </div>
-                    <div class="glass-card" style="flex:1; min-width:250px;">
-                        <h3>📈 Performance Stats</h3>
-                        <ul style="color:var(--text-muted); line-height:2;">
-                            <li>Average NPS: <strong style="color:white">4.8 / 5.0</strong></li>
-                            <li>Total Deployments: <strong style="color:white">8</strong></li>
-                            <li>Pending Invoices: <strong style="color:white">0</strong></li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 2. GIG BOARD VIEW -->
-            <section id="gigs" class="view-section">
-                <h1>Live Opportunities</h1>
-                <p>Browse our open requirements or refer a fellow trainer in your network.</p>
+            <!-- GIG BOARD VIEW -->
+            <section id="gigs" class="view-section active">
+                <h1>🎯 Live Opportunities</h1>
+                <p>Apply directly. Your IPF profile link will automatically be attached to your application.</p>
 
                 <div class="gig-grid">
                     <!-- Gig 1 -->
                     <div class="glass-card">
-                        <div style="display:flex; justify-content:space-between; margin-bottom:15px;">
-                            <span class="badge open">🟢 OPEN</span>
-                            <span style="color:var(--text-muted); font-size:0.8rem;">Posted 2 hrs ago</span>
-                        </div>
-                        <h3>Behavioral & Leadership Trainer</h3>
-                        <p style="margin:5px 0;"><strong>Location:</strong> Delhi NCR</p>
-                        <p style="margin:5px 0;"><strong>Dates:</strong> 12th - 14th Aug</p>
-                        <p style="font-size:0.9rem; margin-top:15px;">Looking for an expert facilitator for middle-management behavioral intervention. 10+ years experience required.</p>
-                        
-                        <a href="https://wa.me/?text=Hey!%20Blue%20Wisdom%20is%20looking%20for%20a%20Behavioral%20Trainer%20in%20Delhi.%20Check%20out%20the%20BW%20Trainer%20Hub%20to%20apply!" target="_blank" class="btn btn-wa">
-                            Share to WhatsApp Network
-                        </a>
+                        <span class="badge open">🟢 OPEN</span>
+                        <h3 style="margin-top:15px;">Behavioral & Leadership Trainer</h3>
+                        <ul>
+                            <li>📍 <strong>Location:</strong> Delhi NCR</li>
+                            <li>🗓️ <strong>Dates:</strong> 12th - 14th Aug</li>
+                            <li>💡 Looking for an expert facilitator for middle-management behavioral intervention.</li>
+                        </ul>
+                        <button class="btn btn-primary" style="width:100%; margin-top:10px;" onclick="applyForGig('Behavioral Trainer - Delhi')">📲 Show Interested (WA Naks)</button>
                     </div>
 
                     <!-- Gig 2 -->
                     <div class="glass-card">
-                        <div style="display:flex; justify-content:space-between; margin-bottom:15px;">
-                            <span class="badge open">🟢 OPEN</span>
-                        </div>
-                        <h3>Sales Mastery Workshop</h3>
-                        <p style="margin:5px 0;"><strong>Location:</strong> Mumbai</p>
-                        <p style="margin:5px 0;"><strong>Dates:</strong> TBD (September)</p>
-                        <p style="font-size:0.9rem; margin-top:15px;">B2B consultative selling skills for a leading FMCG brand.</p>
-                        
-                        <a href="https://wa.me/?text=Hey!%20Blue%20Wisdom%20is%20looking%20for%20a%20Sales%20Trainer%20in%20Mumbai.%20Apply%20now!" target="_blank" class="btn btn-wa">
-                            Share to WhatsApp Network
-                        </a>
-                    </div>
-
-                    <!-- Gig 3 -->
-                    <div class="glass-card" style="opacity: 0.6;">
-                        <div style="display:flex; justify-content:space-between; margin-bottom:15px;">
-                            <span class="badge closed">🔴 CLOSED</span>
-                        </div>
-                        <h3>Project Adani (Daksh)</h3>
-                        <p style="margin:5px 0;"><strong>Location:</strong> Khavda, Bhuj</p>
-                        <p style="margin:5px 0;"><strong>Dates:</strong> 24-25 June</p>
-                        <p style="font-size:0.9rem; margin-top:15px;">Roster successfully finalized. Thank you to all who applied.</p>
+                        <span class="badge open">🟢 OPEN</span>
+                        <h3 style="margin-top:15px;">Sales Mastery Workshop</h3>
+                        <ul>
+                            <li>📍 <strong>Location:</strong> Mumbai</li>
+                            <li>🗓️ <strong>Dates:</strong> September</li>
+                            <li>💡 B2B consultative selling skills for a leading FMCG brand.</li>
+                        </ul>
+                        <button class="btn btn-primary" style="width:100%; margin-top:10px;" onclick="applyForGig('Sales Mastery - Mumbai')">📲 Show Interested (WA Naks)</button>
                     </div>
                 </div>
             </section>
 
-            <!-- 3. RESOURCES VIEW -->
-            <section id="resources" class="view-section">
-                <h1>Resource Center</h1>
-                <p>Download official materials, content, and templates for your assignments.</p>
-
-                <div class="glass-card">
-                    <h3>📚 Project Content Links</h3>
-                    <div style="background:rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-top:15px; display:flex; justify-content:space-between; align-items:center;">
-                        <div>
-                            <strong>Adani (Daksh) Module Decks</strong>
-                            <p style="margin:5px 0 0 0; font-size:0.85rem;">Official PPTs and Workbooks</p>
-                        </div>
-                        <a href="#" style="color:var(--primary); text-decoration:none; font-weight:bold;">Download ↓</a>
-                    </div>
-                </div>
-
-                <div class="glass-card">
-                    <h3>💸 Invoicing Templates</h3>
-                    <div style="background:rgba(0,0,0,0.2); padding:15px; border-radius:8px; margin-top:15px; display:flex; justify-content:space-between; align-items:center;">
-                        <div>
-                            <strong>Official BW Invoice Template</strong>
-                            <p style="margin:5px 0 0 0; font-size:0.85rem;">Mandatory for payment processing.</p>
-                        </div>
-                        <a href="#" style="color:var(--primary); text-decoration:none; font-weight:bold;">Download ↓</a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 4. POLICIES VIEW -->
+            <!-- POLICIES VIEW -->
             <section id="policies" class="view-section">
-                <h1>Compliance & Policies</h1>
-                <p>Review the standard operating procedures for empanelment.</p>
+                <h1>📜 Policies & Empanelment</h1>
+                <p>Read, understand, and digitally sign off. You may download this as an official letterhead PDF.</p>
+                <button class="btn btn-primary" style="margin-bottom: 20px;" onclick="window.print()">📥 Download as PDF (Letterhead)</button>
 
                 <div class="glass-card">
-                    <h3 style="margin-bottom: 5px;">Master Empanelment Agreement (MSA)</h3>
-                    <p style="font-size: 0.9rem; margin-top:0;">Covers NDA, Intellectual Property ownership, and Non-Solicitation clauses ensuring BW materials are not shared externally.</p>
+                    <h3>🤝 1. Master Empanelment Agreement (MSA)</h3>
+                    <ul>
+                        <li>🔒 <strong>Confidentiality (NDA):</strong> Maintain strict confidentiality regarding all BW IP and data.</li>
+                        <li>🚫 <strong>Non-Solicitation:</strong> Do not directly solicit clients assigned by BW for 12 months.</li>
+                    </ul>
                 </div>
 
                 <div class="glass-card">
-                    <h3 style="margin-bottom: 5px;">Code of Conduct & Facilitation</h3>
-                    <p style="font-size: 0.9rem; margin-top:0;">Guidelines on arriving 45 mins early, avoiding personal branding during deployment, and maintaining high energy levels.</p>
+                    <h3>👔 2. Code of Conduct</h3>
+                    <ul>
+                        <li>⏰ <strong>Reporting Time:</strong> Report 45 minutes prior to the scheduled start time.</li>
+                        <li>📛 <strong>Brand Representation:</strong> You are representing Blue Wisdom exclusively.</li>
+                    </ul>
                 </div>
 
-                <div class="glass-card">
-                    <h3 style="margin-bottom: 5px;">Travel, Stay & Expenses</h3>
-                    <p style="font-size: 0.9rem; margin-top:0;">Rules for outstation deployments (like Khavda), including mandatory GST receipts for local conveyance reimbursement.</p>
+                <!-- Digital Consent -->
+                <div class="glass-card" style="border-left: 4px solid var(--accent-red);">
+                    <h3>✍️ Digital Sign-off</h3>
+                    <div style="display:flex; align-items:center; gap:10px; margin-top:15px;">
+                        <input type="checkbox" id="consentCheck" style="transform: scale(1.5);">
+                        <label for="consentCheck" style="font-weight:600;">I have read, understood, and accept all BW Policies.</label>
+                    </div>
+                    <button class="btn btn-danger" style="margin-top:20px;" onclick="submitConsent()">Confirm & Sign Off</button>
+                    <p id="consentMsg" style="color:var(--success); display:none; font-weight:600;">✅ Consent Recorded in Database.</p>
                 </div>
-                
+            </section>
+
+            <!-- RESOURCES VIEW -->
+            <section id="resources" class="view-section">
+                <h1>📁 Resource Center</h1>
                 <div class="glass-card">
-                    <h3 style="margin-bottom: 5px;">Invoicing & Payouts</h3>
-                    <p style="font-size: 0.9rem; margin-top:0;">Payment TAT is 30-45 days. Invoices must be accompanied by physically signed attendance sheets.</p>
+                    <h3>📚 Project Adani (Daksh) Content</h3>
+                    <ul><li>📄 Official PPTs and Workbooks</li></ul>
+                </div>
+                <div class="glass-card">
+                    <h3>💸 Invoicing</h3>
+                    <ul><li>📄 Mandatory BW Invoice Template</li></ul>
                 </div>
             </section>
 
         </main>
     </div>
 
-    <!-- Floating Quick Action Buttons -->
-    <div class="fab-container">
-        <a href="https://docs.google.com/spreadsheets/d/1oJKsU2IOrw8mu4xvx0MxBJ9aHB8omewvINjBq7-HkNc/edit?usp=sharing" target="_blank" class="fab highlight">
-            <span>📊</span> BW Master Tracker (IPF)
-        </a>
-        <a href="https://wa.me/919725479188" target="_blank" class="fab">
-            <span style="color:#25D366">💬</span> Message Neeraj
-        </a>
-        <a href="https://wa.me/917976789234" target="_blank" class="fab">
-            <span style="color:#25D366">💬</span> Message Naks
-        </a>
+    <!-- Collapsible Floating Action Buttons -->
+    <div class="fab-wrapper">
+        <div class="fab-menu" id="fabMenu">
+            <a href="https://docs.google.com/spreadsheets/d/1oJKsU2IOrw8mu4xvx0MxBJ9aHB8omewvINjBq7-HkNc/edit?usp=sharing" target="_blank" class="fab-item">📊 BW Master Tracker</a>
+            <a href="https://wa.me/919725479188" target="_blank" class="fab-item">💬 Message Neeraj</a>
+            <a href="https://wa.me/917976789234" target="_blank" class="fab-item">💬 Message Naks</a>
+        </div>
+        <button class="fab-main" onclick="document.getElementById('fabMenu').classList.toggle('show')">⚡</button>
     </div>
 
     <script>
-        // SPA Navigation Logic
-        function switchView(viewId, navElement) {
-            // Hide all sections
-            document.querySelectorAll('.view-section').forEach(sec => {
-                sec.classList.remove('active');
-            });
-            
-            // Remove active class from all nav links
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-            });
+        // GLOBALS
+        let currentTrainer = { name: '', phone: '', email: '', ipfLink: '' };
+        
+        // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE:
+        const GOOGLE_SCRIPT_URL = "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE"; 
 
-            // Show target section and highlight nav
+        // 1. Theme Toggle Logic
+        function toggleTheme() {
+            const html = document.documentElement;
+            if (html.getAttribute('data-theme') === 'light') {
+                html.setAttribute('data-theme', 'dark');
+            } else {
+                html.setAttribute('data-theme', 'light');
+            }
+        }
+
+        // 2. Navigation Logic
+        function switchView(viewId, navElement) {
+            document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
             document.getElementById(viewId).classList.add('active');
             navElement.classList.add('active');
-            
-            // On mobile, scroll to top of main content
-            if(window.innerWidth <= 768) {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo(0,0);
+        }
+
+        // 3. Registration / Login Logic
+        async function registerTrainer() {
+            const name = document.getElementById('regName').value;
+            const phone = document.getElementById('regPhone').value;
+            const email = document.getElementById('regEmail').value;
+            const ipf = document.getElementById('regIpf').value;
+            const msg = document.getElementById('authMsg');
+
+            if(!name || !phone || !email || !ipf) {
+                msg.style.display = 'block';
+                msg.innerText = "❌ All fields including IPF Link are required!";
+                return;
             }
+
+            currentTrainer = { name, phone, email, ipfLink: ipf };
+            msg.style.display = 'block';
+            msg.style.color = "var(--text-main)";
+            msg.innerText = "⏳ Saving to Database...";
+
+            // Send to Google Sheets (Simulated if URL is missing)
+            if(GOOGLE_SCRIPT_URL !== "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE") {
+                try {
+                    await fetch(GOOGLE_SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ actionType: "Registration", ...currentTrainer })
+                    });
+                } catch(e) { console.log(e); }
+            }
+
+            // Unlock the Gate
+            document.getElementById('auth-gate').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('auth-gate').style.display = 'none';
+                const hub = document.getElementById('main-hub');
+                hub.style.display = 'flex';
+                setTimeout(() => hub.style.opacity = '1', 50);
+            }, 600);
+        }
+
+        // 4. Apply for Gig via WhatsApp (With IPF Link)
+        function applyForGig(gigName) {
+            if(!currentTrainer.ipfLink) {
+                alert("IPF Link missing! Please refresh and login again.");
+                return;
+            }
+            // Naks WA number
+            const naksPhone = "917976789234";
+            const text = encodeURIComponent(`Hi Naks, I am highly interested in the [${gigName}] opportunity.\n\nHere is my IPF Profile Link for review: ${currentTrainer.ipfLink}`);
+            window.open(`https://wa.me/${naksPhone}?text=${text}`, '_blank');
+        }
+
+        // 5. Digital Consent to Google Sheets
+        async function submitConsent() {
+            const check = document.getElementById('consentCheck');
+            if(!check.checked) {
+                alert("Please check the box to confirm you have read the policies.");
+                return;
+            }
+
+            if(GOOGLE_SCRIPT_URL !== "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE") {
+                try {
+                    await fetch(GOOGLE_SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ 
+                            actionType: "Policy Consent Signed", 
+                            name: currentTrainer.name,
+                            consentDate: new Date().toISOString()
+                        })
+                    });
+                } catch(e) { console.log(e); }
+            }
+            
+            document.getElementById('consentMsg').style.display = 'block';
         }
     </script>
 </body>
