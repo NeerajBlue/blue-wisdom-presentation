@@ -169,6 +169,22 @@
         .badge.functional { background: #fef3c7; color: #b45309; border: 1px solid #b45309; }
         .badge.technical { background: #d1fae5; color: #047857; border: 1px solid #047857; }
 
+        
+        /* --- Redesign: Gig Cards & Policy Grid --- */
+        .gig-card { background: #f8fafc; transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; border-left: 4px solid transparent; }
+        :root[data-theme="dark"] .gig-card { background: rgba(255, 255, 255, 0.05); }
+        .gig-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); border-left-color: var(--primary-blue); }
+
+        .policy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .policy-card { background: rgba(240, 244, 248, 0.9); border: 1px solid var(--glass-border); padding: 25px; border-radius: 12px; transition: transform 0.3s, box-shadow 0.3s; position: relative; overflow: hidden; }
+        :root[data-theme="dark"] .policy-card { background: rgba(255, 255, 255, 0.03); }
+        .policy-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .policy-no { position: absolute; top: -15px; right: 10px; font-size: 5rem; font-weight: 800; color: rgba(0,0,0,0.03); z-index: 0; pointer-events: none; }
+        :root[data-theme="dark"] .policy-no { color: rgba(255,255,255,0.03); }
+        .policy-card h3 { color: var(--primary-blue); margin-top: 0; position: relative; z-index: 1; font-size: 1.1rem; }
+        .policy-card p { font-size: 0.9rem; position: relative; z-index: 1; margin-bottom: 15px; color: var(--text-muted); }
+        .policy-link { color: var(--accent-red); font-weight: bold; text-decoration: none; position: relative; z-index: 1; font-size: 0.9rem; }
+
         /* Simulator Overlay */
         .simulator-bar {
             position: fixed; bottom: 0; left: 0; width: 100%; background: #000; color: #fff; z-index: 99999;
@@ -422,7 +438,7 @@
 
                 <div class="gig-grid">
                     <!-- Gig 1 -->
-                    <div class="glass-card">
+                    <div class="glass-card gig-card">
                         <span class="badge behavioral">Behavioral</span> <span class="badge open" style="margin-left:5px;">Long-Term</span>
                         <h3 style="margin-top:15px;">Leadership Development (LDP)</h3>
                         <ul>
@@ -430,11 +446,132 @@
                             <li>🗓️ <strong>Duration:</strong> 3-Month Intervention</li>
                             <li>💡 Coaching middle-managers transitioning to senior leadership roles. Deep behavioral shifts required.</li>
                         </ul>
-                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;" onclick="applyForGig('LDP - Delhi')">Apply via WhatsApp</button>
+                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;" >Apply via WhatsApp</button>
+                    
+                    <!-- Gig 9 -->
+                    <div class="glass-card gig-card">
+                        <span class="badge technical">Technical</span> <span class="badge open" style="margin-left:5px;">2 Days</span>
+                        <h3 style="margin-top:15px;">Cybersecurity Fundamentals</h3>
+                        <ul>
+                            <li>📍 <strong>Location:</strong> Noida</li>
+                            <li>🗓️ <strong>Duration:</strong> 2 Days</li>
+                            <li>💡 Phishing, data protection, and secure coding practices for dev teams.</li>
+                        </ul>
+                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;">Apply via IPF Form</button>
                     </div>
 
+                    <!-- Gig 10 -->
+                    <div class="glass-card gig-card">
+                        <span class="badge behavioral">Behavioral</span> <span class="badge open" style="margin-left:5px;">Long-Term</span>
+                        <h3 style="margin-top:15px;">Emotional Intelligence (EQ) Lab</h3>
+                        <ul>
+                            <li>📍 <strong>Location:</strong> Virtual</li>
+                            <li>🗓️ <strong>Duration:</strong> 6 Weeks (2 hrs/week)</li>
+                            <li>💡 Deep-dive into self-awareness and empathy for cross-functional managers.</li>
+                        </ul>
+                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;">Apply via IPF Form</button>
+                    </div>
+
+                    <!-- Gig 11 -->
+                    <div class="glass-card gig-card">
+                        <span class="badge functional">Functional</span> <span class="badge open" style="margin-left:5px;">1 Day</span>
+                        <h3 style="margin-top:15px;">Key Account Management</h3>
+                        <ul>
+                            <li>📍 <strong>Location:</strong> Gurugram</li>
+                            <li>🗓️ <strong>Duration:</strong> 1 Day</li>
+                            <li>💡 Strategies for retaining and growing enterprise client portfolios.</li>
+                        </ul>
+                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;">Apply via IPF Form</button>
+                    </div>
+
+                    <!-- Gig 12 -->
+                    <div class="glass-card gig-card">
+                        <span class="badge technical">Technical</span> <span class="badge open" style="margin-left:5px;">1 Month</span>
+                        <h3 style="margin-top:15px;">Cloud Architecture (AWS)</h3>
+                        <ul>
+                            <li>📍 <strong>Location:</strong> Pune</li>
+                            <li>🗓️ <strong>Duration:</strong> 4 Weekends</li>
+                            <li>💡 Preparing engineers for AWS Solutions Architect Certification.</li>
+                        </ul>
+                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;">Apply via IPF Form</button>
+                    </div>
+
+                    <!-- Gig 13 -->
+                    <div class="glass-card gig-card">
+                        <span class="badge behavioral">Behavioral</span> <span class="badge open" style="margin-left:5px;">Short-Term</span>
+                        <h3 style="margin-top:15px;">Conflict Resolution</h3>
+                        <ul>
+                            <li>📍 <strong>Location:</strong> Kolkata</li>
+                            <li>🗓️ <strong>Duration:</strong> Half Day</li>
+                            <li>💡 Navigating workplace disputes and fostering a collaborative environment.</li>
+                        </ul>
+                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;">Apply via IPF Form</button>
+                    </div>
+
+                    <!-- Gig 14 -->
+                    <div class="glass-card gig-card">
+                        <span class="badge functional">Functional</span> <span class="badge open" style="margin-left:5px;">3 Days</span>
+                        <h3 style="margin-top:15px;">Design Thinking Workshop</h3>
+                        <ul>
+                            <li>📍 <strong>Location:</strong> Bangalore</li>
+                            <li>🗓️ <strong>Duration:</strong> 3 Days</li>
+                            <li>💡 Empathize, Define, Ideate, Prototype, Test framework for product teams.</li>
+                        </ul>
+                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;">Apply via IPF Form</button>
+                    </div>
+
+                    <!-- Gig 15 -->
+                    <div class="glass-card gig-card">
+                        <span class="badge technical">Technical</span> <span class="badge open" style="margin-left:5px;">Short-Term</span>
+                        <h3 style="margin-top:15px;">Prompt Engineering Basics</h3>
+                        <ul>
+                            <li>📍 <strong>Location:</strong> Mumbai</li>
+                            <li>🗓️ <strong>Duration:</strong> 1 Day</li>
+                            <li>💡 Enabling marketing teams to use Generative AI effectively.</li>
+                        </ul>
+                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;">Apply via IPF Form</button>
+                    </div>
+
+                    <!-- Gig 16 -->
+                    <div class="glass-card gig-card">
+                        <span class="badge behavioral">Behavioral</span> <span class="badge open" style="margin-left:5px;">2 Months</span>
+                        <h3 style="margin-top:15px;">Women in Leadership</h3>
+                        <ul>
+                            <li>📍 <strong>Location:</strong> Delhi NCR</li>
+                            <li>🗓️ <strong>Duration:</strong> 2 Months (Cohort-based)</li>
+                            <li>💡 Mentorship and skill-building for high-potential female managers.</li>
+                        </ul>
+                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;">Apply via IPF Form</button>
+                    </div>
+
+                    <!-- Gig 17 -->
+                    <div class="glass-card gig-card">
+                        <span class="badge functional">Functional</span> <span class="badge open" style="margin-left:5px;">Short-Term</span>
+                        <h3 style="margin-top:15px;">Financial Modeling</h3>
+                        <ul>
+                            <li>📍 <strong>Location:</strong> Hyderabad</li>
+                            <li>🗓️ <strong>Duration:</strong> 2 Days</li>
+                            <li>💡 Advanced DCF and LBO modeling for finance professionals.</li>
+                        </ul>
+                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;">Apply via IPF Form</button>
+                    </div>
+
+                    <!-- Gig 18 -->
+                    <div class="glass-card gig-card">
+                        <span class="badge behavioral">Behavioral</span> <span class="badge open" style="margin-left:5px;">Short-Term</span>
+                        <h3 style="margin-top:15px;">Time & Energy Management</h3>
+                        <ul>
+                            <li>📍 <strong>Location:</strong> Chennai</li>
+                            <li>🗓️ <strong>Duration:</strong> 1 Day</li>
+                            <li>💡 Prioritization matrices, Pomodoro, and avoiding burnout.</li>
+                        </ul>
+                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;">Apply via IPF Form</button>
+                    </div>
+                </div>
+
+
                     <!-- Gig 2 -->
-                    <div class="glass-card">
+                    <div class="glass-card gig-card">
                         <span class="badge behavioral">Behavioral</span> <span class="badge open" style="margin-left:5px;">Short-Term</span>
                         <h3 style="margin-top:15px;">First Time Manager Bootcamp</h3>
                         <ul>
@@ -442,11 +579,11 @@
                             <li>🗓️ <strong>Duration:</strong> 2 Days</li>
                             <li>💡 High-energy bootcamp covering delegation, feedback, and team dynamics.</li>
                         </ul>
-                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;" onclick="applyForGig('First Time Manager - Mumbai')">Apply via WhatsApp</button>
+                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;" >Apply via WhatsApp</button>
                     </div>
 
                     <!-- Gig 3 -->
-                    <div class="glass-card">
+                    <div class="glass-card gig-card">
                         <span class="badge technical">Technical</span> <span class="badge open" style="margin-left:5px;">Short-Term</span>
                         <h3 style="margin-top:15px;">Advanced Excel & PowerBI</h3>
                         <ul>
@@ -454,11 +591,11 @@
                             <li>🗓️ <strong>Duration:</strong> 1 Day</li>
                             <li>💡 Hands-on data visualization and dashboard creation for finance teams.</li>
                         </ul>
-                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;" onclick="applyForGig('PowerBI - Blr')">Apply via WhatsApp</button>
+                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;" >Apply via WhatsApp</button>
                     </div>
 
                     <!-- Gig 4 -->
-                    <div class="glass-card">
+                    <div class="glass-card gig-card">
                         <span class="badge functional">Functional</span> <span class="badge open" style="margin-left:5px;">1 Month</span>
                         <h3 style="margin-top:15px;">B2B Enterprise Sales Mastery</h3>
                         <ul>
@@ -466,11 +603,11 @@
                             <li>🗓️ <strong>Duration:</strong> 1 Month Series</li>
                             <li>💡 Consultative selling, objection handling, and pipeline management for IT sales.</li>
                         </ul>
-                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;" onclick="applyForGig('B2B Sales - Pune')">Apply via WhatsApp</button>
+                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;" >Apply via WhatsApp</button>
                     </div>
 
                     <!-- Gig 5 -->
-                    <div class="glass-card">
+                    <div class="glass-card gig-card">
                         <span class="badge technical">Technical</span> <span class="badge open" style="margin-left:5px;">3 Months</span>
                         <h3 style="margin-top:15px;">Agile / Scrum Master Cert</h3>
                         <ul>
@@ -478,11 +615,11 @@
                             <li>🗓️ <strong>Duration:</strong> 3-Month Rollout</li>
                             <li>💡 Enterprise agile transformation. Must be a certified Scrum Trainer.</li>
                         </ul>
-                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;" onclick="applyForGig('Agile - Hyd')">Apply via WhatsApp</button>
+                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;" >Apply via WhatsApp</button>
                     </div>
 
                     <!-- Gig 6 -->
-                    <div class="glass-card">
+                    <div class="glass-card gig-card">
                         <span class="badge functional">Functional</span> <span class="badge open" style="margin-left:5px;">Short-Term</span>
                         <h3 style="margin-top:15px;">Retail Customer Centricity</h3>
                         <ul>
@@ -490,11 +627,11 @@
                             <li>🗓️ <strong>Duration:</strong> 3 Days</li>
                             <li>💡 Frontline staff training on customer experience and complaint resolution.</li>
                         </ul>
-                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;" onclick="applyForGig('Retail CX - Chennai')">Apply via WhatsApp</button>
+                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;" >Apply via WhatsApp</button>
                     </div>
 
                     <!-- Gig 7 -->
-                    <div class="glass-card">
+                    <div class="glass-card gig-card">
                         <span class="badge behavioral">Behavioral</span> <span class="badge open" style="margin-left:5px;">Short-Term</span>
                         <h3 style="margin-top:15px;">POSH Awareness</h3>
                         <ul>
@@ -502,11 +639,11 @@
                             <li>🗓️ <strong>Duration:</strong> Half Day</li>
                             <li>💡 Statutory POSH training. Must have legal/HR compliance background.</li>
                         </ul>
-                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;" onclick="applyForGig('POSH - Virtual')">Apply via WhatsApp</button>
+                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;" >Apply via WhatsApp</button>
                     </div>
 
                     <!-- Gig 8 -->
-                    <div class="glass-card">
+                    <div class="glass-card gig-card">
                         <span class="badge functional">Functional</span> <span class="badge open" style="margin-left:5px;">Long-Term</span>
                         <h3 style="margin-top:15px;">Supply Chain Optimization</h3>
                         <ul>
@@ -514,7 +651,7 @@
                             <li>🗓️ <strong>Duration:</strong> Ongoing Consulting</li>
                             <li>💡 Inventory management, lean logistics, and vendor negotiations.</li>
                         </ul>
-                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;" onclick="applyForGig('Supply Chain - Ahd')">Apply via WhatsApp</button>
+                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;" >Apply via WhatsApp</button>
                     </div>
 
                 </div>
@@ -525,16 +662,61 @@
                 <h1>📜 Policies & Empanelment</h1>
                 <p>Please review the comprehensive Blue Wisdom official policies below before providing your digital consent.</p>
 
-                <div class="glass-card" style="display: flex; flex-direction: column; gap: 10px;">
-                    <a href="policies/01_master_empanelment_agreement.html" target="_blank" class="nav-link" style="border: 1px solid var(--glass-border);">📄 01. Master Empanelment Agreement (MSA)</a>
-                    <a href="policies/02_nda_and_data_privacy.html" target="_blank" class="nav-link" style="border: 1px solid var(--glass-border);">📄 02. Non-Disclosure Agreement (NDA) & Data Privacy</a>
-                    <a href="policies/03_non_solicitation_policy.html" target="_blank" class="nav-link" style="border: 1px solid var(--glass-border);">📄 03. Non-Solicitation Policy</a>
-                    <a href="policies/04_code_of_conduct.html" target="_blank" class="nav-link" style="border: 1px solid var(--glass-border);">📄 04. Code of Conduct & Professional Standards</a>
-                    <a href="policies/05_commercials_and_payment.html" target="_blank" class="nav-link" style="border: 1px solid var(--glass-border);">📄 05. Commercials & Payment Policy</a>
-                    <a href="policies/06_travel_and_expense_policy.html" target="_blank" class="nav-link" style="border: 1px solid var(--glass-border);">📄 06. Travel & Expense Policy</a>
-                    <a href="policies/07_cancellation_and_noshow.html" target="_blank" class="nav-link" style="border: 1px solid var(--glass-border);">📄 07. Cancellation & No-Show Policy</a>
-                    <a href="policies/08_quality_and_feedback.html" target="_blank" class="nav-link" style="border: 1px solid var(--glass-border);">📄 08. Quality Assurance & Feedback Policy</a>
-                    <a href="policies/09_posh_and_compliance.html" target="_blank" class="nav-link" style="border: 1px solid var(--glass-border);">📄 09. POSH & Compliance Policy</a>
+                <div class="policy-grid">
+                    <div class="policy-card">
+                        <div class="policy-no">01</div>
+                        <h3>Master Empanelment Agreement</h3>
+                        <p>The core overarching terms and legal framework of your partnership with Blue Wisdom.</p>
+                        <a href="policies/01_master_empanelment_agreement.html" target="_blank" class="policy-link">View Policy →</a>
+                    </div>
+                    <div class="policy-card">
+                        <div class="policy-no">02</div>
+                        <h3>NDA & Data Privacy</h3>
+                        <p>Strict confidentiality guidelines regarding client materials, data, and intellectual property.</p>
+                        <a href="policies/02_nda_and_data_privacy.html" target="_blank" class="policy-link">View Policy →</a>
+                    </div>
+                    <div class="policy-card">
+                        <div class="policy-no">03</div>
+                        <h3>Non-Solicitation</h3>
+                        <p>Rules restricting direct commercial engagement with Blue Wisdom clients post-deployment.</p>
+                        <a href="policies/03_non_solicitation_policy.html" target="_blank" class="policy-link">View Policy →</a>
+                    </div>
+                    <div class="policy-card">
+                        <div class="policy-no">04</div>
+                        <h3>Code of Conduct</h3>
+                        <p>Professional behavioral standards, dress code, and ethical guidelines during client interactions.</p>
+                        <a href="policies/04_code_of_conduct.html" target="_blank" class="policy-link">View Policy →</a>
+                    </div>
+                    <div class="policy-card">
+                        <div class="policy-no">05</div>
+                        <h3>Commercials & Payment</h3>
+                        <p>Invoicing protocols, taxation (TDS), and the 30-day standard payment cycle details.</p>
+                        <a href="policies/05_commercials_and_payment.html" target="_blank" class="policy-link">View Policy →</a>
+                    </div>
+                    <div class="policy-card">
+                        <div class="policy-no">06</div>
+                        <h3>Travel & Expense Policy</h3>
+                        <p>Rules around booking flights/hotels, daily allowances, and submitting receipts for reimbursement.</p>
+                        <a href="policies/06_travel_and_expense_policy.html" target="_blank" class="policy-link">View Policy →</a>
+                    </div>
+                    <div class="policy-card">
+                        <div class="policy-no">07</div>
+                        <h3>Cancellation & No-Show</h3>
+                        <p>Penalties and operational protocols for emergency withdrawals from scheduled gigs.</p>
+                        <a href="policies/07_cancellation_and_noshow.html" target="_blank" class="policy-link">View Policy →</a>
+                    </div>
+                    <div class="policy-card">
+                        <div class="policy-no">08</div>
+                        <h3>Quality & Feedback</h3>
+                        <p>NPS metrics expectations, evaluation mechanisms, and performance-based rating systems.</p>
+                        <a href="policies/08_quality_and_feedback.html" target="_blank" class="policy-link">View Policy →</a>
+                    </div>
+                    <div class="policy-card">
+                        <div class="policy-no">09</div>
+                        <h3>POSH & Compliance</h3>
+                        <p>Mandatory adherence to the Prevention of Sexual Harassment and safe workplace laws.</p>
+                        <a href="policies/09_posh_and_compliance.html" target="_blank" class="policy-link">View Policy →</a>
+                    </div>
                 </div>
 
                 <!-- Digital Consent -->
@@ -552,7 +734,16 @@
             <!-- RESOURCES VIEW (TIER 2 ONLY) -->
             <section id="resources" class="view-section">
                 <h1>📁 Resource Center</h1>
-                <p>Download official materials or submit your post-deployment documentation.</p>
+                
+                <div class="glass-card" style="text-align: center; border-bottom: 4px solid var(--primary-blue); padding: 40px 20px;">
+                    <img src="images/BW OBT 1.png" alt="BW Team" style="width: 100%; max-width: 800px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                    <h2 style="color: var(--primary-blue); font-family: 'Montserrat', sans-serif;">Thank You for Partnering with Us.</h2>
+                    <p style="max-width: 600px; margin: 0 auto; font-size: 1.1rem; color: var(--text-muted); line-height: 1.6;">
+                        "Your dedication to excellence drives our collective success. We value the expertise, passion, and energy you bring to every session. Together, we are architects of transformation."
+                    </p>
+                    <p style="font-weight: 800; margin-top: 15px;">— NB & Naks, Leadership Team</p>
+                </div>
+
                 <div class="glass-card" style="border-left: 4px solid var(--primary-blue);">
                     <h3>💸 Invoice & Expense Submission</h3>
                     <p>Submit your professional fee invoice and original expense receipts through the official portal.</p>
@@ -649,9 +840,9 @@
                     btn.style.background = "var(--text-muted)";
                     btn.onclick = () => switchView('profile', document.getElementById('nav-profile'));
                 } else {
-                    btn.innerText = "Apply via WhatsApp 📲";
+                    btn.innerText = "Apply via IPF Form 📝";
                     btn.style.background = "var(--primary-blue)";
-                    btn.onclick = () => applyForGig(btn.parentElement.querySelector('h3').innerText);
+                    btn.onclick = () => window.open('https://forms.gle/imtJdbZoUjdmU3kM8', '_blank');
                 }
             });
         }
