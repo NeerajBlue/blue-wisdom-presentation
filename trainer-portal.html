@@ -102,6 +102,36 @@
         ul { list-style-type: none; padding-left: 0; }
         ul li { margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; color: var(--text-muted); line-height: 1.5; }
 
+        /* --- AIDA Dashboard Specifics --- */
+        .aida-hook {
+            display: flex; gap: 30px; align-items: center; background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            border-radius: 16px; padding: 40px; color: white; margin-bottom: 40px; box-shadow: 0 15px 30px rgba(0,71,143,0.2);
+        }
+        .aida-hook-text { flex: 1; }
+        .aida-hook-img { flex: 1; text-align: right; }
+        .aida-hook-img img { width: 100%; max-width: 400px; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); border: 4px solid rgba(255,255,255,0.1); }
+        .hook-quote { font-size: 1.4rem; font-style: italic; font-weight: 300; line-height: 1.5; margin-bottom: 20px; }
+        .hook-author { font-weight: 800; font-family: 'Montserrat', sans-serif; letter-spacing: 1px; }
+
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .news-card { background: var(--glass-bg); border-left: 4px solid var(--accent-red); padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .news-card h4 { margin: 0 0 10px 0; color: var(--primary-blue); font-family: 'Montserrat', sans-serif; }
+        .news-card p { font-size: 0.9rem; margin: 0 0 15px 0; }
+        .news-card a { color: var(--accent-red); text-decoration: none; font-weight: bold; font-size: 0.85rem; }
+
+        .ttt-section { display: flex; gap: 30px; align-items: center; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px; padding: 40px; margin-bottom: 40px; }
+        .ttt-text { flex: 1.2; }
+        .ttt-img { flex: 0.8; }
+        .ttt-img img { width: 100%; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.15); border: 2px solid var(--primary-blue); }
+
+        .social-cta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 30px; }
+        .social-btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 15px; border-radius: 8px; color: white; text-decoration: none; font-weight: bold; font-family: 'Montserrat', sans-serif; transition: transform 0.2s; }
+        .social-btn:hover { transform: translateY(-3px); }
+        .btn-fb { background: #1877F2; }
+        .btn-in { background: #0A66C2; }
+        .btn-ig { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+        .btn-wa { background: #25D366; }
+
         /* Registration Form UI inside Main Area */
         .auth-hero {
             background: url('images/hero_corporate.png') center/cover no-repeat;
@@ -194,13 +224,78 @@
 
             <!-- DASHBOARD VIEW -->
             <section id="dashboard" class="view-section active">
-                <h1>📊 Welcome to Blue Wisdom</h1>
-                <p>Your personalized command center for deployments, impacting lives and creating excellence.</p>
-                <div class="stats-grid">
-                    <div class="stat-card"><div class="stat-number">5,000+</div><div class="stat-label">Empanelled Trainers</div></div>
-                    <div class="stat-card"><div class="stat-number">5 Lakh</div><div class="stat-label">Lives Impacted</div></div>
-                    <div class="stat-card"><div class="stat-number">100+</div><div class="stat-label">Corporate Clients</div></div>
+                
+                <!-- ATTENTION: The Hook -->
+                <div class="aida-hook">
+                    <div class="aida-hook-text">
+                        <h1 style="color: white; font-size: 2.8rem; margin-bottom: 10px;">Welcome to the Future of Facilitation.</h1>
+                        <p class="hook-quote">"We don't just hire trainers. We partner with industry visionaries to architect transformation, elevate human potential, and redefine corporate excellence."</p>
+                        <p class="hook-author">— NB & Naks, Leadership Team</p>
+                    </div>
+                    <div class="aida-hook-img">
+                        <img src="images/welcome_leaders.png" alt="BW Leadership Welcome">
+                    </div>
                 </div>
+
+                <!-- INTEREST: Metrics & Impact -->
+                <div class="stats-grid">
+                    <div class="stat-card"><div class="stat-number">5,000+</div><div class="stat-label">Empanelled Experts</div></div>
+                    <div class="stat-card"><div class="stat-number">5 Lakh</div><div class="stat-label">Lives Impacted</div></div>
+                    <div class="stat-card"><div class="stat-number">100+</div><div class="stat-label">Enterprise Clients</div></div>
+                </div>
+
+                <!-- INTEREST: AI-Tech News Feed -->
+                <h2 style="color: var(--primary-blue); font-family: 'Montserrat', sans-serif; margin-top: 50px;">📰 The Facilitator's Edge: AI & EdTech News</h2>
+                <div class="news-grid">
+                    <div class="news-card">
+                        <h4>AI in Coaching</h4>
+                        <p>How Generative AI is reshaping behavioral diagnostics and personalized leadership coaching in 2024.</p>
+                        <a href="#">Read Article →</a>
+                    </div>
+                    <div class="news-card">
+                        <h4>Micro-Learning Trends</h4>
+                        <p>Why corporate L&D is shifting towards 15-minute intensive sprints over multi-day offsites.</p>
+                        <a href="#">Read Article →</a>
+                    </div>
+                    <div class="news-card">
+                        <h4>The Data-Driven Trainer</h4>
+                        <p>Utilizing pre-and-post intervention analytics to prove ROI to stakeholders.</p>
+                        <a href="#">Read Article →</a>
+                    </div>
+                </div>
+
+                <!-- DESIRE: TTT Initiative & Aspiration -->
+                <div class="ttt-section">
+                    <div class="ttt-img">
+                        <img src="images/ttt_certificate.png" alt="Digi-AI TTT Certificate">
+                    </div>
+                    <div class="ttt-text">
+                        <h2 style="color: var(--primary-blue); font-family: 'Montserrat', sans-serif; margin-top: 0; font-size: 2rem;">BW Digi-AI TTT Initiative</h2>
+                        <p style="font-size: 1.1rem; margin-bottom: 20px;">The industry is evolving. Are you? Join our exclusive <strong>Train The Trainer (TTT)</strong> program designed specifically to integrate Artificial Intelligence tools into your facilitation workflow.</p>
+                        <ul>
+                            <li>✅ Master Prompt Engineering for Curriculum Design</li>
+                            <li>✅ Automate Post-Training Assessments & Analytics</li>
+                            <li>✅ Become a Blue Wisdom Certified Digital Facilitator</li>
+                        </ul>
+                        <button class="btn btn-primary" style="margin-top: 15px;" onclick="window.open('https://wa.me/917976789234?text=I am interested in the Digi-AI TTT Certification', '_blank')">Apply for Next Cohort</button>
+                    </div>
+                </div>
+
+                <!-- ACTION: Community Integration -->
+                <div class="glass-card" style="text-align: center; border-left: 4px solid var(--success);">
+                    <h2 style="color: var(--primary-blue); font-family: 'Montserrat', sans-serif; margin-top: 0;">Join the Blue Wisdom Ecosystem</h2>
+                    <p>Connect, collaborate, and grow with thousands of elite facilitators across India. Stay updated on exclusive mandates and networking events.</p>
+                    
+                    <div class="social-cta-grid">
+                        <a href="https://www.linkedin.com/company/blue-wisdom-pvt--ltd-" target="_blank" class="social-btn btn-in">💼 LinkedIn</a>
+                        <a href="https://www.instagram.com/bluewisdominsta/" target="_blank" class="social-btn btn-ig">📸 Instagram</a>
+                        <a href="https://www.facebook.com/BlueWisdomIndia" target="_blank" class="social-btn btn-fb">📘 Facebook</a>
+                        <a href="https://chat.whatsapp.com/CcmClxHMaWj258J3S0Scp1" target="_blank" class="social-btn btn-wa">💬 WhatsApp Group</a>
+                    </div>
+                    
+                    <button class="btn btn-primary" style="margin-top: 40px; padding: 15px 40px; font-size: 1.2rem; border-radius: 30px;" onclick="switchView('gigs', document.querySelectorAll('.nav-link')[1])">🚀 View Live Gig Board</button>
+                </div>
+
             </section>
 
             <!-- PROFILE / REGISTRATION VIEW -->
