@@ -220,6 +220,15 @@
                         <input type="text" id="regName" class="reg-input" placeholder="👤 Full Name" required>
                         <input type="tel" id="regPhone" class="reg-input" placeholder="📱 Phone Number" required>
                         <input type="email" id="regEmail" class="reg-input" placeholder="✉️ Email Address" required>
+                        
+                        <!-- DPDP Compliance Checkbox -->
+                        <div style="background: rgba(220, 38, 38, 0.05); border-left: 3px solid var(--accent-red); padding: 12px; margin-bottom: 15px; font-size: 0.8rem; display: flex; align-items: flex-start; gap: 10px; border-radius: 4px;">
+                            <input type="checkbox" id="dpdpConsent" style="margin-top: 3px;">
+                            <label for="dpdpConsent" style="color: var(--text-muted);">
+                                <strong>DPDP Act Consent:</strong> By checking this box, I explicitly consent to Blue Wisdom Pvt. Ltd. processing my personal data (Name, Phone, Email) for the strict purpose of trainer empanelment and gig matching.
+                            </label>
+                        </div>
+
                         <button class="btn btn-primary" onclick="registerTrainer()">Complete Registration</button>
                         <p id="authMsg" style="color:var(--success); font-weight:bold; display:none; margin-top:15px;"></p>
                     </div>
@@ -232,6 +241,14 @@
                         <h2 style="color:var(--success); margin-top:0;">✅ Profile Active</h2>
                         <p>Welcome back! You are fully registered on the Blue Wisdom Hub.</p>
                         <p><strong>Next Steps:</strong> Check the <strong>Gig Board</strong> to browse and apply for upcoming assignments. Our team will review your IPF alignment and assign you to relevant clients.</p>
+                    </div>
+
+                    <!-- DPDP Data Erasure Section -->
+                    <div class="glass-card" style="border-left: 4px solid var(--accent-red); margin-top: 30px;">
+                        <h3 style="color:var(--accent-red); margin-top:0;">🛡️ Data Privacy & Security</h3>
+                        <p>In compliance with the DPDP Act 2023, you have the right to withdraw your consent and request the permanent erasure of your personal data from our servers.</p>
+                        <button class="btn btn-danger" onclick="requestDataDeletion()" style="margin-top: 10px;">🗑️ Withdraw Consent & Delete My Data</button>
+                        <p id="deletionMsg" style="color:var(--accent-red); font-weight:bold; display:none; margin-top:15px;"></p>
                     </div>
                 </div>
             </section>
@@ -455,13 +472,16 @@
         async function registerTrainer() {
             const name = document.getElementById('regName').value;
             const email = document.getElementById('regEmail').value;
+            const dpdpConsent = document.getElementById('dpdpConsent').checked;
+
             if(!name || !email) return alert("Please fill Name and Email");
+            if(!dpdpConsent) return alert("Security Warning: You must provide explicit DPDP consent before registering.");
 
             currentTrainer = { name, email };
             const msg = document.getElementById('authMsg');
             msg.style.display = 'block';
             msg.style.color = "var(--text-main)";
-            msg.innerText = "⏳ Saving Profile and Triggering Welcome Email...";
+            msg.innerText = "⏳ Saving Profile Securely and Triggering Welcome Email...";
 
             if(GOOGLE_SCRIPT_URL !== "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE") {
                 fetch(GOOGLE_SCRIPT_URL, {
@@ -473,6 +493,33 @@
             setTimeout(() => {
                 setTier(1); // Upgrade to Registered
             }, 1500);
+        }
+
+        // DPDP Data Erasure Logic
+        function requestDataDeletion() {
+            if(confirm("Are you sure? This will withdraw your consent and instruct Blue Wisdom to delete your profile data. You will no longer be considered for gigs.")) {
+                const msg = document.getElementById('deletionMsg');
+                msg.style.display = 'block';
+                msg.style.color = "var(--text-main)";
+                msg.innerText = "⏳ Submitting Secure Erasure Request...";
+
+                if(GOOGLE_SCRIPT_URL !== "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE") {
+                    fetch(GOOGLE_SCRIPT_URL, {
+                        method: 'POST', mode: 'no-cors',
+                        body: JSON.stringify({ actionType: "Data Deletion Request", name: currentTrainer.name, email: currentTrainer.email })
+                    });
+                }
+
+                setTimeout(() => {
+                    msg.style.color = "var(--success)";
+                    msg.innerText = "✅ Erasure Request Sent. Returning to Public View...";
+                    setTimeout(() => {
+                        document.getElementById('dpdpConsent').checked = false;
+                        setTier(0); // Downgrade to Public
+                        msg.style.display = 'none';
+                    }, 3000);
+                }, 1500);
+            }
         }
 
         function applyForGig(gigName) {
