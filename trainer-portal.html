@@ -132,6 +132,21 @@
         .btn-ig { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
         .btn-wa { background: #25D366; }
 
+        /* --- Journey Timeline --- */
+        .timeline { display: flex; flex-direction: column; gap: 20px; position: relative; margin-left: 20px; margin-top: 30px; }
+        .timeline::before { content: ''; position: absolute; left: 18px; top: 0; bottom: 0; width: 4px; background: var(--glass-border); z-index: 1; }
+        .timeline-item { display: flex; gap: 20px; position: relative; z-index: 2; opacity: 0.4; transition: opacity 0.5s ease, transform 0.3s; }
+        .timeline-item.active { opacity: 1; transform: translateX(5px); }
+        .timeline-item.completed { opacity: 1; }
+        .timeline-marker { width: 40px; height: 40px; border-radius: 50%; background: var(--bg-color); border: 4px solid var(--glass-border); display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--text-muted); flex-shrink: 0; transition: all 0.3s; }
+        .timeline-item.active .timeline-marker { background: var(--primary-blue); border-color: var(--light-blue); color: white; box-shadow: 0 0 15px rgba(0,71,143,0.5); }
+        .timeline-item.completed .timeline-marker { background: var(--success); border-color: #d1fae5; color: white; }
+        .timeline-content { background: var(--glass-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--glass-border); flex-grow: 1; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .timeline-content h3 { margin-top: 0; color: var(--primary-blue); font-family: 'Montserrat', sans-serif; }
+        .timeline-content ul { list-style: none; padding: 0; margin: 0; }
+        .timeline-content li { margin-bottom: 8px; display: flex; align-items: flex-start; gap: 10px; font-size: 0.95rem; color: var(--text-muted); }
+        .timeline-icon { flex-shrink: 0; }
+
         /* Registration Form UI inside Main Area */
         .auth-hero {
             background: url('images/hero_corporate.png') center/cover no-repeat;
@@ -202,6 +217,9 @@
             
             <a class="nav-link active" onclick="switchView('dashboard', this)"><span>📊</span><span>Dashboard</span></a>
             <a class="nav-link" onclick="switchView('gigs', this)"><span>🎯</span><span>Gig Board</span></a>
+            
+            <!-- Journey Tracker -->
+            <a class="nav-link" id="nav-journey" onclick="switchView('journey', this)"><span>📍</span><span>My Journey</span></a>
             
             <!-- Tier 0/1 Profile Tab -->
             <a class="nav-link" id="nav-profile" onclick="switchView('profile', this)"><span>👤</span><span>My Profile</span></a>
@@ -296,6 +314,55 @@
                     <button class="btn btn-primary" style="margin-top: 40px; padding: 15px 40px; font-size: 1.2rem; border-radius: 30px;" onclick="switchView('gigs', document.querySelectorAll('.nav-link')[1])">🚀 View Live Gig Board</button>
                 </div>
 
+            </section>
+
+            <!-- MY JOURNEY VIEW -->
+            <section id="journey" class="view-section">
+                <h1>📍 My Onboarding Journey</h1>
+                <p>Welcome to the Blue Wisdom Ecosystem. Track your live operational progress and see what our team is doing behind the scenes to secure your next deployment.</p>
+
+                <div class="timeline">
+                    <!-- Phase 1 -->
+                    <div class="timeline-item" id="phase1">
+                        <div class="timeline-marker">1</div>
+                        <div class="timeline-content">
+                            <h3>Phase 1: Sourcing & Profiling</h3>
+                            <ul>
+                                <li><span class="timeline-icon">📋</span> You register your profile on the Hub.</li>
+                                <li><span class="timeline-icon">🗄️</span> BW maps your skills against our Master Client SOWs.</li>
+                                <li><span class="timeline-icon">🆘</span> You are tagged as a primary or backup expert for specific mandates.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Phase 2 & 3 -->
+                    <div class="timeline-item" id="phase2">
+                        <div class="timeline-marker">2</div>
+                        <div class="timeline-content">
+                            <h3>Phase 2: Selection & Compliance</h3>
+                            <ul>
+                                <li><span class="timeline-icon">📑</span> BW generates your anonymized corporate profile.</li>
+                                <li><span class="timeline-icon">✔️</span> Profile is sent to the enterprise client for final approval.</li>
+                                <li><span class="timeline-icon">✍️</span> You digitally sign the Master Empanelment and NDA Policies.</li>
+                                <li><span class="timeline-icon">✅</span> You are officially added to the active deployment roster.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Phase 4, 5, 6 -->
+                    <div class="timeline-item" id="phase3">
+                        <div class="timeline-marker">3</div>
+                        <div class="timeline-content">
+                            <h3>Phase 3: Deployment & Financials</h3>
+                            <ul>
+                                <li><span class="timeline-icon">🎓</span> You attend the BW TTT / Briefing Bootcamp.</li>
+                                <li><span class="timeline-icon">✈️</span> Our Operations team handles your flight and hotel bookings.</li>
+                                <li><span class="timeline-icon">🚀</span> You deliver a world-class facilitation experience.</li>
+                                <li><span class="timeline-icon">💸</span> You submit your invoice and expenses via the Hub for 30-day payout.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <!-- PROFILE / REGISTRATION VIEW -->
@@ -547,6 +614,31 @@
             } else {
                 document.getElementById('registration-block').style.display = 'block';
                 document.getElementById('profile-success-block').style.display = 'none';
+            }
+
+            // Timeline Adjustments
+            const phase1 = document.getElementById('phase1');
+            const phase2 = document.getElementById('phase2');
+            const phase3 = document.getElementById('phase3');
+            
+            // Reset Timeline
+            [phase1, phase2, phase3].forEach(p => {
+                p.classList.remove('active', 'completed');
+                p.querySelector('.timeline-marker').innerText = p.id.replace('phase', '');
+            });
+
+            if(currentTier === 0) {
+                phase1.classList.add('active');
+            } else if(currentTier === 1) {
+                phase1.classList.add('completed');
+                phase1.querySelector('.timeline-marker').innerText = '✓';
+                phase2.classList.add('active');
+            } else if(currentTier >= 2) {
+                phase1.classList.add('completed');
+                phase1.querySelector('.timeline-marker').innerText = '✓';
+                phase2.classList.add('completed');
+                phase2.querySelector('.timeline-marker').innerText = '✓';
+                phase3.classList.add('active');
             }
 
             // UI Adjustments for Gigs
