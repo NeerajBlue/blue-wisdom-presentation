@@ -90,9 +90,9 @@
         /* --- Main Content --- */
         #main-hub { display: flex; }
         .main-content { margin-left: 290px; padding: 40px; width: 100%; box-sizing: border-box; max-width: 1200px; }
-        .view-section { display: none; animation: fadeIn 0.4s ease-out forwards; }
+        .view-section { display: none; animation: fadeInSlideUp 0.4s ease-out forwards; }
         .view-section.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInSlideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
         /* --- UI Elements --- */
         .glass-card { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 12px; padding: 25px; margin-bottom: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
@@ -184,6 +184,22 @@
         .policy-card h3 { color: var(--primary-blue); margin-top: 0; position: relative; z-index: 1; font-size: 1.1rem; }
         .policy-card p { font-size: 0.9rem; position: relative; z-index: 1; margin-bottom: 15px; color: var(--text-muted); }
         .policy-link { color: var(--accent-red); font-weight: bold; text-decoration: none; position: relative; z-index: 1; font-size: 0.9rem; }
+
+        
+        /* --- Enhanced Journey Gamification --- */
+        .timeline-item.active .timeline-marker { box-shadow: 0 0 20px rgba(59, 130, 246, 0.8); }
+        .timeline-item.completed .timeline-marker { box-shadow: 0 0 20px rgba(16, 185, 129, 0.6); }
+        .timeline-content { transition: transform 0.3s ease, box-shadow 0.3s ease, border-left 0.3s ease; }
+        .timeline-item.active .timeline-content { border-left: 4px solid var(--primary-blue); transform: scale(1.02); }
+        .timeline-item.completed .timeline-content { border-left: 4px solid var(--success); }
+
+        /* --- Mobile Optimization --- */
+        @media (max-width: 768px) {
+            .aida-hook { flex-direction: column-reverse; padding: 25px; text-align: center; }
+            .aida-hook h1 { font-size: 2.2rem !important; }
+            .aida-hook-img { text-align: center !important; }
+            .aida-hook-img img { width: 100%; max-width: 250px; margin-bottom: 20px; }
+        }
 
         /* Simulator Overlay */
         .simulator-bar {
@@ -428,6 +444,29 @@
                         <button class="btn btn-danger" onclick="requestDataDeletion()" style="margin-top: 10px;">🗑️ Withdraw Consent & Delete My Data</button>
                         <p id="deletionMsg" style="color:var(--accent-red); font-weight:bold; display:none; margin-top:15px;"></p>
                     </div>
+
+                    <!-- Action Cards -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 30px;">
+                        <div class="glass-card" style="text-align: center; padding: 20px; margin-bottom: 0;">
+                            <div style="font-size: 2.5rem; margin-bottom: 10px;">📹</div>
+                            <h4 style="margin-top: 0; color: var(--primary-blue); font-family: 'Montserrat', sans-serif;">Video Pitch</h4>
+                            <p style="font-size: 0.85rem;">Upload a 60-second intro video.</p>
+                            <button class="btn btn-primary" style="width: 100%; padding: 8px;">Upload</button>
+                        </div>
+                        <div class="glass-card" style="text-align: center; padding: 20px; margin-bottom: 0;">
+                            <div style="font-size: 2.5rem; margin-bottom: 10px;">💼</div>
+                            <h4 style="margin-top: 0; color: var(--primary-blue); font-family: 'Montserrat', sans-serif;">LinkedIn Profile</h4>
+                            <p style="font-size: 0.85rem;">Sync your professional history.</p>
+                            <button class="btn btn-primary" style="width: 100%; padding: 8px; background: #0A66C2;">Connect</button>
+                        </div>
+                        <div class="glass-card" style="text-align: center; padding: 20px; margin-bottom: 0;">
+                            <div style="font-size: 2.5rem; margin-bottom: 10px;">📄</div>
+                            <h4 style="margin-top: 0; color: var(--primary-blue); font-family: 'Montserrat', sans-serif;">Updated Resume</h4>
+                            <p style="font-size: 0.85rem;">Upload your latest PDF resume.</p>
+                            <button class="btn btn-primary" style="width: 100%; padding: 8px; background: var(--text-muted);">Replace File</button>
+                        </div>
+                    </div>
+
                 </div>
             </section>
 
@@ -842,7 +881,12 @@
                 } else {
                     btn.innerText = "Apply via IPF Form 📝";
                     btn.style.background = "var(--primary-blue)";
-                    btn.onclick = () => window.open('https://forms.gle/imtJdbZoUjdmU3kM8', '_blank');
+                    btn.onclick = () => {
+                        const gigName = btn.parentElement.querySelector('h3').innerText;
+                        // Appending parameter to the form. (Note: for forms.gle shortlinks, passing parameters doesn't always forward perfectly. 
+                        // In production, replace with the full docs.google.com/forms/... URL)
+                        window.open(`https://forms.gle/imtJdbZoUjdmU3kM8?usp=pp_url&entry.123456=${encodeURIComponent(gigName)}`, '_blank');
+                    };
                 }
             });
         }
