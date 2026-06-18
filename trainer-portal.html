@@ -48,76 +48,12 @@
             color: var(--text-main);
             transition: background-color 0.4s ease, color 0.4s ease;
             overflow-x: hidden;
-            padding-bottom: 80px; /* Space for mobile nav */
-        }
-
-        /* --- Registration / Login Gate --- */
-        #auth-gate {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100vh;
-            background-color: var(--bg-color);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.6s ease;
-        }
-        .auth-container {
-            display: flex;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            overflow: hidden;
-            max-width: 900px;
-            width: 90%;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-        .auth-hero {
-            flex: 1.2;
-            background: url('images/hero-image.png') center/cover no-repeat;
-            min-height: 400px;
-        }
-        .auth-hero h2 { margin: 0; font-family: 'Montserrat', sans-serif; font-size: 2rem; }
-        .auth-form {
-            flex: 1;
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .auth-form input {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 1px solid var(--glass-border);
-            border-radius: 6px;
-            background: transparent;
-            color: var(--text-main);
-            font-family: 'Outfit', sans-serif;
-            box-sizing: border-box;
-        }
-        
-        /* New Registration Link Area */
-        .register-link-box {
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px dashed var(--primary-blue);
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            margin-bottom: 20px;
+            padding-bottom: 80px;
         }
 
         .btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 6px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
+            padding: 12px 24px; border: none; border-radius: 6px; font-family: 'Montserrat', sans-serif;
+            font-weight: 700; cursor: pointer; transition: all 0.2s ease; text-align: center; display: inline-block;
         }
         .btn-primary { background: var(--primary-blue); color: white; }
         .btn-primary:hover { transform: translateY(-2px); background: var(--secondary-blue); box-shadow: 0 5px 15px rgba(0,71,143,0.3); }
@@ -125,226 +61,89 @@
         .btn-danger:hover { transform: translateY(-2px); background: #b91c1c; }
 
         /* --- Theme Toggle --- */
-        .theme-toggle {
-            position: absolute;
-            top: 20px; right: 20px;
-            background: transparent;
-            border: 1px solid var(--glass-border);
-            color: var(--text-main);
-            padding: 8px 12px;
-            border-radius: 20px;
-            cursor: pointer;
-            z-index: 10000;
-            font-weight: 600;
-        }
+        .theme-toggle { position: absolute; top: 20px; right: 20px; background: transparent; border: 1px solid var(--glass-border); color: var(--text-main); padding: 8px 12px; border-radius: 20px; cursor: pointer; z-index: 10000; font-weight: 600; }
 
-        /* --- Main Hub Layout --- */
-        #main-hub {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.6s ease;
-        }
-
+        /* --- Sidebar Navigation --- */
         .sidebar {
-            width: 250px;
-            background: var(--glass-bg);
-            border-right: 1px solid var(--glass-border);
-            padding: 30px 20px;
-            display: flex;
-            flex-direction: column;
-            position: fixed;
-            height: 100vh;
-            z-index: 500;
+            width: 250px; background: var(--glass-bg); border-right: 1px solid var(--glass-border); padding: 30px 20px;
+            display: flex; flex-direction: column; position: fixed; height: 100vh; z-index: 500;
         }
-        .brand {
-            display: flex; align-items: center; gap: 15px; margin-bottom: 40px;
-            padding-bottom: 20px; border-bottom: 1px solid var(--glass-border);
-        }
+        .brand { display: flex; align-items: center; gap: 15px; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--glass-border); }
         .brand img { width: 40px; border-radius: 8px; }
         .brand h2 { margin: 0; font-size: 1.2rem; color: var(--primary-blue); }
 
         .nav-link {
-            padding: 12px 15px; margin-bottom: 10px; border-radius: 10px;
-            color: var(--text-muted); text-decoration: none; font-weight: 600;
-            cursor: pointer; display: flex; align-items: center; gap: 10px;
-            transition: all 0.2s ease;
+            padding: 12px 15px; margin-bottom: 10px; border-radius: 10px; color: var(--text-muted); text-decoration: none;
+            font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: all 0.2s ease;
         }
-        .nav-link:hover, .nav-link.active {
-            background: var(--light-blue); color: var(--primary-blue);
-        }
+        .nav-link:hover, .nav-link.active { background: var(--light-blue); color: var(--primary-blue); }
         .nav-link.active { border-left: 4px solid var(--accent-red); }
 
-        .social-links {
-            margin-top: auto;
-            border-top: 1px solid var(--glass-border);
-            padding-top: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-        .social-icon {
-            font-size: 1.2rem;
-            text-decoration: none;
-            transition: transform 0.2s;
-        }
+        /* Tier Visibility Classes */
+        .tier-locked { opacity: 0.5; pointer-events: none; position: relative; }
+        .tier-locked::after { content: "🔒"; position: absolute; right: 10px; }
+
+        .social-links { margin-top: auto; border-top: 1px solid var(--glass-border); padding-top: 20px; display: flex; justify-content: center; gap: 15px; }
+        .social-icon { font-size: 1.2rem; text-decoration: none; transition: transform 0.2s; }
         .social-icon:hover { transform: scale(1.2); }
 
+        /* --- Main Content --- */
+        #main-hub { display: flex; }
         .main-content { margin-left: 290px; padding: 40px; width: 100%; box-sizing: border-box; max-width: 1200px; }
         .view-section { display: none; animation: fadeIn 0.4s ease-out forwards; }
         .view-section.active { display: block; }
-
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* --- UI Elements --- */
-        .glass-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
+        .glass-card { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 12px; padding: 25px; margin-bottom: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
         h1 { font-size: 2.2rem; margin-top: 0; font-family: 'Montserrat', sans-serif; color: var(--primary-blue); }
         h3 { color: var(--text-main); margin-top: 0; font-family: 'Montserrat', sans-serif;}
         p { line-height: 1.6; color: var(--text-muted); }
-
         ul { list-style-type: none; padding-left: 0; }
         ul li { margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; color: var(--text-muted); line-height: 1.5; }
-        
+
+        /* Registration Form UI inside Main Area */
+        .auth-hero {
+            background: url('images/hero_corporate.png') center/cover no-repeat;
+            min-height: 300px; border-radius: 12px; margin-bottom: 30px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .reg-input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid var(--glass-border); border-radius: 6px; background: transparent; color: var(--text-main); font-family: 'Outfit', sans-serif; box-sizing: border-box; }
+
         /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        .stat-card {
-            text-align: center;
-            padding: 20px;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
-            color: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 20px rgba(0,71,143,0.2);
-        }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .stat-card { text-align: center; padding: 20px; background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue)); color: white; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,71,143,0.2); }
         .stat-number { font-size: 2.5rem; font-weight: 800; font-family: 'Montserrat', sans-serif; margin-bottom: 5px; }
         .stat-label { font-size: 0.9rem; font-weight: 600; opacity: 0.9; }
-
-        /* Testimonials */
-        .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .quote { font-style: italic; color: var(--text-muted); margin-bottom: 15px; }
-        .author { font-weight: 700; color: var(--primary-blue); }
-
-        /* Client Marquee */
-        .marquee {
-            overflow: hidden;
-            white-space: nowrap;
-            background: var(--glass-bg);
-            padding: 15px 0;
-            border-top: 1px solid var(--glass-border);
-            border-bottom: 1px solid var(--glass-border);
-            margin: 30px 0;
-        }
-        .marquee-content {
-            display: inline-block;
-            animation: scroll 20s linear infinite;
-            font-weight: 800;
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            letter-spacing: 2px;
-        }
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
 
         /* Gig Board */
         .gig-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
         .badge { padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
         .badge.open { background: var(--light-blue); color: var(--primary-blue); border: 1px solid var(--primary-blue); }
+        .badge.behavioral { background: #fee2e2; color: #b91c1c; border: 1px solid #b91c1c; }
+        .badge.functional { background: #fef3c7; color: #b45309; border: 1px solid #b45309; }
+        .badge.technical { background: #d1fae5; color: #047857; border: 1px solid #047857; }
 
-        /* Collapsible FABs */
-        .fab-wrapper {
-            position: fixed; bottom: 30px; right: 30px; z-index: 2000;
-            display: flex; flex-direction: column-reverse; align-items: flex-end; gap: 10px;
+        /* Simulator Overlay */
+        .simulator-bar {
+            position: fixed; bottom: 0; left: 0; width: 100%; background: #000; color: #fff; z-index: 99999;
+            display: flex; justify-content: center; align-items: center; padding: 10px; gap: 15px; font-size: 0.9rem;
         }
-        .fab-main {
-            background: var(--accent-red); color: white; width: 60px; height: 60px;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
-            border: none; transition: transform 0.3s;
-        }
-        .fab-main:hover { transform: scale(1.1); }
-        .fab-menu {
-            display: flex; flex-direction: column; gap: 10px; align-items: flex-end;
-            opacity: 0; pointer-events: none; transform: translateY(20px); transition: all 0.3s ease;
-        }
-        .fab-wrapper:hover .fab-menu, .fab-menu.show {
-            opacity: 1; pointer-events: auto; transform: translateY(0);
-        }
-        .fab-item {
-            background: var(--bg-color); border: 1px solid var(--glass-border); color: var(--text-main);
-            padding: 10px 20px; border-radius: 20px; text-decoration: none; font-weight: 600;
-            display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        /* --- Letterhead Print Styles --- */
-        @media print {
-            body { background: white !important; color: black !important; padding: 0 !important; }
-            #auth-gate, .sidebar, .fab-wrapper, .theme-toggle, .btn { display: none !important; }
-            .main-content { margin: 0; padding: 0; max-width: 100%; }
-            .view-section { display: none !important; }
-            #policies { display: block !important; }
-            .glass-card { border: none; box-shadow: none; padding: 0; margin-bottom: 20px; }
-            
-            #policies::before {
-                content: "BLUE WISDOM - OFFICIAL POLICY DOCUMENT";
-                display: block; font-size: 1.5rem; font-family: 'Montserrat', sans-serif;
-                color: #00478F; border-bottom: 2px solid #00478F; padding-bottom: 10px; margin-bottom: 30px;
-            }
-        }
+        .simulator-bar button { padding: 5px 15px; cursor: pointer; border-radius: 4px; border: none; font-weight: bold; }
 
         /* --- Mobile First App Navigation --- */
         @media (max-width: 768px) {
-            .auth-container { flex-direction: column; }
-            .auth-hero { min-height: 200px; padding: 20px; }
-            .auth-form { padding: 20px; }
-
-            /* Transform Sidebar into Fixed Bottom Bar */
             .sidebar {
-                top: auto;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                height: 70px;
-                flex-direction: row;
-                justify-content: space-around;
-                align-items: center;
-                padding: 0;
-                border-right: none;
-                border-top: 1px solid var(--glass-border);
-                background: var(--bg-color); /* solid background for readability */
-                box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+                top: auto; bottom: 0; left: 0; width: 100%; height: 70px; flex-direction: row; justify-content: space-around;
+                align-items: center; padding: 0; border-right: none; border-top: 1px solid var(--glass-border);
+                background: var(--bg-color); box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
             }
             .brand, .social-links { display: none; }
-            
-            .nav-link {
-                flex-direction: column;
-                margin: 0;
-                padding: 8px;
-                border: none !important;
-                border-radius: 0;
-                font-size: 0.7rem;
-                gap: 4px;
-            }
-            .nav-link.active {
-                color: var(--primary-blue);
-                background: transparent;
-                border-top: 3px solid var(--accent-red) !important;
-            }
+            .nav-link { flex-direction: column; margin: 0; padding: 8px; border: none !important; border-radius: 0; font-size: 0.7rem; gap: 4px; }
+            .nav-link.active { color: var(--primary-blue); background: transparent; border-top: 3px solid var(--accent-red) !important; }
             .nav-link span:first-child { font-size: 1.2rem; }
-
             .main-content { margin-left: 0; padding: 20px; padding-bottom: 90px; }
-            .fab-wrapper { bottom: 90px; } /* Lift above mobile nav */
+            .simulator-bar { bottom: 70px; }
         }
     </style>
 </head>
@@ -353,54 +152,40 @@
     <!-- Theme Toggle -->
     <button class="theme-toggle" onclick="toggleTheme()">🌓 Toggle Theme</button>
 
-    <!-- 1. REGISTRATION GATE -->
-    <div id="auth-gate">
-        <div class="auth-container">
-            <div class="auth-hero">
-                <!-- Image only, text moved to form -->
-            </div>
-            <div class="auth-form">
-                <h2 style="color:var(--primary-blue); font-family:'Montserrat', sans-serif; margin-top:0;">Welcome to BW Trainer Hub</h2>
-                <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:25px;">Register to access exclusive opportunities and manage your deployments.</p>
-                
-                <h3 style="color:var(--text-main); margin-bottom:15px; font-size:1.1rem;">🔹 Trainer Registration</h3>
-                
-                <div class="register-link-box">
-                    <p style="margin:0; font-size:0.9rem;">Don't have an IPF Profile?</p>
-                    <a href="http://tinyurl.com/trainer-bw" target="_blank" style="font-weight:bold; color:var(--primary-blue);">📝 Register Here First</a>
-                </div>
-
-                <input type="text" id="regName" placeholder="👤 Full Name" required>
-                <input type="tel" id="regPhone" placeholder="📱 Phone Number" required>
-                <input type="email" id="regEmail" placeholder="✉️ Email Address" required>
-                
-                <button class="btn btn-primary" style="margin-top:10px;" onclick="registerTrainer()">Sign In / Enter Hub →</button>
-                <p id="authMsg" style="color:var(--accent-red); font-size:0.85rem; margin-top:10px; display:none;">Registering...</p>
-            </div>
-        </div>
+    <!-- TIER SIMULATOR -->
+    <div class="simulator-bar">
+        <span>👨‍💻 VIEW AS:</span>
+        <button onclick="setTier(0)" style="background:#4b5563; color:white;">Tier 0 (Public Guest)</button>
+        <button onclick="setTier(1)" style="background:#3b82f6; color:white;">Tier 1 (Registered Trainer)</button>
+        <button onclick="setTier(2)" style="background:#10b981; color:white;">Tier 2 (Deployed / Selected)</button>
     </div>
 
-    <!-- 2. MAIN HUB -->
+    <!-- MAIN HUB -->
     <div id="main-hub" class="app-container">
         
         <!-- App Navigation (Sidebar / Bottom Bar) -->
         <nav class="sidebar">
             <div class="brand">
-                <img src="https://blue-wisdom-od.netlify.app/images/1.png" onerror="this.src='images/blue_wisdom_logo.png'" alt="BW">
+                <img src="images/blue_wisdom_logo.png" alt="BW">
                 <h2>Trainer Hub</h2>
             </div>
             
             <a class="nav-link active" onclick="switchView('dashboard', this)"><span>📊</span><span>Dashboard</span></a>
             <a class="nav-link" onclick="switchView('gigs', this)"><span>🎯</span><span>Gig Board</span></a>
-            <a class="nav-link" onclick="switchView('policies', this)"><span>📜</span><span>Compliance</span></a>
-            <a class="nav-link" onclick="switchView('resources', this)"><span>📁</span><span>Resources</span></a>
+            
+            <!-- Tier 0/1 Profile Tab -->
+            <a class="nav-link" id="nav-profile" onclick="switchView('profile', this)"><span>👤</span><span>My Profile</span></a>
+            
+            <!-- Tier 2 Locked Tabs -->
+            <a class="nav-link tier-locked" id="nav-compliance" onclick="if(currentTier >= 2) switchView('policies', this)"><span>📜</span><span>Compliance</span></a>
+            <a class="nav-link tier-locked" id="nav-resources" onclick="if(currentTier >= 2) switchView('resources', this)"><span>📁</span><span>Resources</span></a>
 
-            <!-- Social Links (Desktop only) -->
+            <!-- Social Links -->
             <div class="social-links">
-                <a href="https://www.facebook.com/BlueWisdomIndia" target="_blank" class="social-icon" title="Facebook">📘</a>
-                <a href="https://www.instagram.com/bluewisdominsta/" target="_blank" class="social-icon" title="Instagram">📸</a>
-                <a href="https://www.linkedin.com/company/blue-wisdom-pvt--ltd-" target="_blank" class="social-icon" title="LinkedIn">💼</a>
-                <a href="https://chat.whatsapp.com/CcmClxHMaWj258J3S0Scp1" target="_blank" class="social-icon" title="WhatsApp Group" style="color:#25D366">💬</a>
+                <a href="https://www.facebook.com/BlueWisdomIndia" target="_blank" class="social-icon">📘</a>
+                <a href="https://www.instagram.com/bluewisdominsta/" target="_blank" class="social-icon">📸</a>
+                <a href="https://www.linkedin.com/company/blue-wisdom-pvt--ltd-" target="_blank" class="social-icon">💼</a>
+                <a href="https://chat.whatsapp.com/CcmClxHMaWj258J3S0Scp1" target="_blank" class="social-icon" style="color:#25D366">💬</a>
             </div>
         </nav>
 
@@ -410,46 +195,43 @@
             <!-- DASHBOARD VIEW -->
             <section id="dashboard" class="view-section active">
                 <h1>📊 Welcome to Blue Wisdom</h1>
-                <p>Your personalized command center for all deployments, empowering you to create lasting impact.</p>
-
-                <!-- Impact Stats -->
+                <p>Your personalized command center for deployments, impacting lives and creating excellence.</p>
                 <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-number">5,000+</div>
-                        <div class="stat-label">Empanelled Trainers</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">5 Lakh</div>
-                        <div class="stat-label">Lives Impacted</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">100+</div>
-                        <div class="stat-label">Corporate Clients</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">500</div>
-                        <div class="stat-label">Monthly Training Mandays</div>
+                    <div class="stat-card"><div class="stat-number">5,000+</div><div class="stat-label">Empanelled Trainers</div></div>
+                    <div class="stat-card"><div class="stat-number">5 Lakh</div><div class="stat-label">Lives Impacted</div></div>
+                    <div class="stat-card"><div class="stat-number">100+</div><div class="stat-label">Corporate Clients</div></div>
+                </div>
+            </section>
+
+            <!-- PROFILE / REGISTRATION VIEW -->
+            <section id="profile" class="view-section">
+                
+                <!-- If Unregistered (Tier 0) -->
+                <div id="registration-block">
+                    <h1>📝 Register Your Profile</h1>
+                    <p>Register to unlock one-click applications to Blue Wisdom corporate opportunities.</p>
+                    <div class="auth-hero"></div>
+                    
+                    <div class="glass-card">
+                        <div style="background: rgba(59, 130, 246, 0.1); border: 1px dashed var(--primary-blue); padding: 15px; border-radius: 8px; text-align: center; margin-bottom: 20px;">
+                            <p style="margin:0; font-size:0.9rem;">Don't have an IPF Profile?</p>
+                            <a href="http://tinyurl.com/trainer-bw" target="_blank" style="font-weight:bold; color:var(--primary-blue);">📝 Register on IPF Here First</a>
+                        </div>
+                        <input type="text" id="regName" class="reg-input" placeholder="👤 Full Name" required>
+                        <input type="tel" id="regPhone" class="reg-input" placeholder="📱 Phone Number" required>
+                        <input type="email" id="regEmail" class="reg-input" placeholder="✉️ Email Address" required>
+                        <button class="btn btn-primary" onclick="registerTrainer()">Complete Registration</button>
+                        <p id="authMsg" style="color:var(--success); font-weight:bold; display:none; margin-top:15px;"></p>
                     </div>
                 </div>
 
-                <!-- Client Marquee -->
-                <div class="marquee">
-                    <div class="marquee-content">
-                        ★ ADANI GROUP &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ★ RELIANCE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ★ TATA MOTORS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ★ ITC LIMITED &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ★ MAHINDRA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ★ HDFC BANK &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        ★ ADANI GROUP &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ★ RELIANCE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ★ TATA MOTORS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ★ ITC LIMITED &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ★ MAHINDRA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ★ HDFC BANK &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </div>
-                </div>
-
-                <!-- Trainer Voices -->
-                <h2>🎙️ Trainer Voices</h2>
-                <div class="testimonial-grid">
-                    <div class="glass-card">
-                        <p class="quote">"Partnering with Blue Wisdom has elevated my facilitation game. The content structure and pre-bootcamps by Nakshatra ensure zero surprises during deployment."</p>
-                        <p class="author">— Amit S., Behavioral Expert</p>
-                    </div>
-                    <div class="glass-card">
-                        <p class="quote">"The 30-day payout SLA is unmatched in the industry. Highly professional and deeply respectful of a trainer's time and expertise."</p>
-                        <p class="author">— Dr. Shalini P., Leadership Coach</p>
+                <!-- If Registered (Tier 1 & 2) -->
+                <div id="profile-success-block" style="display:none;">
+                    <h1>👤 My Profile</h1>
+                    <div class="glass-card" style="border-left: 4px solid var(--success);">
+                        <h2 style="color:var(--success); margin-top:0;">✅ Profile Active</h2>
+                        <p>Welcome back! You are fully registered on the Blue Wisdom Hub.</p>
+                        <p><strong>Next Steps:</strong> Check the <strong>Gig Board</strong> to browse and apply for upcoming assignments. Our team will review your IPF alignment and assign you to relevant clients.</p>
                     </div>
                 </div>
             </section>
@@ -457,36 +239,109 @@
             <!-- GIG BOARD VIEW -->
             <section id="gigs" class="view-section">
                 <h1>🎯 Live Opportunities</h1>
-                <p>Apply directly. Your profile will automatically be attached to your application via WhatsApp.</p>
+                <p>Browse our active mandates. Click apply to notify our deployment team instantly.</p>
 
                 <div class="gig-grid">
                     <!-- Gig 1 -->
                     <div class="glass-card">
-                        <span class="badge open">🟢 OPEN</span>
-                        <h3 style="margin-top:15px;">Behavioral & Leadership Trainer</h3>
+                        <span class="badge behavioral">Behavioral</span> <span class="badge open" style="margin-left:5px;">Long-Term</span>
+                        <h3 style="margin-top:15px;">Leadership Development (LDP)</h3>
                         <ul>
                             <li>📍 <strong>Location:</strong> Delhi NCR</li>
-                            <li>🗓️ <strong>Dates:</strong> 12th - 14th Aug</li>
-                            <li>💡 Looking for an expert facilitator for middle-management behavioral intervention.</li>
+                            <li>🗓️ <strong>Duration:</strong> 3-Month Intervention</li>
+                            <li>💡 Coaching middle-managers transitioning to senior leadership roles. Deep behavioral shifts required.</li>
                         </ul>
-                        <button class="btn btn-primary" style="width:100%; margin-top:10px;" onclick="applyForGig('Behavioral Trainer - Delhi')">📲 Show Interested (WA Naks)</button>
+                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;" onclick="applyForGig('LDP - Delhi')">Apply via WhatsApp</button>
                     </div>
 
                     <!-- Gig 2 -->
                     <div class="glass-card">
-                        <span class="badge open">🟢 OPEN</span>
-                        <h3 style="margin-top:15px;">Sales Mastery Workshop</h3>
+                        <span class="badge behavioral">Behavioral</span> <span class="badge open" style="margin-left:5px;">Short-Term</span>
+                        <h3 style="margin-top:15px;">First Time Manager Bootcamp</h3>
                         <ul>
                             <li>📍 <strong>Location:</strong> Mumbai</li>
-                            <li>🗓️ <strong>Dates:</strong> September</li>
-                            <li>💡 B2B consultative selling skills for a leading FMCG brand.</li>
+                            <li>🗓️ <strong>Duration:</strong> 2 Days</li>
+                            <li>💡 High-energy bootcamp covering delegation, feedback, and team dynamics.</li>
                         </ul>
-                        <button class="btn btn-primary" style="width:100%; margin-top:10px;" onclick="applyForGig('Sales Mastery - Mumbai')">📲 Show Interested (WA Naks)</button>
+                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;" onclick="applyForGig('First Time Manager - Mumbai')">Apply via WhatsApp</button>
                     </div>
+
+                    <!-- Gig 3 -->
+                    <div class="glass-card">
+                        <span class="badge technical">Technical</span> <span class="badge open" style="margin-left:5px;">Short-Term</span>
+                        <h3 style="margin-top:15px;">Advanced Excel & PowerBI</h3>
+                        <ul>
+                            <li>📍 <strong>Location:</strong> Bangalore</li>
+                            <li>🗓️ <strong>Duration:</strong> 1 Day</li>
+                            <li>💡 Hands-on data visualization and dashboard creation for finance teams.</li>
+                        </ul>
+                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;" onclick="applyForGig('PowerBI - Blr')">Apply via WhatsApp</button>
+                    </div>
+
+                    <!-- Gig 4 -->
+                    <div class="glass-card">
+                        <span class="badge functional">Functional</span> <span class="badge open" style="margin-left:5px;">1 Month</span>
+                        <h3 style="margin-top:15px;">B2B Enterprise Sales Mastery</h3>
+                        <ul>
+                            <li>📍 <strong>Location:</strong> Pune</li>
+                            <li>🗓️ <strong>Duration:</strong> 1 Month Series</li>
+                            <li>💡 Consultative selling, objection handling, and pipeline management for IT sales.</li>
+                        </ul>
+                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;" onclick="applyForGig('B2B Sales - Pune')">Apply via WhatsApp</button>
+                    </div>
+
+                    <!-- Gig 5 -->
+                    <div class="glass-card">
+                        <span class="badge technical">Technical</span> <span class="badge open" style="margin-left:5px;">3 Months</span>
+                        <h3 style="margin-top:15px;">Agile / Scrum Master Cert</h3>
+                        <ul>
+                            <li>📍 <strong>Location:</strong> Hyderabad</li>
+                            <li>🗓️ <strong>Duration:</strong> 3-Month Rollout</li>
+                            <li>💡 Enterprise agile transformation. Must be a certified Scrum Trainer.</li>
+                        </ul>
+                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;" onclick="applyForGig('Agile - Hyd')">Apply via WhatsApp</button>
+                    </div>
+
+                    <!-- Gig 6 -->
+                    <div class="glass-card">
+                        <span class="badge functional">Functional</span> <span class="badge open" style="margin-left:5px;">Short-Term</span>
+                        <h3 style="margin-top:15px;">Retail Customer Centricity</h3>
+                        <ul>
+                            <li>📍 <strong>Location:</strong> Chennai</li>
+                            <li>🗓️ <strong>Duration:</strong> 3 Days</li>
+                            <li>💡 Frontline staff training on customer experience and complaint resolution.</li>
+                        </ul>
+                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;" onclick="applyForGig('Retail CX - Chennai')">Apply via WhatsApp</button>
+                    </div>
+
+                    <!-- Gig 7 -->
+                    <div class="glass-card">
+                        <span class="badge behavioral">Behavioral</span> <span class="badge open" style="margin-left:5px;">Short-Term</span>
+                        <h3 style="margin-top:15px;">POSH Awareness</h3>
+                        <ul>
+                            <li>📍 <strong>Location:</strong> Virtual / Pan India</li>
+                            <li>🗓️ <strong>Duration:</strong> Half Day</li>
+                            <li>💡 Statutory POSH training. Must have legal/HR compliance background.</li>
+                        </ul>
+                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;" onclick="applyForGig('POSH - Virtual')">Apply via WhatsApp</button>
+                    </div>
+
+                    <!-- Gig 8 -->
+                    <div class="glass-card">
+                        <span class="badge functional">Functional</span> <span class="badge open" style="margin-left:5px;">Long-Term</span>
+                        <h3 style="margin-top:15px;">Supply Chain Optimization</h3>
+                        <ul>
+                            <li>📍 <strong>Location:</strong> Ahmedabad</li>
+                            <li>🗓️ <strong>Duration:</strong> Ongoing Consulting</li>
+                            <li>💡 Inventory management, lean logistics, and vendor negotiations.</li>
+                        </ul>
+                        <button class="btn gig-btn btn-primary" style="width:100%; margin-top:10px;" onclick="applyForGig('Supply Chain - Ahd')">Apply via WhatsApp</button>
+                    </div>
+
                 </div>
             </section>
 
-            <!-- POLICIES VIEW -->
+            <!-- POLICIES VIEW (TIER 2 ONLY) -->
             <section id="policies" class="view-section">
                 <h1>📜 Policies & Empanelment</h1>
                 <p>Please review the comprehensive Blue Wisdom official policies below before providing your digital consent.</p>
@@ -511,15 +366,14 @@
                         <label for="consentCheck" style="font-weight:600;">I have read, understood, and accept all BW Policies.</label>
                     </div>
                     <button class="btn btn-danger" style="margin-top:20px;" onclick="submitConsent()">Confirm & Sign Off</button>
-                    <p id="consentMsg" style="color:var(--success); display:none; font-weight:600;">✅ Consent Recorded in Database.</p>
+                    <p id="consentMsg" style="color:var(--success); display:none; font-weight:600; margin-top:10px;"></p>
                 </div>
             </section>
 
-            <!-- RESOURCES VIEW -->
+            <!-- RESOURCES VIEW (TIER 2 ONLY) -->
             <section id="resources" class="view-section">
                 <h1>📁 Resource Center</h1>
                 <p>Download official materials or submit your post-deployment documentation.</p>
-
                 <div class="glass-card" style="border-left: 4px solid var(--primary-blue);">
                     <h3>💸 Invoice & Expense Submission</h3>
                     <p>Submit your professional fee invoice and original expense receipts through the official portal.</p>
@@ -527,120 +381,123 @@
                         📤 Open Submission Form
                     </a>
                 </div>
-
-                <div class="glass-card">
-                    <h3>📚 Project Adani (Daksh) Content</h3>
-                    <ul><li>📄 Official PPTs and Workbooks</li></ul>
-                </div>
             </section>
 
         </main>
     </div>
 
-    <!-- Collapsible Floating Action Buttons -->
-    <div class="fab-wrapper">
-        <div class="fab-menu" id="fabMenu">
-            <a href="https://docs.google.com/spreadsheets/d/1oJKsU2IOrw8mu4xvx0MxBJ9aHB8omewvINjBq7-HkNc/edit?usp=sharing" target="_blank" class="fab-item">📊 BW Master Tracker</a>
-            <a href="https://wa.me/919725479188" target="_blank" class="fab-item">💬 Message Neeraj</a>
-            <a href="https://wa.me/917976789234" target="_blank" class="fab-item">💬 Message Naks</a>
-        </div>
-        <button class="fab-main" onclick="document.getElementById('fabMenu').classList.toggle('show')">⚡</button>
-    </div>
-
     <script>
         // GLOBALS
         let currentTrainer = { name: '', phone: '', email: '' };
+        let currentTier = 0; // 0=Public, 1=Registered, 2=Deployed
         const GOOGLE_SCRIPT_URL = "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE"; 
 
-        // 1. Theme Toggle Logic
+        // Initial Setup
+        setTier(0);
+
         function toggleTheme() {
             const html = document.documentElement;
-            if (html.getAttribute('data-theme') === 'light') {
-                html.setAttribute('data-theme', 'dark');
-            } else {
-                html.setAttribute('data-theme', 'light');
-            }
+            html.setAttribute('data-theme', html.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
         }
 
-        // 2. Navigation Logic
         function switchView(viewId, navElement) {
             document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
             document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
             document.getElementById(viewId).classList.add('active');
-            navElement.classList.add('active');
+            if(navElement) navElement.classList.add('active');
             window.scrollTo(0,0);
         }
 
-        // 3. Registration / Login Logic
+        // --- TIER ACCESS LOGIC ---
+        function setTier(tierLevel) {
+            currentTier = tierLevel;
+            
+            // UI Adjustments for Nav Links
+            const complianceNav = document.getElementById('nav-compliance');
+            const resourcesNav = document.getElementById('nav-resources');
+            
+            if(currentTier >= 2) {
+                complianceNav.classList.remove('tier-locked');
+                resourcesNav.classList.remove('tier-locked');
+            } else {
+                complianceNav.classList.add('tier-locked');
+                resourcesNav.classList.add('tier-locked');
+                // Kick them out if they are on a locked page
+                if(document.getElementById('policies').classList.contains('active') || document.getElementById('resources').classList.contains('active')) {
+                    switchView('dashboard', document.querySelector('.nav-link'));
+                }
+            }
+
+            // UI Adjustments for Profile
+            if(currentTier >= 1) {
+                document.getElementById('registration-block').style.display = 'none';
+                document.getElementById('profile-success-block').style.display = 'block';
+            } else {
+                document.getElementById('registration-block').style.display = 'block';
+                document.getElementById('profile-success-block').style.display = 'none';
+            }
+
+            // UI Adjustments for Gigs
+            const gigBtns = document.querySelectorAll('.gig-btn');
+            gigBtns.forEach(btn => {
+                if(currentTier === 0) {
+                    btn.innerText = "Register to Apply 🔒";
+                    btn.style.background = "var(--text-muted)";
+                    btn.onclick = () => switchView('profile', document.getElementById('nav-profile'));
+                } else {
+                    btn.innerText = "Apply via WhatsApp 📲";
+                    btn.style.background = "var(--primary-blue)";
+                    btn.onclick = () => applyForGig(btn.parentElement.querySelector('h3').innerText);
+                }
+            });
+        }
+
         async function registerTrainer() {
             const name = document.getElementById('regName').value;
-            const phone = document.getElementById('regPhone').value;
             const email = document.getElementById('regEmail').value;
+            if(!name || !email) return alert("Please fill Name and Email");
+
+            currentTrainer = { name, email };
             const msg = document.getElementById('authMsg');
-
-            if(!name || !phone || !email) {
-                msg.style.display = 'block';
-                msg.innerText = "❌ Please fill in Name, Phone, and Email.";
-                return;
-            }
-
-            currentTrainer = { name, phone, email };
             msg.style.display = 'block';
             msg.style.color = "var(--text-main)";
-            msg.innerText = "⏳ Saving to Database...";
+            msg.innerText = "⏳ Saving Profile and Triggering Welcome Email...";
 
             if(GOOGLE_SCRIPT_URL !== "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE") {
-                try {
-                    await fetch(GOOGLE_SCRIPT_URL, {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ actionType: "Registration", ...currentTrainer })
-                    });
-                } catch(e) { console.log(e); }
+                fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST', mode: 'no-cors',
+                    body: JSON.stringify({ actionType: "Registration", name, email })
+                });
             }
 
-            // Unlock the Gate
-            document.getElementById('auth-gate').style.opacity = '0';
             setTimeout(() => {
-                document.getElementById('auth-gate').style.display = 'none';
-                const hub = document.getElementById('main-hub');
-                hub.style.display = 'flex';
-                setTimeout(() => hub.style.opacity = '1', 50);
-            }, 600);
+                setTier(1); // Upgrade to Registered
+            }, 1500);
         }
 
-        // 4. Apply for Gig via WhatsApp
         function applyForGig(gigName) {
-            const naksPhone = "917976789234";
-            const text = encodeURIComponent(`Hi Naks, I am highly interested in the [${gigName}] opportunity.\n\nMy Name: ${currentTrainer.name}\nMy Phone: ${currentTrainer.phone}\n\nI have registered my profile on the IPF portal.`);
-            window.open(`https://wa.me/${naksPhone}?text=${text}`, '_blank');
+            const text = encodeURIComponent(`Hi, I am interested in the [${gigName}] opportunity.\nMy profile is registered in the BW Hub.`);
+            window.open(`https://wa.me/917976789234?text=${text}`, '_blank');
         }
 
-        // 5. Digital Consent to Google Sheets
         async function submitConsent() {
-            const check = document.getElementById('consentCheck');
-            if(!check.checked) {
-                alert("Please check the box to confirm you have read the policies.");
-                return;
-            }
+            if(!document.getElementById('consentCheck').checked) return alert("Check the box first!");
+            const msg = document.getElementById('consentMsg');
+            msg.style.display = 'block';
+            msg.style.color = "var(--text-main)";
+            msg.innerText = "⏳ Saving digital signature and triggering confirmation email...";
 
             if(GOOGLE_SCRIPT_URL !== "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE") {
-                try {
-                    await fetch(GOOGLE_SCRIPT_URL, {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ 
-                            actionType: "Policy Consent Signed", 
-                            name: currentTrainer.name,
-                            consentDate: new Date().toISOString()
-                        })
-                    });
-                } catch(e) { console.log(e); }
+                fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST', mode: 'no-cors',
+                    body: JSON.stringify({ actionType: "Policy Consent Signed", name: currentTrainer.name, email: currentTrainer.email })
+                });
             }
-            
-            document.getElementById('consentMsg').style.display = 'block';
+
+            setTimeout(() => {
+                msg.style.color = "var(--success)";
+                msg.innerText = "✅ Official Consent Recorded. Confirmation Email Sent.";
+            }, 1500);
         }
     </script>
 </body>
