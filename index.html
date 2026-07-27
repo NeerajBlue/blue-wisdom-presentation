@@ -172,6 +172,52 @@
         .social-links a:hover { background: var(--bw-primary-blue); transform: translateY(-3px); }
         .whatsapp:hover { background: #25D366 !important; }
 
+        /* Insights/Blog Cards */
+        .insights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .insight-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: transform 0.3s ease; border: 1px solid #EDF2F7; }
+        .insight-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
+        .insight-image { height: 200px; background: var(--bw-light-blue); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .insight-image img { width: 100%; height: 100%; object-fit: cover; }
+        .insight-image i { font-size: 4em; color: var(--bw-primary-blue); opacity: 0.2; }
+        .insight-content { padding: 25px; }
+        .insight-tag { display: inline-block; padding: 4px 10px; background: var(--bw-light-blue); color: var(--bw-primary-blue); font-size: 0.8em; font-weight: 700; border-radius: 4px; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        .insight-content h3 { font-size: 1.3em; margin-bottom: 15px; color: var(--bw-dark-blue); line-height: 1.4; }
+        .insight-content p { color: #4A5568; font-size: 0.95em; margin-bottom: 20px; }
+        .read-more { font-weight: 600; color: var(--bw-primary-blue); display: inline-flex; align-items: center; gap: 8px; font-size: 0.95em; }
+        .read-more:hover { color: var(--bw-dark-blue); }
+
+        /* Brand Universe Grid */
+        .brand-section { padding: 80px 5%; background: #ffffff; text-align: center; border-bottom: 1px solid #EDF2F7; }
+        .brand-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; margin: 50px auto; max-width: 1300px; }
+        .brand-card {
+            background: #F7FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 25px 15px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden;
+        }
+        .brand-card:hover {
+            transform: translateY(-6px); box-shadow: 0 15px 35px rgba(0, 56, 130, 0.12); border-color: var(--bw-primary-blue);
+            background: #ffffff;
+        }
+        .brand-logo-wrap {
+            width: 70px; height: 70px; border-radius: 12px; background: #ffffff;
+            display: flex; align-items: center; justify-content: center; margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06); overflow: hidden; border: 1px solid #EDF2F7;
+        }
+        .brand-logo-wrap img { width: 100%; height: 100%; object-fit: cover; }
+        .brand-logo-wrap i { font-size: 2em; color: var(--bw-dark-blue); }
+        .brand-card h4 { font-size: 1.15em; color: var(--bw-dark-blue); margin-bottom: 6px; font-weight: 800; }
+        .brand-card h4 span { color: #e2b04a; font-size: 0.8em; vertical-align: super; font-weight: 900; }
+        .brand-card p { font-size: 0.85em; color: #4A5568; line-height: 1.4; margin: 0; }
+        .cross-sell-banner {
+            background: linear-gradient(135deg, var(--bw-dark-blue) 0%, #0f3460 100%);
+            color: white; padding: 40px; border-radius: 12px; max-width: 1000px; margin: 40px auto 0;
+            box-shadow: 0 15px 40px rgba(0, 56, 130, 0.25); text-align: left; display: flex;
+            align-items: center; justify-content: space-between; gap: 30px; flex-wrap: wrap;
+            border-left: 6px solid #e2b04a;
+        }
+        .cross-sell-content h3 { color: #ffffff; font-size: 1.5em; margin-bottom: 10px; }
+        .cross-sell-content p { color: #E2E8F0; font-size: 1em; margin: 0; max-width: 600px; }
+
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .hero { padding-top: 130px; }
@@ -186,9 +232,11 @@
             <img src="images/1.png" alt="Blue_Wisdom Logo" style="max-height: 45px; width: auto;" onerror="this.outerHTML='<div style=\'display:flex; flex-direction:column;\'><span class=\'blue\'>Blue</span><span class=\'wisdom\'>_Wisdom</span></div>'">
         </a>
         <div class="nav-links">
+            <a href="#brands">Our Brands™</a>
             <a href="#services">Services</a>
             <a href="#assessment">Health Check</a>
             <a href="#methodology">Methodology</a>
+            <a href="#insights">Insights</a>
             <a href="#leadership">Leadership</a>
             <a href="#contact" class="cta-btn primary" style="padding: 8px 16px;">Book a Call</a>
         </div>
@@ -254,6 +302,196 @@
         <div class="quote-content">"Culture does not change because we desire to change it. Culture changes when the organization is transformed; the culture reflects the realities of people working together every day."</div>
         <div class="quote-author">- Frances Hesselbein</div>
     </div>
+
+    <!-- Official 19 Sub-Brands & Practice Areas Universe™ -->
+    <section id="brands" class="brand-section">
+        <div class="section-header">
+            <h2>The Blue Wisdom Ecosystem™</h2>
+            <p>Our comprehensive universe of 19 specialized, proprietary sub-brands and practice areas designed for end-to-end organizational transformation.</p>
+        </div>
+
+        <div class="brand-grid">
+            <!-- 1. BW L&D -->
+            <div class="brand-card">
+                <div class="brand-logo-wrap">
+                    <img src="images/bw_ld_logo.jpg" alt="BW L&D Logo" onerror="this.outerHTML='<i class=\'fa-solid fa-chalkboard-user\' style=\'color:#003882;\'></i>'">
+                </div>
+                <h4>BW L&D<span>™</span></h4>
+                <p>Corporate Learning & Capability Building</p>
+            </div>
+
+            <!-- 2. BW OD -->
+            <div class="brand-card">
+                <div class="brand-logo-wrap">
+                    <img src="images/bw_od_logo.jpg" alt="BW OD Logo" onerror="this.outerHTML='<i class=\'fa-solid fa-sitemap\' style=\'color:#003882;\'></i>'">
+                </div>
+                <h4>BW OD<span>™</span></h4>
+                <p>Organizational Development & Structure</p>
+            </div>
+
+            <!-- 3. BW AI -->
+            <div class="brand-card">
+                <div class="brand-logo-wrap">
+                    <img src="images/bw_ai_logo.jpg" alt="BW AI Logo" onerror="this.outerHTML='<i class=\'fa-solid fa-brain\' style=\'color:#003882;\'></i>'">
+                </div>
+                <h4>BW AI<span>™</span></h4>
+                <p>Enterprise AI & Digital Transformation</p>
+            </div>
+
+            <!-- 4. BW OBT -->
+            <div class="brand-card">
+                <div class="brand-logo-wrap">
+                    <img src="images/bw_obt_logo.jpg" alt="BW OBT Logo" onerror="this.outerHTML='<i class=\'fa-solid fa-mountain-sun\' style=\'color:#003882;\'></i>'">
+                </div>
+                <h4>BW OBT<span>™</span></h4>
+                <p>Out-Bound Experiential Training</p>
+            </div>
+
+            <!-- 5. BW Sales -->
+            <div class="brand-card">
+                <div class="brand-logo-wrap">
+                    <img src="images/bw_sales_logo.jpg" alt="BW Sales Logo" onerror="this.outerHTML='<i class=\'fa-solid fa-chart-line\' style=\'color:#003882;\'></i>'">
+                </div>
+                <h4>BW Sales<span>™</span></h4>
+                <p>Sales Excellence & Revenue Growth</p>
+            </div>
+
+            <!-- 6. BW Lead -->
+            <div class="brand-card">
+                <div class="brand-logo-wrap">
+                    <img src="images/bw_lead_logo.jpg" alt="BW Lead Logo" onerror="this.outerHTML='<i class=\'fa-solid fa-crown\' style=\'color:#003882;\'></i>'">
+                </div>
+                <h4>BW Lead<span>™</span></h4>
+                <p>Executive Leadership Development</p>
+            </div>
+
+            <!-- 7. BW Assess -->
+            <div class="brand-card">
+                <div class="brand-logo-wrap">
+                    <img src="images/bw_assess_logo.jpg" alt="BW Assess Logo" onerror="this.outerHTML='<i class=\'fa-solid fa-bullseye\' style=\'color:#003882;\'></i>'">
+                </div>
+                <h4>BW Assess<span>™</span></h4>
+                <p>Psychometric & Diagnostic Centers</p>
+            </div>
+
+            <!-- 8. BW Coach -->
+            <div class="brand-card">
+                <div class="brand-logo-wrap">
+                    <img src="images/bw_coach_logo.jpg" alt="BW Coach Logo" onerror="this.outerHTML='<i class=\'fa-solid fa-handshake-angle\' style=\'color:#003882;\'></i>'">
+                </div>
+                <h4>BW Coach<span>™</span></h4>
+                <p>Executive & Leadership Coaching</p>
+            </div>
+
+            <!-- 9. BW Mentor -->
+            <div class="brand-card">
+                <div class="brand-logo-wrap">
+                    <img src="images/bw_mentor_logo.jpg" alt="BW Mentor Logo" onerror="this.outerHTML='<i class=\'fa-solid fa-user-graduate\' style=\'color:#003882;\'></i>'">
+                </div>
+                <h4>BW Mentor<span>™</span></h4>
+                <p>Corporate Mentorship Programs</p>
+            </div>
+
+            <!-- 10. BW Women -->
+            <div class="brand-card">
+                <div class="brand-logo-wrap">
+                    <img src="images/bw_women_logo.jpg" alt="BW Women Logo" onerror="this.outerHTML='<i class=\'fa-solid fa-venus\' style=\'color:#003882;\'></i>'">
+                </div>
+                <h4>BW Women<span>™</span></h4>
+                <p>Women in Leadership & DEI</p>
+            </div>
+
+            <!-- 11. BW Culture -->
+            <div class="brand-card">
+                <div class="brand-logo-wrap">
+                    <img src="images/bw_culture_logo.jpg" alt="BW Culture Logo" onerror="this.outerHTML='<i class=\'fa-solid fa-people-group\' style=\'color:#003882;\'></i>'">
+                </div>
+                <h4>BW Culture<span>™</span></h4>
+                <p>Corporate Culture Transformation</p>
+            </div>
+
+            <!-- 12. BW Wellness -->
+            <div class="brand-card">
+                <div class="brand-logo-wrap">
+                    <img src="images/bw_wellness_logo.jpg" alt="BW Wellness Logo" onerror="this.outerHTML='<i class=\'fa-solid fa-heart-pulse\' style=\'color:#003882;\'></i>'">
+                </div>
+                <h4>BW Wellness<span>™</span></h4>
+                <p>Executive Resilience & Well-being</p>
+            </div>
+
+            <!-- 13. BW Ethics -->
+            <div class="brand-card">
+                <div class="brand-logo-wrap">
+                    <img src="images/bw_ethics_logo.jpg" alt="BW Ethics Logo" onerror="this.outerHTML='<i class=\'fa-solid fa-scale-balanced\' style=\'color:#003882;\'></i>'">
+                </div>
+                <h4>BW Ethics<span>™</span></h4>
+                <p>Governance & Ethical Leadership</p>
+            </div>
+
+            <!-- 14. BW Service -->
+            <div class="brand-card">
+                <div class="brand-logo-wrap">
+                    <i class="fa-solid fa-star" style="color: #003882; font-size: 2.2em;"></i>
+                </div>
+                <h4>BW Service<span>™</span></h4>
+                <p>Customer Experience Excellence</p>
+            </div>
+
+            <!-- 15. BW Ops -->
+            <div class="brand-card">
+                <div class="brand-logo-wrap">
+                    <i class="fa-solid fa-gears" style="color: #003882; font-size: 2.2em;"></i>
+                </div>
+                <h4>BW Ops<span>™</span></h4>
+                <p>Operational Excellence & Agile</p>
+            </div>
+
+            <!-- 16. BW Speak -->
+            <div class="brand-card">
+                <div class="brand-logo-wrap">
+                    <i class="fa-solid fa-microphone-lines" style="color: #003882; font-size: 2.2em;"></i>
+                </div>
+                <h4>BW Speak<span>™</span></h4>
+                <p>Executive Presence & Speaking</p>
+            </div>
+
+            <!-- 17. BW Innovate -->
+            <div class="brand-card">
+                <div class="brand-logo-wrap">
+                    <i class="fa-solid fa-lightbulb" style="color: #003882; font-size: 2.2em;"></i>
+                </div>
+                <h4>BW Innovate<span>™</span></h4>
+                <p>Design Thinking & Disruption</p>
+            </div>
+
+            <!-- 18. BW Analytics -->
+            <div class="brand-card">
+                <div class="brand-logo-wrap">
+                    <i class="fa-solid fa-chart-pie" style="color: #003882; font-size: 2.2em;"></i>
+                </div>
+                <h4>BW Analytics<span>™</span></h4>
+                <p>Training ROI & Impact Analytics</p>
+            </div>
+
+            <!-- 19. BW Academies -->
+            <div class="brand-card">
+                <div class="brand-logo-wrap">
+                    <i class="fa-solid fa-building-columns" style="color: #003882; font-size: 2.2em;"></i>
+                </div>
+                <h4>BW Academies<span>™</span></h4>
+                <p>Corporate University Setup</p>
+            </div>
+        </div>
+
+        <!-- Cross-Sell Ecosystem Banner -->
+        <div class="cross-sell-banner">
+            <div class="cross-sell-content">
+                <h3>Maximize Value with Integrated Solutions™</h3>
+                <p>Our client proposals and interventions are designed for synergy. Combine diagnostic rigor (<strong>BW Assess™</strong>), classroom mastery (<strong>BW Lead™</strong>), and ongoing executive mentoring (<strong>BW Coach™</strong>) for exponential business impact.</p>
+            </div>
+            <a href="#contact" class="cta-btn primary" style="background: #e2b04a; color: #003882 !important; font-weight: 800; border: none;">Explore Custom Combinations</a>
+        </div>
+    </section>
 
     <!-- Expanded Services Section -->
     <section id="services" class="bg-gray">
@@ -449,6 +687,58 @@
             <div class="method-step"><h4><span>4</span> Deploy</h4><p>We implement solutions with hands-on facilitation, leveraging our 10:20:70 methodology for maximum retention.</p></div>
             <div class="method-step"><h4><span>5</span> Measure</h4><p>We rigorously track progress against predefined KPIs and behavioral shifts using data-driven insights.</p></div>
             <div class="method-step"><h4><span>6</span> Review & Repeat</h4><p>Through dedicated 3-6 month follow-up sessions, we address field application challenges to sustain success.</p></div>
+        </div>
+    </section>
+
+    <!-- Insights / Blog Section -->
+    <section id="insights">
+        <div class="section-header">
+            <h2>Insights & Perspectives</h2>
+            <p>Thoughts on Organizational Development, the future of work, and building high-performance cultures in the age of AI.</p>
+        </div>
+
+        <div class="insights-grid">
+            <!-- Article 1 -->
+            <div class="insight-card">
+                <div class="insight-image">
+                    <i class="fa-solid fa-microchip"></i>
+                </div>
+                <div class="insight-content">
+                    <span class="insight-tag">AI & Culture</span>
+                    <h3>The Evolution of Strategy: Why AI is an OD Challenge</h3>
+                    <p>Everyone is buying AI tools. Almost no one is upgrading the organizational culture required to use them. Here is why...</p>
+                    <a href="https://www.linkedin.com/in/neerajnis/" target="_blank" class="read-more">Read on LinkedIn <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Article 2 -->
+            <div class="insight-card">
+                <div class="insight-image">
+                    <i class="fa-solid fa-chart-pie"></i>
+                </div>
+                <div class="insight-content">
+                    <span class="insight-tag">Methodology</span>
+                    <h3>Evolving the D4MR² Framework with Predictive Analytics</h3>
+                    <p>How we are injecting data-driven diagnostics to predict organizational friction before it happens.</p>
+                    <a href="https://www.linkedin.com/in/neerajnis/" target="_blank" class="read-more">Read on LinkedIn <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Article 3 -->
+            <div class="insight-card">
+                <div class="insight-image">
+                    <i class="fa-solid fa-users-rays"></i>
+                </div>
+                <div class="insight-content">
+                    <span class="insight-tag">Future of Work</span>
+                    <h3>Job Redesign vs. Job Replacement</h3>
+                    <p>AI won't replace your team. But a team that knows how to collaborate with AI will. The next HR challenge...</p>
+                    <a href="https://www.linkedin.com/in/neerajnis/" target="_blank" class="read-more">Read on LinkedIn <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="https://www.linkedin.com/in/neerajnis/" target="_blank" class="cta-btn secondary">Follow Neeraj on LinkedIn for More Insights</a>
         </div>
     </section>
 
