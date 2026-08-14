@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HI Meets AI: Blue Wisdom Conclave Widescreen Presentation</title>
+    <!-- Montserrat & Open Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --scale-factor: 1;
+            --navy: #003366;
+            --gold: #f1c40f;
+            --dark-navy: #002244;
+            --light-bg: #f8f9fa;
+            --text-color: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #111;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Open Sans', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* 16:9 Widescreen Presentation Canvas */
+        .presentation-container {
+            width: 1920px;
+            height: 1080px;
+            transform: scale(var(--scale-factor));
+            transform-origin: center center;
+            background-color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+            flex-shrink: 0;
+        }
+
+        /* Slide Shell */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 980px; /* 1080px - 100px Footer */
+            padding: 60px 80px 40px 80px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            z-index: 10;
+        }
+
+        /* Title Slide Custom BG */
+        .slide.title-slide {
+            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--navy) 100%);
+            color: #ffffff;
+            justify-content: center;
+            align-items: flex-start;
+            padding-left: 120px;
+        }
+
+        /* Slide Typography (50-foot projection standards) */
+        .top-slide-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.2rem;
+            font-weight: 900;
+            color: var(--navy);
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .title-slide .top-slide-title {
+            color: #ffffff;
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+        }
+
+        .top-action-banner {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.1rem;
+            font-weight: 800;
+            color: var(--gold);
+            background-color: var(--dark-navy);
+            padding: 12px 24px;
+            border-left: 6px solid var(--gold);
+            margin-bottom: 40px;
+            border-radius: 0 4px 4px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+        }
+
+        .title-slide .top-action-banner {
+            background-color: rgba(255,255,255,0.1);
+            color: var(--gold);
+            border-left-color: var(--gold);
+        }
+
+        /* Layout Grid */
+        .slide-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 520px;
+            gap: 60px;
+            align-items: start;
+            flex-grow: 1;
+        }
+
+        /* Huge Image Box */
+        .huge-image-box {
+            width: 520px;
+            height: 480px;
+            border-radius: 8px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            object-fit: cover;
+            border: 4px solid var(--navy);
+        }
+
+        /* Text Content Cards (Zero empty space) */
+        .bullet-card-large {
+            background-color: var(--light-bg);
+            border-left: 6px solid var(--navy);
+            padding: 30px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 24px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .bullet-title-large {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.65rem;
+            font-weight: 800;
+            color: var(--navy);
+            margin: 0 0 10px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .bullet-text-large {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: #555555;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .bullet-text-large strong {
+            color: var(--navy);
+        }
+
+        /* Step Reveal */
+        .step {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .step.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Half-Slide Huge QR Code Layout */
+        .half-slide-qr-layout {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .qr-container {
+            width: 520px;
+            height: 520px;
+            background: #ffffff;
+            border: 8px solid var(--navy);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            padding: 20px;
+        }
+
+        /* Global Footer Controls */
+        .presentation-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background-color: var(--navy);
+            border-top: 6px solid var(--gold);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 80px;
+            z-index: 100;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .footer-logo img {
+            height: 40px;
+        }
+
+        .footer-nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .btn-control {
+            background-color: rgba(255,255,255,0.1);
+            color: #ffffff;
+            border: 2px solid rgba(255,255,255,0.3);
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-control:hover {
+            background-color: var(--gold);
+            color: var(--navy);
+            border-color: var(--gold);
+        }
+
+        .slide-select {
+            background-color: var(--dark-navy);
+            color: #ffffff;
+            border: 2px solid rgba(255,255,255,0.3);
+            padding: 10px 15px;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            outline: none;
+            cursor: pointer;
+        }
+
+        /* Speaker Notes Panel */
+        .notes-panel {
+            position: fixed;
+            bottom: 100px;
+            right: 80px;
+            width: 450px;
+            max-height: 400px;
+            background: #ffffff;
+            border: 3px solid var(--navy);
+            border-radius: 8px 8px 0 0;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.3);
+            z-index: 200;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .notes-header {
+            background: var(--navy);
+            color: #ffffff;
+            padding: 15px 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .notes-body {
+            padding: 20px;
+            overflow-y: auto;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #333333;
+            background-color: #fffbea;
+            flex-grow: 1;
+        }
+
+        /* Comparison Table style */
+        .ppt-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        .ppt-table th {
+            background-color: var(--navy);
+            color: #ffffff;
+            padding: 15px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-align: left;
+        }
+
+        .ppt-table td {
+            padding: 15px;
+            border-bottom: 2px solid #e0e0e0;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="presentation-container" id="presentation">
+        
+        <!-- Slide 1: Title -->
+        <div class="slide title-slide active" id="slide-1" style="flex-direction: row; align-items: center; justify-content: space-between; padding-right: 80px;">
+            <div style="flex: 1; max-width: 1100px;">
+                <div style="color: var(--gold); font-family: 'Montserrat', sans-serif; font-size: 1.2rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;">Organised by Jaipuria Institute of Management, Jaipur</div>
+                <h1 class="top-slide-title" style="font-size: 4.2rem; margin-bottom: 15px; color: #ffffff;">HR & Marketing Conclave 2026</h1>
+                <div class="top-action-banner" style="margin-bottom: 25px; font-size: 1.8rem;">Human Intelligence Meets Artificial Intelligence</div>
+                <p style="font-size: 1.8rem; font-weight: 600; color: #b0c4de; margin: 0 0 40px 0; font-family: 'Open Sans', sans-serif; font-style: italic;">"Redefining Work, Brands, and Growth"</p>
+                <div style="margin-top: 40px;">
+                    <p style="font-size: 2.2rem; font-weight: 700; margin: 0; color: var(--gold); font-family: 'Montserrat', sans-serif;">Neeraj Bhardwaj</p>
+                    <p style="font-size: 1.5rem; font-weight: 600; margin: 5px 0 0 0; color: #ffffff; opacity: 0.9;">Director & CEO, Blue Wisdom</p>
+                </div>
+            </div>
+            <div style="width: 480px; height: 640px; border: 6px solid var(--gold); border-radius: 12px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5); background: white;">
+                <img src="images/conclave_brochure.png" alt="Conclave Brochure" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+        </div>
+
+        <!-- Slide 2: The Tick-Mark Illusion -->
+        <div class="slide" id="slide-2">
+            <h2 class="top-slide-title">The "Tick-Mark" Illusion</h2>
+            <div class="top-action-banner">Vanity Metrics vs. Actual Business Impact</div>
+            <div class="slide-grid-2">
+                <div>
+                    <div class="bullet-card-large step">
+                        <h3 class="bullet-title-large">1. The Corporate Trap</h3>
+                        <p class="bullet-text-large">HR proudly tracks <strong>vanity metrics</strong>: "5 days of sessions, 2 hours daily, 100% attendance." But business impact remains <strong>completely flat</strong>.</p>
+                    </div>
+                    <div class="bullet-card-large step">
+                        <h3 class="bullet-title-large">2. Kirkpatrick Level 4 Assessment</h3>
+                        <p class="bullet-text-large">Did it improve business KPIs? Did productivity scale? Real capability training requires <strong>measurable performance alignment</strong>.</p>
+                    </div>
+                    <div class="bullet-card-large step" style="border-left-color: var(--gold);">
+                        <h3 class="bullet-title-large">💡 Speaker Pro-Tip</h3>
+                        <p class="bullet-text-large">Tell the Ahmedabad Management Association client story here to hook the audience instantly.</p>
+                    </div>
+                </div>
+                <div class="bullet-card-large" style="background: var(--navy); color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 480px; border-left: none; border-radius: 8px;">
+                    <span style="font-size: 8rem;">🎯</span>
+                    <h3 style="color: var(--gold); font-size: 2rem; font-family:'Montserrat',sans-serif; margin: 20px 0 10px 0;">Shift the Paradigm</h3>
+                    <p style="font-size: 1.35rem; font-weight: 600; padding: 0 40px; margin: 0; line-height: 1.6;">"Training is not about finishing a checklist. It's about moving a business metric."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Flight Simulator Analogy -->
+        <div class="slide" id="slide-3">
+            <h2 class="top-slide-title">The AI Coach vs. Human Coach</h2>
+            <div class="top-action-banner">Flight Simulator vs. Flying in a Storm</div>
+            <div class="slide-grid-2">
+                <div>
+                    <div class="bullet-card-large step">
+                        <h3 class="bullet-title-large">1. The Simulator: AI-Driven Practice</h3>
+                        <p class="bullet-text-large">AI is an incredible <strong>flight simulator</strong>. It is a risk-free zone where a manager can practice hard conversations and crash the plane 50 times without consequences.</p>
+                    </div>
+                    <div class="bullet-card-large step">
+                        <h3 class="bullet-title-large">2. The Storm: Real Human Emotion</h3>
+                        <p class="bullet-text-large">A hard conversation with an underperformer is flying in <strong>real turbulence</strong>. The simulator has no fear; a human coach sits next to you as the co-pilot with <strong>real skin in the game</strong>.</p>
+                    </div>
+                </div>
+                <div class="bullet-card-large" style="background: var(--navy); color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 480px; border-left: none; border-radius: 8px;">
+                    <span style="font-size: 8rem;">✈️</span>
+                    <h3 style="color: var(--gold); font-size: 2rem; font-family:'Montserrat',sans-serif; margin: 20px 0 10px 0;">The Co-Pilot Principle</h3>
+                    <p style="font-size: 1.35rem; font-weight: 600; padding: 0 40px; margin: 0; line-height: 1.6;">"AI coaches you on the mechanics; a human coach navigates the turbulence."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Riverbank vs. Private Bathroom -->
+        <div class="slide" id="slide-4">
+            <h2 class="top-slide-title">Dismantling Data Security Concerns</h2>
+            <div class="top-action-banner">आप डिसाइड करो: नदी का घाट या पर्सनल बाथरूम?</div>
+            <div class="slide-grid-2">
+                <div>
+                    <div class="bullet-card-large step">
+                        <h3 class="bullet-title-large">1. Public LLMs (The Riverbank)</h3>
+                        <p class="bullet-text-large">Sharing company IP with public chatbots is like bathing on a public riverbank—anyone can watch, and your data is trained on by the world.</p>
+                    </div>
+                    <div class="bullet-card-large step">
+                        <h3 class="bullet-title-large">2. Enterprise AI (The Private Bathroom)</h3>
+                        <p class="bullet-text-large">Closed-loop, ring-fenced enterprise environments operate in a private, secure bathroom. Your data stays entirely yours.</p>
+                    </div>
+                </div>
+                <div class="bullet-card-large" style="background: var(--navy); color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 480px; border-left: none; border-radius: 8px;">
+                    <span style="font-size: 8rem;">🚿</span>
+                    <h3 style="color: var(--gold); font-size: 2rem; font-family:'Montserrat',sans-serif; margin: 20px 0 10px 0;">Enterprise Governance</h3>
+                    <p style="font-size: 1.35rem; font-weight: 600; padding: 0 40px; margin: 0; line-height: 1.6;">"Data leakage isn't an AI problem; it's a governance problem."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Live Poll (Poll.webp) -->
+        <div class="slide" id="slide-5">
+            <h2 class="top-slide-title">Interactive Audience Probing</h2>
+            <div class="top-action-banner">What is your organization's biggest roadblock to AI adoption?</div>
+            <div class="slide-grid-2">
+                <div>
+                    <div class="bullet-card-large step">
+                        <h3 class="bullet-title-large">A. Skill Gap & Lack of Awareness</h3>
+                        <p class="bullet-text-large">Teams simply do not know how to write prompts or align AI with business tasks.</p>
+                    </div>
+                    <div class="bullet-card-large step">
+                        <h3 class="bullet-title-large">B. Data Leakage & Security Phobia</h3>
+                        <p class="bullet-text-large">Fears that private business data will be exposed to public tools.</p>
+                    </div>
+                    <div class="bullet-card-large step">
+                        <h3 class="bullet-title-large">C. Cultural Resistance & Attrition Fears</h3>
+                        <p class="bullet-text-large">"If I use AI, will it replace my job?"</p>
+                    </div>
+                </div>
+                <div style="display:flex; flex-direction:column; align-items:center; gap: 15px;">
+                    <div id="poll-container-5" style="width: 520px; height: 480px; position: relative; border: 4px solid var(--navy); border-radius: 8px; overflow: hidden; background: #fff; box-shadow: 0 15px 35px rgba(0,0,0,0.15);">
+                        <img id="poll-img-5" src="file:///C:/Users/neera/OneDrive/Desktop/KP/KP2/PPT%20Images/Poll.webp" alt="Poll" style="width:100%; height:100%; object-fit:cover;">
+                        <iframe id="poll-frame-5" src="" style="width:100%; height:100%; border:none; display:none;"></iframe>
+                    </div>
+                    <div style="display:flex; gap:10px;">
+                        <button class="btn-control" onclick="togglePollWidget(5, 'static')" style="font-size:0.85rem; padding:8px 16px;">Image View</button>
+                        <button class="btn-control" onclick="togglePollWidget(5, 'menti')" style="font-size:0.85rem; padding:8px 16px; background-color:var(--gold); color:var(--navy); border-color:var(--gold);">Live Mentimeter</button>
+                        <button class="btn-control" onclick="togglePollWidget(5, 'kahoot')" style="font-size:0.85rem; padding:8px 16px; background-color:#864cbf; border-color:#864cbf;">Live Kahoot</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Session Objectives (Obj.png) -->
+        <div class="slide" id="slide-6">
+            <h2 class="top-slide-title">Interactive Capability Objectives</h2>
+            <div class="top-action-banner">Aligning human intellect with AI capability</div>
+            <div class="slide-grid-2">
+                <div>
+                    <div class="bullet-card-large step">
+                        <h3 class="bullet-title-large">1. Move Past the Hype</h3>
+                        <p class="bullet-text-large">Identify where AI actually makes a difference in business outcomes (not just chatbot fun).</p>
+                    </div>
+                    <div class="bullet-card-large step">
+                        <h3 class="bullet-title-large">2. Demystify the Technology</h3>
+                        <p class="bullet-text-large">Help leadership understand the ring-fencing of data and structural model capabilities.</p>
+                    </div>
+                    <div class="bullet-card-large step">
+                        <h3 class="bullet-title-large">3. Establish the Capability Blueprint</h3>
+                        <p class="bullet-text-large">Formulate the 30-60-90 day integrated roadmap for HR and Marketing teams.</p>
+                    </div>
+                </div>
+                <img src="images/welcome_leaders.png" alt="Objectives" class="huge-image-box" style="object-fit: contain; background: white;">
+            </div>
+        </div>
+
+        <!-- Slide 7: AI in HR (intern.webp) -->
+        <div class="slide" id="slide-7">
+            <h2 class="top-slide-title">AI in HR: Practical Use Cases</h2>
+            <div class="top-action-banner">Unbiased Screening, Personalized L&D, and Attrition Prediction</div>
+            <div class="slide-grid-2">
+                <div>
+                    <table class="ppt-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 30%;">Category</th>
+                                <th style="width: 70%;">AI Application & Business Impact</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="step">
+                                <td><strong>Recruitment</strong></td>
+                                <td><strong>Unbiased Screening:</strong> Strips demographics, matches on skills. Unilever saw time-to-hire drop by <strong>40%</strong>.</td>
+                            </tr>
+                            <tr class="step">
+                                <td><strong>Policies & Comp</strong></td>
+                                <td><strong>Dynamic Querying:</strong> Employees chat with internal ring-fenced policy models. Instant, secure answers.</td>
+                            </tr>
+                            <tr class="step">
+                                <td><strong>Performance Mgt.</strong></td>
+                                <td><strong>Continuous Feedback:</strong> AI analyzes collaboration patterns (Slack/Teams) to flag peer feedback trends.</td>
+                            </tr>
+                            <tr class="step">
+                                <td><strong>Learning & Dev</strong></td>
+                                <td><strong>Hyper-Personalization:</strong> Dynamic learning paths mapped to individual skill gaps—like <strong>BW Assess™</strong>.</td>
+                            </tr>
+                            <tr class="step">
+                                <td><strong>Employee Engagement</strong></td>
+                                <td><strong>Predictive Attrition:</strong> Sentiment analysis on pulse surveys flags burnout 3-6 months before resignation.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="display:flex; flex-direction:column; align-items:center;">
+                    <img src="images/BW-Products/bw_ai_logo.png" alt="AI Intern" class="huge-image-box" style="object-fit: contain; background: white;">
+                    <span style="font-size: 1.1rem; color: var(--navy); font-weight: 700; margin-top: 10px; font-family:'Montserrat';">THE "CAPABLE INTERN" PRINCIPLE</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: AI in Marketing (Poll.webp) -->
+        <div class="slide" id="slide-8">
+            <h2 class="top-slide-title">AI in Marketing & Sales: Use Cases</h2>
+            <div class="top-action-banner">Hyper-Personalization, Analytics, and Sentiment Tracking</div>
+            <div class="slide-grid-2">
+                <div>
+                    <table class="ppt-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 30%;">Category</th>
+                                <th style="width: 70%;">AI Application & Business Impact</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="step">
+                                <td><strong>Consumer Analytics</strong></td>
+                                <td><strong>Predictive Modeling:</strong> Analyzes purchase history to predict future needs (e.g., Myntra's hyper-segmentation).</td>
+                            </tr>
+                            <tr class="step">
+                                <td><strong>Digital Advertising</strong></td>
+                                <td><strong>Dynamic Creative Optimization:</strong> Automatically scales and tests 10,000 ad variants for user profiles.</td>
+                            </tr>
+                            <tr class="step">
+                                <td><strong>Personalization</strong></td>
+                                <td><strong>Real-Time Recommendation:</strong> Rewrites copy dynamically based on browsing patterns (e.g., Zomato push alerts).</td>
+                            </tr>
+                            <tr class="step">
+                                <td><strong>Brand Management</strong></td>
+                                <td><strong>Social Sentiment Analysis:</strong> Scans brand mentions across social media to detect PR crises in real time.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="display:flex; flex-direction:column; align-items:center; gap: 15px;">
+                    <div id="poll-container-8" style="width: 520px; height: 480px; position: relative; border: 4px solid var(--navy); border-radius: 8px; overflow: hidden; background: #fff; box-shadow: 0 15px 35px rgba(0,0,0,0.15);">
+                        <img id="poll-img-8" src="file:///C:/Users/neera/OneDrive/Desktop/KP/KP2/PPT%20Images/Poll.webp" alt="Poll" style="width:100%; height:100%; object-fit:cover;">
+                        <iframe id="poll-frame-8" src="" style="width:100%; height:100%; border:none; display:none;"></iframe>
+                    </div>
+                    <div style="display:flex; gap:10px;">
+                        <button class="btn-control" onclick="togglePollWidget(8, 'static')" style="font-size:0.85rem; padding:8px 16px;">Image View</button>
+                        <button class="btn-control" onclick="togglePollWidget(8, 'menti')" style="font-size:0.85rem; padding:8px 16px; background-color:var(--gold); color:var(--navy); border-color:var(--gold);">Live Mentimeter</button>
+                        <button class="btn-control" onclick="togglePollWidget(8, 'kahoot')" style="font-size:0.85rem; padding:8px 16px; background-color:#864cbf; border-color:#864cbf;">Live Kahoot</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: 5 Core Competencies (Corporate.jpg) -->
+        <div class="slide" id="slide-9">
+            <h2 class="top-slide-title">5 Core Leadership Competencies</h2>
+            <div class="top-action-banner">Human-Led Capabilities that AI Can't Simulate</div>
+            <div class="slide-grid-2">
+                <div>
+                    <div class="bullet-card-large step">
+                        <h3 class="bullet-title-large">The Widescreen Framework</h3>
+                        <p class="bullet-text-large">Our core organizational capability focuses on building five distinct pillars of human leadership in an automated environment.</p>
+                    </div>
+                    <div class="bullet-card-large step">
+                        <h3 class="bullet-title-large">Building Strategic Agility</h3>
+                        <p class="bullet-text-large">Moving from static skills to dynamic, adaptive mindsets that leverage technology safely.</p>
+                    </div>
+                </div>
+                <img src="images/hero_corporate.png" alt="Corporate" class="huge-image-box" style="object-fit: cover;">
+            </div>
+        </div>
+
+        <!-- Slide 10: Attitude and AQ (Attitude.webp) -->
+        <div class="slide" id="slide-10">
+            <h2 class="top-slide-title">Attitude Over Aptitude</h2>
+            <div class="top-action-banner">Why AQ (Adaptability Quotient) overrides IQ</div>
+            <div class="slide-grid-2">
+                <div>
+                    <div class="bullet-card-large step">
+                        <h3 class="bullet-title-large">1. Mindset Over Skill</h3>
+                        <p class="bullet-text-large">In the AI era, specific technical skills become obsolete every six months. Your willingness to adapt is your only permanent asset.</p>
+                    </div>
+                    <div class="bullet-card-large step">
+                        <h3 class="bullet-title-large">2. Fostering Learning Agility</h3>
+                        <p class="bullet-text-large">Creating a culture where unlearning is valued just as highly as learning.</p>
+                    </div>
+                </div>
+                <img src="images/coaching_profile.jpg.png" alt="Attitude" class="huge-image-box" style="object-fit: cover;">
+            </div>
+        </div>
+
+        <!-- Slide 11: BW Assess (Assess.jpg) -->
+        <div class="slide" id="slide-11">
+            <h2 class="top-slide-title">Blue Wisdom Digital Diagnostics</h2>
+            <div class="top-action-banner">BW Assess™: Scientifically Baselining Talent & Tech Readiness</div>
+            <div class="slide-grid-2">
+                <div>
+                    <div class="bullet-card-large step" style="margin-bottom: 15px; padding: 20px;">
+                        <h3 class="bullet-title-large" style="margin-bottom: 5px;">1. AI & Digital Readiness Audit</h3>
+                        <p class="bullet-text-large" style="font-size: 1.25rem;">Evaluates manual task overhead, AI integration level, and No-Code adoption readiness. Feeds directly into custom capability designs.</p>
+                    </div>
+                    <div class="bullet-card-large step" style="margin-bottom: 15px; padding: 20px;">
+                        <h3 class="bullet-title-large" style="margin-bottom: 5px;">2. Core Diagnostic Suite</h3>
+                        <p class="bullet-text-large" style="font-size: 1.25rem;">
+                            • <strong>Master OD Diagnostic:</strong> Maps vision alignment & cross-functional silos.<br>
+                            • <strong>Culture Vulture™:</strong> Measures psychological safety & dialogic trust fields.<br>
+                            • <strong>Team Compass™:</strong> Audits inter-department communication friction.
+                        </p>
+                    </div>
+                    <div class="bullet-card-large step" style="border-left-color: var(--gold); margin-bottom: 0; padding: 20px;">
+                        <h3 class="bullet-title-large" style="margin-bottom: 5px;">🌐 Active Landing Page</h3>
+                        <p class="bullet-text-large" style="font-size: 1.25rem;">Explore all diagnostic templates live at <strong>www.bluewisdom.in/assessments</strong></p>
+                    </div>
+                </div>
+                <img src="images/BW-Products/4c-profiles.png" alt="BW Assess" class="huge-image-box" style="object-fit: contain; background: white;">
+            </div>
+        </div>
+
+        <!-- Slide 12: Roadmap (Roadmap.webp) -->
+        <div class="slide" id="slide-12">
+            <h2 class="top-slide-title">Integrated Capability Roadmap</h2>
+            <div class="top-action-banner">30-60-90 Day Action Blueprint</div>
+            <div class="slide-grid-2">
+                <div>
+                    <div class="bullet-card-large step">
+                        <h3 class="bullet-title-large">1. Day 1 - 30: Baseline & Governance</h3>
+                        <p class="bullet-text-large">Map capabilities using <strong>BW Assess™</strong>; construct ring-fenced secure data environments.</p>
+                    </div>
+                    <div class="bullet-card-large step">
+                        <h3 class="bullet-title-large">2. Day 31 - 60: Agentic AI Integration</h3>
+                        <p class="bullet-text-large">Train teams on custom role-based AI templates (L&D, Recruiting, Analytics, consumer data).</p>
+                    </div>
+                    <div class="bullet-card-large step">
+                        <h3 class="bullet-title-large">3. Day 61 - 90: Business Impact Review</h3>
+                        <p class="bullet-text-large">Track Kirkpatrick Level 4 outcomes and align productivity gains back to corporate KPIs.</p>
+                    </div>
+                </div>
+                <img src="images/d4mr2.png" alt="Roadmap" class="huge-image-box" style="object-fit: contain; background: white;">
+            </div>
+        </div>
+
+        <!-- Slide 13: Summary Key Takeaways -->
+        <div class="slide" id="slide-13">
+            <h2 class="top-slide-title">The Core Analogy Summary</h2>
+            <div class="top-action-banner">Human Agility + Machine Efficiency</div>
+            <div class="slide-grid-2">
+                <div>
+                    <div class="bullet-card-large step">
+                        <h3 class="bullet-title-large">1. Weather Map vs. Standing in the Rain</h3>
+                        <p class="bullet-text-large">AI identifies the corporate storm; humans feel the climate and guide the team.</p>
+                    </div>
+                    <div class="bullet-card-large step">
+                        <h3 class="bullet-title-large">2. The MRI vs. The Surgery</h3>
+                        <p class="bullet-text-large">AI data points out the performance fracture; direct manager conversations perform the cure.</p>
+                    </div>
+                    <div class="bullet-card-large step" style="border-left-color: var(--gold);">
+                        <h3 class="bullet-title-large">3. Sheet Music vs. Live Music</h3>
+                        <p class="bullet-text-large">AI scans the notes and structure; humans feel the energy and make the music connect.</p>
+                    </div>
+                </div>
+                <div class="bullet-card-large" style="background: linear-gradient(135deg, var(--navy) 0%, var(--dark-navy) 100%); color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 480px; border-left: none; border-radius: 8px;">
+                    <span style="font-size: 6rem; color: var(--gold);">✨</span>
+                    <h3 style="color: var(--gold); font-size: 2.2rem; font-family:'Montserrat',sans-serif; margin: 20px 0 10px 0;">The Speaking Anchor</h3>
+                    <p style="font-size: 1.6rem; font-weight: 700; padding: 0 40px; margin: 0; line-height: 1.6; font-style: italic;">"AI reads the notes; humans feel the music."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Let’s Connect (QR Attendance Layout) -->
+        <div class="slide" id="slide-14">
+            <h2 class="top-slide-title">Scan to Baseline Your Talent</h2>
+            <div class="top-action-banner">Visit bluewisdom.in/assessments#tiers to explore diagnostic tiers</div>
+            <div class="half-slide-qr-layout">
+                <div>
+                    <div class="bullet-card-large">
+                        <h3 class="bullet-title-large">Strategic Value Expansion</h3>
+                        <p class="bullet-text-large">Participate in our complimentary digital micro-assessments right now. Evaluate your team's change readiness and digital fluency in under 5 minutes.</p>
+                    </div>
+                    <div class="bullet-card-large" style="border-left-color: var(--gold); display: flex; align-items: center; gap: 20px; padding: 15px; background: #ffffff; box-shadow: 0 10px 25px rgba(0,0,0,0.08);">
+                        <img src="images/consultant-neeraj.jpg" alt="Neeraj Bhardwaj" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid var(--navy); box-shadow: 0 5px 15px rgba(0,0,0,0.15); flex-shrink: 0;">
+                        <div>
+                            <h3 class="bullet-title-large" style="margin: 0 0 5px 0; color: var(--navy); font-size: 1.5rem; font-family:'Montserrat',sans-serif;">Neeraj Bhardwaj</h3>
+                            <p style="font-size: 1.1rem; color: #555555; margin: 0 0 10px 0; font-family:'Open Sans'; font-weight: 600;">Director & CEO, Blue Wisdom</p>
+                            <div style="display: flex; gap: 15px;">
+                                <a href="https://www.linkedin.com/in/neerajnis/" target="_blank" style="color: var(--navy); font-size: 1.1rem; text-decoration: none; font-weight: 700; display: flex; align-items: center; gap: 5px; font-family: 'Montserrat', sans-serif;">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block; vertical-align:middle;"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                                    LINKEDIN
+                                </a>
+                                <a href="https://www.bluewisdom.in" target="_blank" style="color: var(--navy); font-size: 1.1rem; text-decoration: none; font-weight: 700; display: flex; align-items: center; gap: 5px; font-family: 'Montserrat', sans-serif;">
+                                    🌐 WEBSITE
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="display:flex; flex-direction:column; align-items:center;">
+                    <div class="qr-container">
+                        <img src="images/BW%20QR%20Assessment.png" alt="BW QR Assessment" style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+                    <span style="color: var(--navy); font-family: 'Montserrat', sans-serif; font-size: 1.6rem; font-weight: 800; margin-top: 15px; letter-spacing: 1px;">www.bluewisdom.in/assessments#tiers</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="presentation-footer">
+            <div class="footer-logo">
+                <img src="images/blue_wisdom_logo.png" alt="Blue Wisdom" style="filter: brightness(0) invert(1); height: 40px;">
+                <span style="color: white; font-family:'Montserrat',sans-serif; font-size: 1.1rem; font-weight: 800; letter-spacing: 2px;">CONCLAVE 2026</span>
+            </div>
+            
+            <div class="footer-nav">
+                <button class="btn-control" id="btnPrev">◀ PREV</button>
+                <select class="slide-select" id="jumpMenu">
+                    <option value="1">Slide 1: Title</option>
+                    <option value="2">Slide 2: The Tick-Mark Illusion</option>
+                    <option value="3">Slide 3: Flight Simulator</option>
+                    <option value="4">Slide 4: Data Security Humor</option>
+                    <option value="5">Slide 5: Roadblock Poll</option>
+                    <option value="6">Slide 6: Objectives</option>
+                    <option value="7">Slide 7: AI as the Intern</option>
+                    <option value="8">Slide 8: Marketing Poll</option>
+                    <option value="9">Slide 9: 5 Competencies</option>
+                    <option value="10">Slide 10: Attitude & AQ</option>
+                    <option value="11">Slide 11: BW Assess™</option>
+                    <option value="12">Slide 12: Integrated Roadmap</option>
+                    <option value="13">Slide 13: Core Analogies</option>
+                    <option value="14">Slide 14: QR Diagnostics</option>
+                </select>
+                <button class="btn-control" id="btnNext">NEXT ▶</button>
+                <button class="btn-control" id="btnFullscreen">FULLSCREEN (F)</button>
+                <button class="btn-control" id="btnNotes">SPEAKER NOTES (S)</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Speaker Notes Panel -->
+    <div class="notes-panel" id="notesPanel">
+        <div class="notes-header">
+            <span>SPEAKER NOTES</span>
+            <button style="background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;" id="btnCloseNotes">×</button>
+        </div>
+        <div class="notes-body" id="notesBody">
+            <!-- Dynamically populated -->
+        </div>
+    </div>
+
+    <script>
+        // Speaker notes mapping for all slides
+        const speakerNotes = {
+            1: "<b>Title Slide Notes:</b><br>- Welcome the audience and panelists.<br>- State the central theme of the conclave: We are not here to debate if AI is useful, but how human intelligence directs it.<br>- Introduce yourself as CEO of Blue Wisdom, partnering with organizations to align talent and technology.",
+            2: "<b>The Tick-Mark Illusion Notes:</b><br>- Hook the audience with the AMA story: A client proudly completed '5 days of AI training, 2 hours daily' for leadership. Vanity metrics (hours completed, certificates) were high.<br>- But when asked about Level 4 impact (measurable business KPI shift)... total silence.<br>- Establish that training is about metrics, not checklists.",
+            3: "<b>AI vs. Human Coach Notes:</b><br>- Deliver the Flight Simulator analogy. AI coach is a simulator—risk-free practice to crash 50 times. It helps you prepare.<br>- Underperformance is flying a real commercial plane in a heavy storm. The simulator has no fear or empathy. You need a human coach (co-pilot) with skin in the game.",
+            4: "<b>Data Security Humour Notes:</b><br>- Deliver the Hindi riverbank vs. private bathroom analogy.<br>- Ask: 'आप डिसाइड करो कि अगर आपको नहाना है तो नदी के किनारे घाट पर नहाना है या अपने पर्सनल बाथरूम में नहाना है?'<br>- Public AI is the riverbank (everyone can see, data leaks). Enterprise AI is the private bathroom (secure, ring-fenced, safe corporate IP).",
+            5: "<b>Friction Poll Notes:</b><br>- Perform a live show-of-hands poll.<br>- Ask the audience: 'How many of you feel the biggest roadblock in your team is: A) Skill Gap, B) Data Fear, or C) Attrition/Cultural Resistance?'<br>- Briefly address the most voted option and tie it back to change management.",
+            6: "<b>Objectives Notes:</b><br>- Walk through the session plan.<br>- Objective 1: Cut through the AI noise.<br>- Objective 2: Address data security structure.<br>- Objective 3: Walk away with a realistic capability blueprint for L&D, HR, and Marketing.",
+            7: "<b>AI as the Intern Notes:</b><br>- Position AI as a brilliant, hyper-fast intern. Excellent at speed, processing, and formatting.<br>- But you never let an intern make strategic decisions unsupervised. Human intelligence must guide, edit, and audit the output.",
+            8: "<b>Marketing Poll Notes:</b><br>- Engage the marketing executives in the audience.<br>- Ask: 'Who is using AI for more than just drafting social media posts?'<br>- Explain the shift from simple copy generation to predictive analytics and sentiment tracking.",
+            9: "<b>5 Core Competencies Notes:</b><br>- Discuss the 5 human-led competencies: Empathy, Ethics, Creativity, Judgment, and Adaptability.<br>- Show how these competencies act as the anchoring foundation of a modern enterprise.",
+            10: "<b>Attitude Over Aptitude Notes:</b><br>- Explain AQ (Adaptability Quotient).<br>- Technical tools change every six months; learning agility is the only permanent competitive edge.<br>- Positioning: Blue Wisdom focuses on building adaptive mindsets, not just tool training.",
+            11: "<b>BW Assess™ Notes:</b><br>- Deliver the Plant/Roots analogy: Measuring performance is just measuring the plant's height. Spotting potential is checking the roots (learning agility, adaptability).<br>- Introduce <b>BW Assess™</b> and <b>4C Profiles™</b> diagnostics to map organizational capability before training.",
+            12: "<b>Roadmap Notes:</b><br>- Present the 30-60-90 Day Integrated Roadmap.<br>- Day 1-30: Baseline and secure ring-fencing.<br>- Day 31-60: Task-aligned Agentic AI training.<br>- Day 61-90: KPI auditing and value realization.",
+            13: "<b>Summary Notes:</b><br>- Reiterate the three core analogies:<br>1. Satellite Map vs. Standing in the rain.<br>2. MRI Scan vs. Surgery.<br>3. Sheet Music vs. Live Concert.<br>- Anchor: <i>'AI reads the notes; humans feel the music.'</i>",
+            14: "<b>Let's Connect Notes:</b><br>- Direct the audience to scan the QR code to visit <b>bluewisdom.in/assessments</b>.<br>- Invite them to run the complimentary 5-minute team readiness baseline diagnostic.<br>- Softly introduce Strategic Value Expansion: suggesting BW executive coaching/L&D post-evaluations."
+        };
+
+        // Slide State
+        let currentSlide = 1;
+        const totalSlides = 14;
+
+        // Dom Elements
+        const slides = document.querySelectorAll('.slide');
+        const jumpMenu = document.getElementById('jumpMenu');
+        const btnPrev = document.getElementById('btnPrev');
+        const btnNext = document.getElementById('btnNext');
+        const btnNotes = document.getElementById('btnNotes');
+        const notesPanel = document.getElementById('notesPanel');
+        const btnCloseNotes = document.getElementById('btnCloseNotes');
+        const notesBody = document.getElementById('notesBody');
+        const presentation = document.getElementById('presentation');
+
+        // Resize function to preserve 16:9 ratio
+        function resizeSlides() {
+            const width = 1920;
+            const height = 1080;
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            const scale = Math.min(windowWidth / width, windowHeight / height);
+            document.documentElement.style.setProperty('--scale-factor', scale);
+        }
+        window.addEventListener('resize', resizeSlides);
+        window.addEventListener('load', resizeSlides);
+
+        // Slide Navigation
+        function updateSlide(slideNum) {
+            // Validate limits
+            if (slideNum < 1) slideNum = 1;
+            if (slideNum > totalSlides) slideNum = totalSlides;
+
+            currentSlide = slideNum;
+
+            // Update DOM classes
+            slides.forEach(slide => slide.classList.remove('active'));
+            document.getElementById(`slide-${currentSlide}`).classList.add('active');
+
+            // Reset step reveals of the new slide and reveal first steps automatically
+            const currentSteps = document.querySelectorAll(`#slide-${currentSlide} .step`);
+            currentSteps.forEach(step => step.classList.remove('revealed'));
+
+            // Auto-update dropdown
+            jumpMenu.value = currentSlide;
+
+            // Load speaker notes
+            notesBody.innerHTML = speakerNotes[currentSlide] || "No notes for this slide.";
+
+            // Save state to localStorage
+            localStorage.setItem('conclave_current_slide', currentSlide);
+        }
+
+        // Step reveal handler
+        function handleStepReveal() {
+            const hiddenSteps = document.querySelectorAll(`#slide-${currentSlide} .step:not(.revealed)`);
+            if (hiddenSteps.length > 0) {
+                hiddenSteps[0].classList.add('revealed');
+                return true; // Step was revealed
+            }
+            return false; // No steps left to reveal
+        }
+
+        function handlePrev() {
+            if (currentSlide > 1) {
+                updateSlide(currentSlide - 1);
+            }
+        }
+
+        function handleNext() {
+            // First try to reveal any hidden steps on the current slide
+            const stepWasRevealed = handleStepReveal();
+            if (!stepWasRevealed) {
+                // If all steps are revealed, go to the next slide
+                if (currentSlide < totalSlides) {
+                    updateSlide(currentSlide + 1);
+                }
+            }
+        }
+
+        // Click handlers
+        btnPrev.addEventListener('click', handlePrev);
+        btnNext.addEventListener('click', handleNext);
+        jumpMenu.addEventListener('change', (e) => {
+            updateSlide(parseInt(e.target.value));
+        });
+
+        // Fullscreen Toggle
+        const btnFullscreen = document.getElementById('btnFullscreen');
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.log(`Error attempting to enable full-screen mode: ${err.message}`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+        btnFullscreen.addEventListener('click', toggleFullscreen);
+
+        // Interactive Poll Toggle Logic (Mentimeter & Kahoot)
+        const pollUrls = {
+            5: {
+                menti: "https://www.menti.com",
+                kahoot: "https://kahoot.it"
+            },
+            8: {
+                menti: "https://www.menti.com",
+                kahoot: "https://kahoot.it"
+            }
+        };
+
+        window.togglePollWidget = function(slideId, type) {
+            const img = document.getElementById(`poll-img-${slideId}`);
+            const frame = document.getElementById(`poll-frame-${slideId}`);
+            
+            if (type === 'static') {
+                img.style.display = 'block';
+                frame.style.display = 'none';
+                frame.src = '';
+            } else {
+                img.style.display = 'none';
+                frame.style.display = 'block';
+                frame.src = pollUrls[slideId][type];
+            }
+        }
+
+        // Speaker notes toggle
+        function toggleNotes() {
+            if (notesPanel.style.display === 'flex') {
+                notesPanel.style.display = 'none';
+            } else {
+                notesPanel.style.display = 'flex';
+                notesBody.innerHTML = speakerNotes[currentSlide] || "No notes for this slide.";
+            }
+        }
+        btnNotes.addEventListener('click', toggleNotes);
+        btnCloseNotes.addEventListener('click', () => {
+            notesPanel.style.display = 'none';
+        });
+
+        // Keyboard Controls
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
+                e.preventDefault();
+                handleNext();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                handlePrev();
+            } else if (e.key.toLowerCase() === 's') {
+                e.preventDefault();
+                toggleNotes();
+            } else if (e.key.toLowerCase() === 'f') {
+                e.preventDefault();
+                if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen().catch(err => {
+                        console.log(`Error attempting to enable full-screen mode: ${err.message}`);
+                    });
+                } else {
+                    document.exitFullscreen();
+                }
+            }
+        });
+
+        // Initialize state
+        const savedSlide = localStorage.getItem('conclave_current_slide');
+        if (savedSlide) {
+            updateSlide(parseInt(savedSlide));
+        } else {
+            updateSlide(1);
+        }
+    </script>
+</body>
+</html>
+
