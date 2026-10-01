@@ -1,0 +1,10 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/neeraj", "destination": "/neeraj-bhardwaj.html" },
+    { "source": "/profile", "destination": "/neeraj-bhardwaj.html" },
+    { "source": "/neeraj-bhardwaj", "destination": "/neeraj-bhardwaj.html" },
+    { "source": "/trainer", "destination": "/trainer-portal.html" },
+    { "source": "/conclave", "destination": "/conclave-presentation.html" }
+  ]
+}
