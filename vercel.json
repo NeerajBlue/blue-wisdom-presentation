@@ -5,6 +5,9 @@
     { "source": "/profile", "destination": "/neeraj-bhardwaj.html" },
     { "source": "/neeraj-bhardwaj", "destination": "/neeraj-bhardwaj.html" },
     { "source": "/trainer", "destination": "/trainer-portal.html" },
-    { "source": "/conclave", "destination": "/conclave-presentation.html" }
+    { "source": "/conclave", "destination": "/conclave-presentation.html" },
+    { "source": "/od", "destination": "/od-brochure.html" },
+    { "source": "/od-brochure", "destination": "/od-brochure.html" },
+    { "source": "/od-profile", "destination": "/od-profile.html" }
   ]
 }
